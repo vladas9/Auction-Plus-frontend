@@ -1,10 +1,10 @@
 import './App.css'
-import LotItem from './components/LotItem/LotItem'
+import Homepage from './pages/Homepage'
 
 function App() {
   return (
     <>
-      <LotItem/>
+      <Homepage/>
     </>
   )
 }

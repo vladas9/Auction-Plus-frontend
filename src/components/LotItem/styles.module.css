@@ -1,4 +1,13 @@
 .wrapper{
     background-color: grey;
     padding: 20px;
+    border-radius: 10px;
+    max-width: 30%;
+    
+}
+.img__wrapper{
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    width: 300px;
 }

@@ -13,8 +13,8 @@ const LotItem=()=>{
     return(
         <>
         <div className={styles.wrapper}>
-            <div className={styles.img__wrapper}>
-                <img src={lot.img_src} alt="" />
+            <div className={styles.img__wrapper} style={{backgroundImage:`url(${lot.img_src})`}}>
+                
             </div>
             <div className={styles.lot_info__wrapper}>
                 <div className={styles.lot_title}>
