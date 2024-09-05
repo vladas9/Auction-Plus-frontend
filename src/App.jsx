@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import UserPage from './pages/UserPage';
-import Login from './pages/LoginPage';
-import Lot from './pages/Lot';
-import Private from './pages/Private';
-import Profile from './pages/Profile';
-import RegisterPage from './pages/RegisterPage';
+import HomePage from './pages/home_page';
+import UserPage from './pages/user_page';
+import Login from './pages/login_page';
+import Lot from './pages/lot_page';
+import Private from './pages/private_page';
+import Profile from './pages/profile_page';
+import RegisterPage from './pages/register_page';
 import Navbar from './components/Navbar'; 
 import './App.css';
 
