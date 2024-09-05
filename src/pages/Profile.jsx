@@ -1,9 +1,12 @@
 import React from "react";
 
-export default function Profile(){
-
-    return(
-        <>
-        </>
-    )
-}
+const Profile = () => {
+    return (
+      <div>
+        <h1>Welcome to the Profile</h1>
+      </div>
+    );
+  }
+  
+  export default Profile; 
+  
