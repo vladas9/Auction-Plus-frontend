@@ -18,6 +18,33 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-around; /* Это равномерно распределит ссылки по ширине */
+  list-style: none; /* Убирает маркеры списка */
+  padding: 0; /* Убирает отступы */
+  margin: 0;
+  background-color: #333; /* Цвет фона */
+}
+
+.navbar li {
+  margin: 0 10px; /* Расстояние между ссылками */
+}
+
+.navbar a {
+  text-decoration: none; /* Убирает подчеркивание */
+  color: white; /* Цвет текста */
+  font-size: 16px; /* Размер шрифта */
+  padding: 10px 15px; /* Отступы внутри ссылок */
+  display: block;
+}
+
+.navbar a:hover {
+  background-color: #575757; /* Цвет фона при наведении */
+  border-radius: 5px; /* Скругление углов */
+}
+
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
