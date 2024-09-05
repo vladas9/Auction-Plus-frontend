@@ -6,24 +6,33 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [privateActive, setPrivateActive] = useState(false);
+    const [isNotifOpen, setIsNotifOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const toggleNotif = () => {
+        setIsNotifOpen(!isNotifOpen);
     };
 
     const handleInputChange = (e) => {
         setSearchQuery(e.target.value);
     };
 
-
     const handleKeyDown = (e) => {
-      if (e.key === 'Enter') {
-          e.preventDefault();
-          //Now it shows just a message. Latter it can be sent to server
-          console.log('Search Query:', searchQuery);
-          setSearchQuery('');
-      }
-  };
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            console.log('Search Query:', searchQuery);
+            setSearchQuery('');
+        }
+    };
+
+    const handlePrivateClick = () => {
+        setPrivateActive(true);
+        console.log("Private Auction Active:", privateActive);
+    };
 
     return (
       <nav>
@@ -48,14 +57,30 @@ function Navbar() {
                 className="search-input"
               />
             </li>
-            <li><Link to="/private">Private Auction</Link></li>
-              <Link>
+             <li><Link to="/private" onClick={ handlePrivateClick }>Private Auction</Link></li>
+
+            <li>
+              <button className="notif-button" onClick={toggleNotif}>
                 <i className="fas fa-bell"></i>
-              </Link>
-            <li><div className="auth"><Link to="/login">Login</Link> <Link to="/regis">Register</Link></div></li>
-            <Link to="/profile">
+              </button>
+              {isNotifOpen && (
+                <ul className="notif-menu">
+                  <li><Link to="/">Notif 1</Link></li>
+                  <li><Link to="/">Notif 2</Link></li>
+                  <li><Link to="/">Notif 3</Link></li>
+                </ul>
+              )}
+            </li>
+            
+            <li className="auth">
+              <Link to="/login">Login</Link> 
+              <Link to="/regis">Register</Link>
+            </li>
+            <li>
+              <Link to="/profile">
                 <i className="fas fa-user"></i>
-            </Link>
+              </Link>
+            </li>
           </ul>
       </nav>
     );
