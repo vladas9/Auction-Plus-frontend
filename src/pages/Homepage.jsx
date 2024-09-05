@@ -1,5 +1,6 @@
 import React from "react";
-
+import styles from "../styles/Homepage.module.css"
+import LotItem from "../components/LotItem/LotItem"
 export default function Homepage(){
     var lots_array=[]
     return(
@@ -14,6 +15,9 @@ export default function Homepage(){
                     />
                 })
             */}
+            <div className={styles.lotList}>
+                <LotItem/><LotItem/><LotItem/><LotItem/><LotItem/><LotItem/>
+            </div>
         </>
     )
 }
