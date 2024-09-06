@@ -3,6 +3,7 @@ import React from "react"
 //import { Link } from "react-router-dom"
 const LotItem=()=>{
     //test object
+    
     var lot={
         id: 0,
         img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
