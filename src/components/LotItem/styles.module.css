@@ -1,13 +1,35 @@
 .wrapper{
-    background-color: grey;
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
     max-width: 30%;
-    
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
 }
 .img__wrapper{
     background-size: cover;
     background-position: center;
     height: 300px;
     width: 300px;
+    border-radius: 5px;
+}
+.lot_info__wrapper{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+}
+.lot_title{
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 20px;
+}
+.lot_info_first_row{
+    display: flex;
+    justify-content: space-between;
+}
+.lot_info_second_row{
+    display: flex;
+    justify-content: space-around;
 }

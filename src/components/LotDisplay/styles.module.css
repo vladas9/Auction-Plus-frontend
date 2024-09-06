@@ -1,0 +1,40 @@
+.display {
+  display: flex;
+  flex-direction: column;
+}
+.display__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.display__top .display__left {
+  width: 50%;
+}
+.display__top .display__left .display__swiper__image {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+.display__top .display__right {
+  width: 40%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.display__top .display__right .display__title {
+  font-size: 30px;
+}
+.display__top .display__right .display__startPrice {
+  font-size: 24px;
+}
+.display__top .display__right .display__confirmButton {
+  cursor: pointer;
+  padding: 10px;
+  background-color: rgb(198, 242, 255);
+  width: -moz-fit-content;
+  width: fit-content;
+}/*# sourceMappingURL=styles.module.css.map */
