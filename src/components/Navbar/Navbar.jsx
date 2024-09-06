@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import './navbar.css';
+import './Navbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-function Navbar() {
+function Navbar({ isAuthenticated, setIsAuthenticated }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [privateActive, setPrivateActive] = useState(false);
@@ -34,6 +34,11 @@ function Navbar() {
         console.log("Private Auction Active:", privateActive);
     };
 
+    const handleSignOut = () => {
+        setIsAuthenticated(false);
+        console.log("User signed out");
+    };
+
     return (
       <nav>
           <ul className="navbar">
@@ -62,7 +67,7 @@ function Navbar() {
                 className="search-input"
               />
             </li>
-             <li><Link to="/private" onClick={ handlePrivateClick }>Private Auction</Link></li>
+            <li><Link to="/private" onClick={ handlePrivateClick }>Private Auction</Link></li>
 
             <li>
               <button className="notif-button" onClick={toggleNotif}>
@@ -76,10 +81,16 @@ function Navbar() {
                 </ul>
               )}
             </li>
-            
+
             <li className="auth">
-              <Link to="/login">Login</Link> 
-              <Link to="/signup">Sign Up</Link>
+              {isAuthenticated ? (
+                <button onClick={handleSignOut} className="exiting">Sign Out</button>
+              ) : (
+                <>
+                  <Link to="/login">Login</Link> 
+                  <Link to="/signup">Sign Up</Link>
+                </>
+              )}
             </li>
             <li>
               <Link to="/profile">

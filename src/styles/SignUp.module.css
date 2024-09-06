@@ -62,3 +62,7 @@
 .register-button:hover {
     background-color: #357ab9;
 }
+
+.slider {
+    position: absolute;
+}

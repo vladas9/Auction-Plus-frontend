@@ -150,3 +150,13 @@
     background-color: #575757;
     border-radius: 30px;
   }
+
+
+  .exiting {
+    background: none;
+    border: none;
+    color: white;
+    margin-top: 5px;
+    font-size: 15px;
+    cursor: pointer;
+  }
