@@ -58,9 +58,11 @@
     background: none;
     border: none;
     color: white;
-    margin-top: 3px;
     font-size: 31px;
     cursor: pointer;
+    position: relative;
+    margin-left: -90px;
+    margin-top: 1px;
   }
   
   .menu-button:hover {
@@ -75,8 +77,8 @@
     background: none;
     border: none;
     color: white;
-    margin-top: 3px;
-    font-size: 27px;
+    margin-top: 5px;
+    font-size: 24px;
     cursor: pointer;
   }
   
@@ -129,4 +131,22 @@
   
   .notif-menu a:hover {
     background-color: #575757;
+  }
+
+  .homee {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 21px;
+    cursor: pointer;
+    vertical-align: middle; 
+    margin-top: 0px;
+    margin-left: 40px;
+    position: relative;
+  }
+  
+  .homee:hover {
+    color:rgb(191, 165, 165);
+    background-color: #575757;
+    border-radius: 30px;
   }

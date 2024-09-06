@@ -38,6 +38,11 @@ function Navbar() {
       <nav>
           <ul className="navbar">
             <li>
+              <Link to="/" className="homee">
+                <i className="fas fa-home"></i>
+              </Link>
+            </li>
+            <li>
               <button className="menu-button" onClick={toggleMenu}>≡</button>
               {isMenuOpen && (
                 <ul className="dropdown-menu">
@@ -74,7 +79,7 @@ function Navbar() {
             
             <li className="auth">
               <Link to="/login">Login</Link> 
-              <Link to="/regis">Register</Link>
+              <Link to="/signup">Sign Up</Link>
             </li>
             <li>
               <Link to="/profile">
