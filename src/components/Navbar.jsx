@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import './navbar.css';
+import './Navbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Navbar() {
