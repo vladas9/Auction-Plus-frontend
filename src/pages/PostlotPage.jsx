@@ -16,7 +16,6 @@ export default function Post() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Проверка даты
     const selectedDate = new Date(`${date}T${time}`);
     const currentDate = new Date();
     if (selectedDate < currentDate) {
@@ -24,18 +23,14 @@ export default function Post() {
       return;
     }
 
-    // Проверка на согласие с условиями
     if (!terms) {
       setError("You must agree with the conditions to post the auction.");
       return;
     }
 
-    setError(""); // Очистить ошибки, если всё прошло успешно
-
-    // Логика для отправки лота
+    setError("");
     console.log({ title, description, price, date, time, photos, terms });
 
-    // Переход на страницу успешного создания
     navigate("/success");
   };
 
