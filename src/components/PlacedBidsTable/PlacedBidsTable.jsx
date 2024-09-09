@@ -4,9 +4,10 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 
 import { useState } from 'react';
-import LotImageRenderer from './LotImageRenderer';
-import LotStatusRenderer from './LotStatusRenderer';
-import LotBidStatsRenderer from './LotBidStatsRenderer'
+import LotImageRenderer from './Renderers/LotImageRenderer';
+import LotStatusRenderer from './Renderers/LotStatusRenderer';
+import LotBidStatsRenderer from './Renderers/LotBidStatsRenderer'
+import './PlacedBidsTable.css'
 
 /*{
           "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
@@ -17,7 +18,7 @@ import LotBidStatsRenderer from './LotBidStatsRenderer'
           "max_bid": 50,
           "top_bidder_username": "username1"
         },*/
-export default function PlacedBidsTable({lots}){
+export default function PlacedBidsTable({bids}){
   const [colDefs, setColDefs] = useState([
     { 
       field: "Photo",
@@ -31,12 +32,14 @@ export default function PlacedBidsTable({lots}){
       cellRenderer: LotStatusRenderer,
     },
     { field: "Max bid"},
-    { field: "Bid status",
+    { 
+      field: "Bid status",
       cellRenderer: LotBidStatsRenderer,
+      valueFormatter:(params) => params.value.max_bid || 'No bids'
     }
   ]);
   const [rowData, setRowData]=useState(
-    lots.map(item=>({
+    bids.map(item=>({
       Photo: item.photo,
       "Lot name": item.lot_name,
       Price: item.start_price,
@@ -52,8 +55,8 @@ export default function PlacedBidsTable({lots}){
     }))
   )
   return (
-    <div className="ag-theme-quartz-dark" // applying the Data Grid theme
-          style={{ height: 700 }}
+    <div className="ag-theme-quartz" // applying the Data Grid theme
+          style={{ height: 500 }}
     >
       <AgGridReact rowData={rowData} columnDefs={colDefs}/>
     </div>
