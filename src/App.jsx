@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import Private from './pages/Private'
-import Lotpage from "./pages/Lotpage"
+import Lot from "./pages/Lotpage"
 
 function App() {
 const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -20,6 +20,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
               <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/private" element={<Private/>} />
+              <Route path="/lot/:id" element={<Lot />} />
           </Routes>
       </Router>
   );
