@@ -11,56 +11,43 @@ export default function Profile(){
         phone_number:"079999999"
     }
     var placed_lots=[
-        {
-          "photo": "link_to_photo_1",
-          "lot_name": "Name of lot 1",
-          "price": 44,
-          "currency": "$",
-          "date": "dd:mm:yy",
-          "closed": false,
-          "current_price": 25,
-          "bittenBySomebodyElse": false
-        },
-        {
-          "photo": "link_to_photo_2",
-          "lot_name": "Name of lot 2",
-          "price": 44,
-          "currency": "$",
-          "date": "dd:mm:yy",
-          "closed": false,
-          "current_price": 50,
-          "bittenBySomebodyElse": true
-        },
-        {
-          "photo": "link_to_photo_3",
-          "lot_name": "Name of lot 3",
-          "price": 44,
-          "currency": "$",
-          "date": "dd:mm:yy",
-          "closed": true,
-          "current_price": 46,
-          "bittenBySomebodyElse": true
-        },
-        {
-          "photo": "link_to_photo_4",
-          "lot_name": "Name of lot 4",
-          "price": 44,
-          "currency": "$",
-          "date": "dd:mm:yy",
-          "closed": true,
-          "current_price": 46,
-          "bittenBySomebodyElse": false
-        },
-        {
-          "photo": "link_to_photo_5",
-          "lot_name": "Name of lot 5",
-          "price": 44,
-          "currency": "$",
-          "date": "dd:mm:yy",
-          "closed": true,
-          "current_price": 46,
-          "bittenBySomebodyElse": false
-        }
+      {
+        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
+        "lot_name": "Name of lot 2",
+        "start_price": 44,
+        "end_date": "dd:mm:yy",
+        "closed": false,
+        "max_bid": 50,
+        "top_bidder_username": "username1"
+      },
+      {
+        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
+        "lot_name": "Name of lot 2",
+        "start_price": 44,
+        "end_date": "dd:mm:yy",
+        "closed": true,
+        "max_bid": 50,
+        "top_bidder_username": "username1"
+      },
+      {
+        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
+        "lot_name": "Name of lot 2",
+        "start_price": 44,
+        "end_date": "dd:mm:yy",
+        "closed": false,
+        "max_bid": 50,
+        "top_bidder_username": "username1"
+      },
+      {
+        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
+        "lot_name": "Name of lot 2",
+        "start_price": 44,
+        "end_date": "dd:mm:yy",
+        "closed": false,
+        "max_bid": 50,
+        "top_bidder_username": "username1"
+      },
+        
       ]
       
     return(
@@ -78,7 +65,7 @@ export default function Profile(){
                 <div className={styles.profile__tables}>
                     <div className={styles.profile__tables__bids}>Placed Bids</div>
                     <div className={styles.profile__tables__lots}>Placed Lots</div>
-                    <PlacedBidsTable/>
+                    <PlacedBidsTable lots={placed_lots}/>
                     {/*placedItems?<PlacedBidsTable lots={placed_lots}/>:<PlacedLotsTable/>*/}
                 </div>
             </div>
