@@ -1,0 +1,80 @@
+.postLotContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input,
+  .textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .input:focus,
+  .textarea:focus {
+    border-color: #1976d2;
+    outline: none;
+  }
+  
+  .textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  .label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .termsGroup {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox {
+    margin-right: 10px;
+  }
+  
+  .submitBtn {
+    padding: 10px 15px;
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submitBtn:hover {
+    background-color: #155a9b;
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
