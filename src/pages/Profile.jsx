@@ -27,7 +27,7 @@ export default function Profile(){
         "end_date": "dd:mm:yy",
         "closed": true,
         "max_bid": 50,
-        "top_bidder_username": "username1"
+        "top_bidder_username": "username2"
       },
       {
         "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
@@ -35,7 +35,7 @@ export default function Profile(){
         "start_price": 44,
         "end_date": "dd:mm:yy",
         "closed": false,
-        "max_bid": 50,
+        "max_bid": 60,
         "top_bidder_username": "username1"
       },
       {
