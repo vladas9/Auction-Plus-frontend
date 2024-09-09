@@ -14,8 +14,9 @@ import {
   DialogTitle
 } from "@mui/material";
 import UploadIcon from "@mui/icons-material/Upload";
+import { useNavigate } from "react-router-dom";
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ setIsAuthenticated }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,9 +28,11 @@ export default function RegistrationForm() {
     isHuman: false,
     idUploaded: null,
   });
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
   const [isSliderComplete, setIsSliderComplete] = useState(false);
   const [openCaptchaDialog, setOpenCaptchaDialog] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (event) => {
     setFormData({
@@ -48,7 +51,15 @@ export default function RegistrationForm() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    
+    setFormData({ ...formData, [name]: value });
+
+    if (name === "password" || name === "repeatPassword") {
+      setPasswordMismatch(
+        formData.password !== value && formData.repeatPassword !== value
+      );
+    }
   };
 
   const handleFileUpload = (e) => {
@@ -57,7 +68,21 @@ export default function RegistrationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data:", formData);
+
+    if (passwordMismatch) {
+      console.log("Passwords do not match");
+      return;
+    }
+
+    const result = true; // Simulated backend response
+
+    if (result) {
+      setIsAuthenticated(true);
+      navigate('/');
+      console.log("Registration successful:", formData);
+    } else {
+      console.log("Registration failed");
+    }
   };
 
   const handleClear = () => {
@@ -72,6 +97,7 @@ export default function RegistrationForm() {
       isHuman: false,
       idUploaded: null,
     });
+    setPasswordMismatch(false);
   };
 
   const handleSliderChange = (event, newValue) => {
@@ -124,6 +150,7 @@ export default function RegistrationForm() {
           value={formData.name}
           onChange={handleChange}
           margin="normal"
+          required
         />
         <TextField
           fullWidth
@@ -132,6 +159,7 @@ export default function RegistrationForm() {
           value={formData.email}
           onChange={handleChange}
           margin="normal"
+          required
         />
         <TextField
           fullWidth
@@ -141,6 +169,7 @@ export default function RegistrationForm() {
           value={formData.password}
           onChange={handleChange}
           margin="normal"
+          required
         />
         <TextField
           fullWidth
@@ -150,6 +179,9 @@ export default function RegistrationForm() {
           value={formData.repeatPassword}
           onChange={handleChange}
           margin="normal"
+          required
+          error={passwordMismatch}
+          helperText={passwordMismatch ? "Passwords do not match" : ""}
         />
         <TextField
           fullWidth
@@ -158,6 +190,8 @@ export default function RegistrationForm() {
           value={formData.phoneNumber}
           onChange={handleChange}
           margin="normal"
+          required
+          inputProps={{ pattern: "[0-9]*" }}
         />
         <TextField
           fullWidth
@@ -166,23 +200,24 @@ export default function RegistrationForm() {
           value={formData.address}
           onChange={handleChange}
           margin="normal"
+          required
         />
 
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={6}>
-            <Button
-              variant="contained"
-              component="label"
-              startIcon={<UploadIcon />}
-              fullWidth
-            >
-              Upload ID
-              <input
-                type="file"
-                hidden
-                onChange={handleFileUpload}
-              />
-            </Button>
+          <Button
+            variant="contained"
+            component="label"
+            startIcon={<UploadIcon />}
+            fullWidth
+          >
+            Upload ID
+            <input
+              type="file"
+              hidden
+              onChange={handleFileUpload}
+            />
+          </Button>
           </Grid>
           <Grid item xs={6}>
             <Typography>(age verification)</Typography>
@@ -203,14 +238,14 @@ export default function RegistrationForm() {
         <Grid container spacing={2}>
           <Grid item xs={6}>
           <Button
-              variant="contained"
-              color="success"
-              type="submit"
-              fullWidth
-              disabled={!formData.isHuman}
-            >
-              Register
-            </Button>
+            variant="contained"
+            color="success"
+            type="submit"
+            fullWidth
+            disabled={!formData.isHuman || passwordMismatch || !formData.idUploaded}
+          >
+            Register
+          </Button>
           </Grid>
           <Grid item xs={6}>
             <Button

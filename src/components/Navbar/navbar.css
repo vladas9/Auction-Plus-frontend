@@ -160,3 +160,9 @@
     font-size: 15px;
     cursor: pointer;
   }
+
+  .exiting:hover {
+    color: rgb(191, 165, 165);
+    background-color: #575757;
+    border-radius: 30px;
+  }

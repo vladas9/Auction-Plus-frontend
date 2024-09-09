@@ -16,7 +16,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
           <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/private" element={<Private/>} />
           </Routes>
