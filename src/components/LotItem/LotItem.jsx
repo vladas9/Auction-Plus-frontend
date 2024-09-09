@@ -1,11 +1,12 @@
 import styles from "./styles.module.css"
+import { Link } from 'react-router-dom';
 import React from "react"
-//import { Link } from "react-router-dom"
+
 const LotItem=()=>{
     //test object
     
     var lot={
-        id: 0,
+        id: 2,
         img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
         title:"Test lot",
         start_price: 200,
@@ -18,11 +19,11 @@ const LotItem=()=>{
         <>
         <div className={styles.wrapper}>
 
-            {/*<Link to={`/lot/${lot.id}`} >*/}
+            <Link to={`/lot/${lot.id}`} >
                 <div className={styles.img__wrapper} style={{backgroundImage:`url(${lot.img_src})`}}>
                 
                 </div>
-            {/*</Link>*/}
+            </Link>
             <div className={styles.lot_info__wrapper}>
                 <div className={styles.lot_title}>
                     {lot.title}

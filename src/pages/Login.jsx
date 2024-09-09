@@ -5,7 +5,6 @@ import {
   Container,
   Grid,
   Typography,
-  Link,
   Box
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +23,6 @@ export default function Login({ setIsAuthenticated }) {
       navigate('/');
       console.log(username);
       console.log(password);
-
     } else {
       console.log("Login failed");
     }
@@ -55,6 +53,7 @@ export default function Login({ setIsAuthenticated }) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             margin="normal"
+            required
           />
           <TextField
             fullWidth
@@ -63,6 +62,7 @@ export default function Login({ setIsAuthenticated }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             margin="normal"
+            required
           />
 
           <Grid container spacing={2}>
@@ -87,17 +87,6 @@ export default function Login({ setIsAuthenticated }) {
               </Button>
             </Grid>
           </Grid>
-
-          <Typography
-            variant="body2"
-            align="center"
-            sx={{ marginTop: 2 }}
-          >
-            Already have an account?{" "}
-            <Link href="/sign-in" underline="hover">
-              Sign in
-            </Link>
-          </Typography>
         </form>
       </Container>
     </Box>
