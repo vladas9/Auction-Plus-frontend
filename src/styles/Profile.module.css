@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__info {
+  display: flex;
+}
+.profile__info__photo {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}/*# sourceMappingURL=Profile.module.css.map */
