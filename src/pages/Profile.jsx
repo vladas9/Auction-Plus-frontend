@@ -111,7 +111,7 @@ export default function Profile(){
                     {placedItems?<PlacedBidsTable bids={placed_bids}/>:<PlacedLotsTable lots={placed_lots}/>}
                 </div>
                 <div className={styles.postLot__button}>
-                  <Link to="/postlot">
+                  <Link to="/profile/postlot">
                   Post a new lot
                   </Link>
                 </div>
