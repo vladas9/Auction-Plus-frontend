@@ -1,4 +1,5 @@
 import './App.css'
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './pages/Homepage'
 import Navbar from './components/Navbar/Navbar'
@@ -9,13 +10,14 @@ import Private from './pages/Private'
 import Lotpage from "./pages/Lotpage"
 
 function App() {
+const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
       <Router>
-          <Navbar />
+          <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
           <Routes>
               <Route path="/" element={<Homepage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+              <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/private" element={<Private/>} />
           </Routes>
