@@ -67,7 +67,7 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
                 className="search-input"
               />
             </li>
-            <li><Link to="/private" onClick={ handlePrivateClick }>Private Auction</Link></li>
+            <li><Link to="/private-session" onClick={ handlePrivateClick }>Private Auction</Link></li>
 
             <li>
               <button className="notif-button" onClick={toggleNotif}>
