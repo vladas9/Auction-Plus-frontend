@@ -9,6 +9,9 @@ const Lot = () => {
   const [lotEnded, setLotEnded] = useState(false);
   const winner = { name: "John Doe" };
   const lot = { max_bid: 100 };
+  
+  //fetch the data about the lot
+
 
   // Simply to simulate server response by setting lotEnded to true after 5 seconds
   useEffect(() => {
@@ -22,7 +25,7 @@ const Lot = () => {
   const handleClosePopup = () => {
     setLotEnded(false);
   };
-
+  
   return (
     <div className={styles.lot}>
       <LotDisplay />
