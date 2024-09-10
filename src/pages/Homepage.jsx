@@ -5,9 +5,39 @@ export default function Homepage(){
     //fetch data about lots
     var lots_array=[
         {
-            id: 3,
+            id: 1,
+            img_src: "https://m.media-amazon.com/images/I/71+mhWHnBdL._AC_UF894,1000_QL80_.jpg",
+            title:"Test lot 1",
+            start_price: 200,
+            last_bid:300,
+            rating: 30,
+            endtime:"12 february" ,
+            status:"closed"   
+        },
+        {
+            id: 2,
             img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
+            title:"Test lot 2",
+            start_price: 200,
+            last_bid:300,
+            rating: 30,
+            endtime:"12 february" ,
+            status:"closed"   
+        },
+        {
+            id: 3,
+            img_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtvMk1EncRwvOQrIDtvgWJAUz3AOdTGEo27tfGcklGz3ls0deuan4rgtd1BonOtO2qcMA&usqp=CAU",
             title:"Test lot 3",
+            start_price: 200,
+            last_bid:300,
+            rating: 30,
+            endtime:"31 january" ,
+            status:"closed"   
+        },
+        {
+            id:4,
+            img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
+            title:"Test lot 4",
             start_price: 200,
             last_bid:300,
             rating: 30,
@@ -16,7 +46,7 @@ export default function Homepage(){
         },
         {
             id: 5,
-            img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
+            img_src: "https://m.media-amazon.com/images/I/71+mhWHnBdL._AC_UF894,1000_QL80_.jpg",
             title:"Test lot 5",
             start_price: 200,
             last_bid:300,
@@ -31,13 +61,23 @@ export default function Homepage(){
             start_price: 200,
             last_bid:300,
             rating: 30,
-            endtime:"31 january" ,
+            endtime:"12 february" ,
             status:"closed"   
         },
         {
             id: 7,
-            img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
+            img_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtvMk1EncRwvOQrIDtvgWJAUz3AOdTGEo27tfGcklGz3ls0deuan4rgtd1BonOtO2qcMA&usqp=CAU",
             title:"Test lot 7",
+            start_price: 200,
+            last_bid:300,
+            rating: 30,
+            endtime:"31 january" ,
+            status:"closed"   
+        },
+        {
+            id: 8,
+            img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
+            title:"Test lot 8",
             start_price: 200,
             last_bid:300,
             rating: 30,

@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import React from "react"
 
 const LotItem=(props)=>{
-    //test object
-    console.log(props.img_src)
+    
     return(
         <>
         <div className={styles.wrapper}>
