@@ -93,9 +93,11 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
               )}
             </li>
             <li>
+            {isAuthenticated ? (
               <Link to="/profile">
                 <i className="fas fa-user"></i>
               </Link>
+            ):(<></>)}
             </li>
           </ul>
       </nav>
