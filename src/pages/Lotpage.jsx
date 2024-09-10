@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "../styles/Lotpage.module.css"
 import LotDisplay from '../components/LotDisplay/LotDisplay'
 const Lot = () => {
-  
+  //fetch the data about specific lot
   return (
     <div className={styles.lot}>
       <LotDisplay/>

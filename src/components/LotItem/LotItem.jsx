@@ -2,51 +2,41 @@ import styles from "./styles.module.css"
 import { Link } from 'react-router-dom';
 import React from "react"
 
-const LotItem=()=>{
+const LotItem=(props)=>{
     //test object
-    
-    var lot={
-        id: 3,
-        img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
-        title:"Test lot",
-        start_price: 200,
-        last_bid:300,
-        rating: 30,
-        endtime:"12 february" ,
-        status:"closed"   
-    }
+    console.log(props.img_src)
     return(
         <>
         <div className={styles.wrapper}>
 
-            <Link to={`/lot/${lot.id}`} >
-                <div className={styles.img__wrapper} style={{backgroundImage:`url(${lot.img_src})`}}>
+            <Link to={`/lot/${props.id}`} >
+                <div className={styles.img__wrapper} style={{backgroundImage:`url(${props.img_src})`}}>
                 
                 </div>
             </Link>
             <div className={styles.lot_info__wrapper}>
                 <div className={styles.lot_title}>
-                    {lot.title}
+                    {props.title}
                 </div>
                 
                 <div className={styles.lot_info_first_row}>
                     <div className={styles.lot_startprice}>
-                        Start price: {lot.start_price}
+                        Start price: {props.start_price}
                     </div>
                     <div className={styles.lot_rating}>
-                        Rating: {lot.rating}
+                        Rating: {props.rating}
                     </div>
                     <div className={styles.lot_status}>
-                        {lot.status}
+                        {props.status}
                     </div>
                 </div>
 
                 <div className={styles.lot_info_second_row}>
                     <div className={styles.lot_lastbid}>
-                        Current bid: {lot.last_bid}
+                        Current bid: {props.last_bid}
                     </div>
                     <div className={styles.lot_endtime}>
-                        {lot.endtime}
+                        {props.endtime}
                     </div>
                 </div>
                 
