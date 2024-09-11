@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "../styles/AdminHomePage.module.css";
 
-const users = [
-  { id: 1, name: "John Doe", complaints: 2, boughtItems: 5 },
-  { id: 2, name: "Jane Smith", complaints: 0, boughtItems: 8 },
-  { id: 3, name: "Mike Johnson", complaints: 1, boughtItems: 3 },
-  { id: 4, name: "Anna Williams", complaints: 4, boughtItems: 2 },
+const initialUsers = [
+  { id: 1, name: "John Doe", complaints: 2, boughtItems: 5, banned: false },
+  { id: 2, name: "Jane Smith", complaints: 0, boughtItems: 8, banned: false },
+  { id: 3, name: "Mike Johnson", complaints: 1, boughtItems: 3, banned: false },
+  { id: 4, name: "Anna Williams", complaints: 4, boughtItems: 2, banned: false },
 ];
 
-const lots = [
+const initialLots = [
   {
     id: 1,
     photo: "https://www.shutterstock.com/image-vector/wood-chair-isolated-illustration-on-600nw-146198417.jpg",
@@ -33,6 +33,8 @@ const lots = [
 
 export default function Admin() {
   const [selectedSection, setSelectedSection] = useState("users");
+  const [users, setUsers] = useState(initialUsers);
+  const [lots, setLots] = useState(initialLots);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [banDuration, setBanDuration] = useState("");
 
@@ -44,18 +46,29 @@ export default function Admin() {
     "3 months",
     "6 months",
     "1 year",
-    "forever"
+    "forever",
   ];
 
   const handleBanUser = (id) => {
-    setSelectedUserId(id === selectedUserId ? null : id);
+    const userToBan = users.find((user) => user.id === id);
+
+    if (userToBan.banned) {
+      console.log("user was unbanned");
+      setUsers((prevUsers) =>
+        prevUsers.map((user) => (user.id === id ? { ...user, banned: false } : user))
+      );
+    } else {
+      setSelectedUserId(id === selectedUserId ? null : id);
+    }
   };
 
   const handleBanSelection = (duration) => {
     setBanDuration(duration);
-    console.log(selectedUserId);
-    console.log(duration);
-    setSelectedUserId(null); 
+    setUsers((prevUsers) =>
+      prevUsers.map((user) => (user.id === selectedUserId ? { ...user, banned: true } : user))
+    );
+    setSelectedUserId(null);
+    console.log(duration + " " + selectedUserId);
   };
 
   const handleCancelBan = () => {
@@ -63,8 +76,9 @@ export default function Admin() {
   };
 
   const handleDeleteLot = (id) => {
-    
-  }
+    setLots((prevLots) => prevLots.filter((lot) => lot.id !== id));
+    console.log("Lot with ID:", id, "was deleted");
+  };
 
   return (
     <div className={styles.adminPage}>
@@ -82,9 +96,7 @@ export default function Admin() {
           <div>
             <div className={styles.searchFilter}>
               <input type="text" placeholder="Search" className={styles.searchInput} />
-              <button className={styles.filterButton}>
-                Filter
-              </button>
+              <button className={styles.filterButton}>Filter</button>
             </div>
 
             <table className={styles.usersTable}>
@@ -119,9 +131,9 @@ export default function Admin() {
                         className={styles.banButton}
                         onClick={() => handleBanUser(user.id)}
                       >
-                        ban
+                        {user.banned ? "unban" : "ban"}
                       </button>
-                      {selectedUserId === user.id && (
+                      {selectedUserId === user.id && !user.banned && (
                         <div className={styles.banMenu}>
                           <p>Select ban duration:</p>
                           {banOptions.map((option) => (
@@ -153,9 +165,7 @@ export default function Admin() {
           <div>
             <div className={styles.searchFilter}>
               <input type="text" placeholder="Search lots" className={styles.searchInput} />
-              <button className={styles.searchButton}>
-                Filter
-              </button>
+              <button className={styles.searchButton}>Filter</button>
             </div>
 
             <table className={styles.lotsTable}>
