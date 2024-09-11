@@ -1,6 +1,5 @@
-// App.js
-import './App.css'
-import React, { useState } from "react";
+import './App.css';
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar/Navbar';
@@ -18,7 +17,13 @@ import AdminAuth from "./pages/Adminauth";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(
+    localStorage.getItem('isAdminAuthenticated') === 'true' 
+  );
+
+  useEffect(() => {
+    localStorage.setItem('isAdminAuthenticated', isAdminAuthenticated);
+  }, [isAdminAuthenticated]);
 
   return (
     <Router>
@@ -34,7 +39,7 @@ function App() {
         <Route path="/lot/:id" element={<Lot />} />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="*" element={<Page404 />} />
-        <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />}/>
+        <Route path="/admin/home" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />} />
         <Route path="/admin/auth" element={<AdminAuth setIsAdminAuthenticated={setIsAdminAuthenticated} />} />
       </Routes>
     </Router>

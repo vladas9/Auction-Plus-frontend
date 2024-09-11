@@ -10,7 +10,8 @@ export default function AdminAuth({ setIsAdminAuthenticated }) {
     e.preventDefault();
     if (adminName === 'admin' && password === 'adminpass') {
       setIsAdminAuthenticated(true);
-      navigate('/admin');
+      localStorage.setItem('isAdminAuthenticated', 'true'); 
+      navigate('/admin/home');
     } else {
       alert("Are you admin?");
     }
