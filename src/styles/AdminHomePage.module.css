@@ -1,0 +1,140 @@
+.adminPage {
+  display: flex;
+  height: 100vh;
+}
+
+.container {
+  width: 30%;
+  border-right: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.divItem {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.divItem:hover {
+  background-color: #f0f0f0;
+  color: red;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.welcomeTitle {
+  font-size: 2.5rem; 
+  font-weight: bold; 
+  margin: 0; 
+}
+
+.welcomeSubtitle {
+  font-size: 1.5rem;
+  margin-top: 10px; 
+  color: #666; 
+}
+.adminPage {
+  display: flex;
+  height: 100vh;
+}
+
+.welcomeMessage {
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  padding-top: 50px;
+}
+  
+  .searchFilter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .searchInput {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  
+  .usersTable, .lotsTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .usersTable th, .usersTable td, .lotsTable th, .lotsTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .userAvatar {
+    font-size: 2rem;
+  }
+  
+  .complaintsButton, .itemsButton, .deleteButton {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .banButton {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .lotImage {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .opened {
+    color: green;
+  }
+  
+  .closed {
+    color: red;
+  }
+  
+  .banMenu {
+    background-color: rgb(190, 109, 109);
+    width: 200px;
+    position: absolute;
+    transform: translateX(-80px);
+    margin-TOP: 10PX;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+
+  .banOption{
+    background-color: none;
+    margin-bottom: 8px;
+  }
+
+  .banOption:hover{
+    cursor: pointer;
+    background-color: rgb(92, 92, 164);
+  }
