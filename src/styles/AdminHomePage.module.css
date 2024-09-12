@@ -1,31 +1,63 @@
 .adminPage {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .container {
-    width: 30%;
-    border-right: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .divItem {
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
+  display: flex;
+  height: 100vh;
+}
 
-  .divItem:hover {
-    color: red;
-  }
-  
-  .content {
-    flex-grow: 1;
-    padding: 20px;
-  }
+.container {
+  width: 30%;
+  border-right: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.divItem {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.divItem:hover {
+  background-color: #f0f0f0;
+  color: red;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.welcomeTitle {
+  font-size: 2.5rem; 
+  font-weight: bold; 
+  margin: 0; 
+}
+
+.welcomeSubtitle {
+  font-size: 1.5rem;
+  margin-top: 10px; 
+  color: #666; 
+}
+.adminPage {
+  display: flex;
+  height: 100vh;
+}
+
+.welcomeMessage {
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  padding-top: 50px;
+}
   
   .searchFilter {
     display: flex;

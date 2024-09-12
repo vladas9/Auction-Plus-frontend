@@ -14,6 +14,8 @@ import Page404 from './pages/Page404';
 import PrivateSession from "./pages/PrivateSession";
 import Admin from "./pages/AdminHomePage";
 import AdminAuth from "./pages/Adminauth";
+import AdminLotsTable from "./components/AdminComponents/AdminLotsTable";
+import AdminUsersTable from "./components/AdminComponents/AdminUsersTable";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -39,7 +41,10 @@ function App() {
         <Route path="/lot/:id" element={<Lot />} />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="*" element={<Page404 />} />
-        <Route path="/admin/home" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />} />
+        <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />}>
+          <Route path="lots" element={<AdminLotsTable />} />
+          <Route path="users" element={<AdminUsersTable />} />
+        </Route>
         <Route path="/admin/auth" element={<AdminAuth setIsAdminAuthenticated={setIsAdminAuthenticated} />} />
       </Routes>
     </Router>
