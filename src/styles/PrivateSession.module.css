@@ -1,0 +1,66 @@
+.wrapper {
+  background-color: #FAFAFA;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  font-family: Inter, sans-serif;
+}
+.wrapper__left {
+  width: 70%;
+}
+
+.left {
+  max-width: 850px;
+  padding: 25px;
+  margin: 50px auto;
+}
+.left__lot {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 6px;
+  background: #FFF;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  height: 420px;
+  border-radius: 6px;
+  padding: 25px;
+}
+.left__timer {
+  display: flex;
+}
+.left__timer__bar {
+  width: 80%;
+}
+.left__timer__counter {
+  width: 20%;
+  text-align: center;
+}
+.left__quitbtn {
+  border-radius: 6px;
+  background: rgba(255, 58, 32, 0.17);
+  display: flex;
+  width: 91px;
+  height: 30px;
+  padding: 3px 22px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #FF3A20;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  background-color: #fff;
+}
+.right__list {
+  display: flex;
+  flex-direction: column;
+}
+.right__input {
+  background-color: #F8F8F8;
+}/*# sourceMappingURL=PrivateSession.module.css.map */
