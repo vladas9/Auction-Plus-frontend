@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef, useEffect} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,7 +21,7 @@ const ImageSwiper = () =>{
         "https://i.simpalsmedia.com/999.md/BoardImages/900x900/80532c24a7b7e600084798d894008c31.jpg",
         "https://i.simpalsmedia.com/999.md/BoardImages/900x900/90bce505e15b7ea4ad78d7e90ed250be.jpg"
     ]
-    const settings = {
+    /*const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -36,7 +36,39 @@ const ImageSwiper = () =>{
                 )}
             </Slider>
         </div>
-    )
+    )*/
+        const [nav1, setNav1] = useState(null);
+        const [nav2, setNav2] = useState(null);
+        let sliderRef1 = useRef(null);
+        let sliderRef2 = useRef(null);
+      
+        useEffect(() => {
+          setNav1(sliderRef1);
+          setNav2(sliderRef2);
+        }, []);
+        return (
+          <div className="slider-container">
+            <h4>First Slider</h4>
+            <Slider asNavFor={nav2} ref={slider => (sliderRef1 = slider)}>
+              {img_src.map((val, i)=>
+                <ImageItem key={i} src={val}/>
+              )}
+            </Slider>
+            <h4>Second Slider</h4>
+            <Slider
+              asNavFor={nav1}
+              ref={slider => (sliderRef2 = slider)}
+              slidesToShow={3}
+              swipeToSlide={true}
+              focusOnSelect={true}
+            >
+              {img_src.map((val, i)=>
+                <img key={i} src={val} alt="" />
+              )}
+              
+            </Slider>
+          </div>
+        );
 }
 
 export default ImageSwiper;

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/PrivateSession.module.css';
+import ImageSwiper from "../components/ImageSwiper/ImageSwiper"
+
 export default function PrivateSession(){
 
 
@@ -8,7 +10,7 @@ export default function PrivateSession(){
       <div className={styles.wrapper__left}>
         <div className={styles.left}>
           <div className={styles.left__lot}>
-            {/**/}
+            <ImageSwiper/>
           </div>
           <div className={styles.left__timer}>
             <div className={styles.left__timer__bar}>
