@@ -4,14 +4,8 @@ import './Navbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Navbar({ isAuthenticated, setIsAuthenticated }) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const [privateActive, setPrivateActive] = useState(false);
     const [isNotifOpen, setIsNotifOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
 
     const toggleNotif = () => {
         setIsNotifOpen(!isNotifOpen);
@@ -29,47 +23,25 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
         }
     };
 
-    const handlePrivateClick = () => {
-        setPrivateActive(true);
-        console.log("Private Auction Active:", privateActive);
-    };
-
     const handleSignOut = () => {
         setIsAuthenticated(false);
         console.log("User signed out");
     };
 
     return (
-      <nav>
-          <ul className="navbar">
-            <li>
-              <Link to="/" className="homee">
-                <i className="fas fa-home"></i>
-              </Link>
-            </li>
-            <li>
-              <button className="menu-button" onClick={toggleMenu}>≡</button>
-              {isMenuOpen && (
-                <ul className="dropdown-menu">
-                  <li><Link to="/item1">Item 1</Link></li>
-                  <li><Link to="/item2">Item 2</Link></li>
-                  <li><Link to="/item3">Item 3</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
+      <div className="navbar-container">
+        <nav className="top-navbar">
+            <div className="search-container">
               <input 
                 type="text" 
-                placeholder="Search lot" 
+                placeholder="Search here" 
                 value={searchQuery} 
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 className="search-input"
               />
-            </li>
-            <li><Link to="/private-session" onClick={ handlePrivateClick }>Private Auction</Link></li>
-
-            <li>
+            </div>
+            <div className="navbar-icons">
               <button className="notif-button" onClick={toggleNotif}>
                 <i className="fas fa-bell"></i>
               </button>
@@ -80,27 +52,52 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
                   <li><Link to="/">Notif 3</Link></li>
                 </ul>
               )}
-            </li>
 
-            <li className="auth">
-              {isAuthenticated ? (
-                <button onClick={handleSignOut} className="exiting">Sign Out</button>
-              ) : (
-                <>
-                  <Link to="/login">Login</Link> 
-                  <Link to="/signup">Sign Up</Link>
-                </>
-              )}
-            </li>
-            <li>
-            {isAuthenticated ? (
-              <Link to="/profile">
-                <i className="fas fa-user"></i>
-              </Link>
-            ):(<></>)}
-            </li>
-          </ul>
-      </nav>
+              <div className="auth">
+                {isAuthenticated ? (
+                  <>
+                    <button onClick={handleSignOut} className="exiting">Sign Out</button>
+                    <Link to="/profile">
+                      <i className="fas fa-user"></i>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login">Login</Link>
+                    <Link to="/signup">Sign Up</Link>
+                  </>
+                )}
+              </div>
+            </div>
+        </nav>
+
+        <div className="navbar-wrapper">
+          <nav className="left-navbar">
+            <ul>
+                <li>
+                  <Link to="/" className="nav-icon">
+                    <i className="fas fa-home"></i> Homepage
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/private-session">
+                    <i className="fas fa-key"></i> Private auction
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/items">
+                    <i className="fas fa-table"></i> Items table
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/settings">
+                    <i className="fas fa-cog"></i> Settings
+                  </Link>
+                </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     );
 }
 

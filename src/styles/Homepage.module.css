@@ -1,5 +1,18 @@
+.full_container {
+    display: flex;
+    background-color:#FAFAFA;
+
+}
+
+
 .lotList{
     display: flex;
+    background-color:#ffffff;
     flex-wrap: wrap;
-    gap:30px
+    gap:30px;
+    margin-left: 260px;
+    margin-top: 70px;
+    margin-right: 20px;
+    margin-bottom: 40px;
 }
+

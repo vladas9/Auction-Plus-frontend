@@ -1,5 +1,6 @@
 .wrapper{
-    background-color: white;
+    margin: 10px;
+    background-color:#FAFAFA;
     padding: 20px;
     border-radius: 10px;
     max-width: 30%;
@@ -10,8 +11,8 @@
 .img__wrapper{
     background-size: cover;
     background-position: center;
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     border-radius: 5px;
 }
 .lot_info__wrapper{

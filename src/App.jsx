@@ -29,24 +29,28 @@ function App() {
 
   return (
     <Router>
-      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/postlot" element={<Post />} />
-        <Route path="/private-session" element={<Private />} />
-        <Route path="/private-session/:id" element={<PrivateSession />} />
-        <Route path="/lot/:id" element={<Lot />} />
-        <Route path="/success" element={<SuccessPage />} />
-        <Route path="*" element={<Page404 />} />
-        <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />}>
-          <Route path="lots" element={<AdminLotsTable />} />
-          <Route path="users" element={<AdminUsersTable />} />
-        </Route>
-        <Route path="/admin/auth" element={<AdminAuth setIsAdminAuthenticated={setIsAdminAuthenticated} />} />
-      </Routes>
+      <div>
+        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+        <div>
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
+              <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/postlot" element={<Post />} />
+              <Route path="/private-session" element={<Private />} />
+                <Route path="/private-session/:id" element={<PrivateSession />} />
+              <Route path="/lot/:id" element={<Lot />} />
+                <Route path="/success" element={<SuccessPage />} />
+              <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />}>
+                <Route path="lots" element={<AdminLotsTable />} />
+                <Route path="users" element={<AdminUsersTable />} />
+              </Route>
+              <Route path="/admin/auth" element={<AdminAuth setIsAdminAuthenticated={setIsAdminAuthenticated} />} />
+              <Route path="*" element={<Page404 />} />
+            </Routes>
+        </div>
+      </div>
     </Router>
   );
 }

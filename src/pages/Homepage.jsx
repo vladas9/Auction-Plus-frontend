@@ -86,8 +86,7 @@ export default function Homepage(){
         }
     ]
     return(
-        <>
-            
+        <div className={styles.full_container}>
             <div className={styles.lotList}>
             {
                 lots_array.map((item)=>{
@@ -108,6 +107,6 @@ export default function Homepage(){
                 })
             }
             </div>
-        </>
+        </div>
     )
 }
