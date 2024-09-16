@@ -141,7 +141,7 @@ export default function Homepage(){
                 <Statistics title={statistics_3.title} value={statistics_3.value} valueColor="#FF3A20" iconSrc="https://pics.st/faa/501/24eea7d8.png" />
             </div>
 
-            <div><FilterBar /></div>
+            <div className={styles.filter}><FilterBar /></div>
 
             <div className={styles.lotList}>
                 {lots.map((item) => (

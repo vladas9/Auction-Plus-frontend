@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar/Navbar';
+import Searchbar from './components/Searchbar/Searchbar';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
@@ -29,9 +30,10 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
-        <div>
+      <div className='full_container'>
+        <div className='left_part'><Navbar/></div>
+        <div className='right_part'>
+            <Searchbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
             <Routes>
               <Route path="/" element={<Homepage />} />
                 <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
