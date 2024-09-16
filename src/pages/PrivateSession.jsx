@@ -3,6 +3,8 @@ import styles from '../styles/PrivateSession.module.css';
 import LotDisplayPrivate from '../components/LotDisplayPrivate/LotDisplayPrivate';
 import { Link } from 'react-router-dom';
 import TimeBar from '../components/Timebar/TimeBar';
+import TopBidderItem from '../components/TopBidderItem/TopBidderItem';
+
 export default function PrivateSession(){
   //private session data
   var http_data={
@@ -22,15 +24,31 @@ export default function PrivateSession(){
   var ws_data={
     "participants_top": [
       {
-        "img_url": "link.jpg",
-        "username": "username",
+        "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVKA2sQmY7PrZHexsFoPVxY-uv9gMUZ0Tv7A&s",
+        "username": "username1",
         "bid_val": 123
+      },
+      {
+        "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVKA2sQmY7PrZHexsFoPVxY-uv9gMUZ0Tv7A&s",
+        "username": "username2",
+        "bid_val": 120
+      },
+      {
+        "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVKA2sQmY7PrZHexsFoPVxY-uv9gMUZ0Tv7A&s",
+        "username": "username3",
+        "bid_val":88
+      },
+      {
+        "img_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVKA2sQmY7PrZHexsFoPVxY-uv9gMUZ0Tv7A&s",
+        "username": "username4",
+        "bid_val": 50
       }
       
     ],
     "n_bids": 13,
     "opened": false // if lot is closed
   }
+  var top_bidders = ws_data.participants_top; 
 
   return (
     <div className={styles.wrapper}>
@@ -48,9 +66,11 @@ export default function PrivateSession(){
           <div className={styles.left__timer}>
               <TimeBar duration={20} />
           </div>
-          <Link className={styles.left__quitbtn} to="/"><div className={styles.left__quitbtn__text}>
-            Quit session
-          </div></Link>
+          <Link className={styles.left__quitbtn} to="/">
+            <div className={styles.left__quitbtn__text}>
+              Quit session
+            </div>
+          </Link>
         </div>
       </div>
       <div className={styles.right}>
@@ -59,7 +79,14 @@ export default function PrivateSession(){
             Participants list
           </div>
           <div className={styles.right__list__participants}>
-            {/*display the top by mapping the component of a participant*/}
+            {top_bidders.map((val, i)=>
+              <TopBidderItem
+                  place={i+1}
+                  pfp={val.img_url}
+                  username={val.username}
+                  bid_val={val.bid_val}
+              />
+            )}
           </div>
         </div>
         <div className={styles.right__input}>
