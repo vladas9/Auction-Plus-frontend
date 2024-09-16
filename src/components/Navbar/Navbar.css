@@ -12,6 +12,7 @@
 .navbar ul {
   list-style: none;
   padding: 0;
+  position: fixed;
 }
 
 .navbar ul li {
@@ -27,7 +28,9 @@
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 5px; 
+  border: 2px solid transparent; 
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .navbar ul li a .fas {

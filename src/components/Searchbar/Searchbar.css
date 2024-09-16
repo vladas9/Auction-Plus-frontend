@@ -24,6 +24,10 @@
     margin-right: 10px;
     color: #707070;
   }
+
+  .search-container:focus-within{
+    background-color: #e2e0e0;
+  }
   
   .search-input {
     border: none;
