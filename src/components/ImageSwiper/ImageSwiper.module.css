@@ -4,3 +4,27 @@
     background-position: center;
     background-size: cover;
 }
+.thumbnailContainer{
+    display: flex;
+
+}
+.thumbnailWrapper {
+    padding: 5px;
+    cursor: pointer;
+}
+.second_slider_container{
+    width: 90%;
+}
+.thumbnailImage {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+.prevArrow,
+.nextArrow {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}

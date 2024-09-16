@@ -19,6 +19,7 @@ const LotDisplayPrivate = (props) => {
                     <span className="material-symbols-outlined">bar_chart</span>
                     <span>Number of bids: {props.n_bids}</span>
                 </div>
+                
                 <div className={styles.start_price}>
                     <span className="material-symbols-outlined">
                         bid_landscape

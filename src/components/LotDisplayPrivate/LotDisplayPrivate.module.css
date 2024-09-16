@@ -1,6 +1,8 @@
 .wrapper{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 95%;
 }
 .slider{
     max-width: 50%;

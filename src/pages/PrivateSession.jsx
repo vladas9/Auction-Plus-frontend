@@ -13,7 +13,7 @@ export default function PrivateSession(){
       "https://i.simpalsmedia.com/999.md/BoardImages/900x900/80532c24a7b7e600084798d894008c31.jpg",
       "https://i.simpalsmedia.com/999.md/BoardImages/900x900/90bce505e15b7ea4ad78d7e90ed250be.jpg"
     ],
-    "description": "iuehiuhrebherobjoerbj",
+    "description": "iuehiuhrebherobjoerb jihrebvjqbviebqvripqebvr qebpvuibeqivbpuvwqbpiruwvpib lorem  rvonoeqribn[oen    ji ie p  o iphef bfufdna oidgsp bd iadif saibdf piadfu bnad fpad fdai",
     "n_bids": 12,
     "start_price": 200,
     "opened": true
@@ -51,7 +51,7 @@ export default function PrivateSession(){
             <div className={styles.left__timer__counter}></div>
           </div>
           <div className={styles.left__quitbtn}>
-            Quit session
+            <Link className={styles.left__quitbtn__text} to="/">Quit session</Link>
           </div>
         </div>
       </div>

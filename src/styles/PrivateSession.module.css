@@ -48,6 +48,10 @@
   font-weight: 600;
   margin: 0 auto;
 }
+.left__quitbtn__text{
+  text-decoration: none;
+  color: #FF3A20;
+}
 
 .right {
   display: flex;
