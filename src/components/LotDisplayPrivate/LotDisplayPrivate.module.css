@@ -1,0 +1,11 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.slider{
+    max-width: 50%;
+}
+/*
+.up{
+    display: flex;
+}*/
