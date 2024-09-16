@@ -1,0 +1,93 @@
+.filterContainer {
+    padding: 20px;
+    background-color: #ffffff;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.filterTitle {
+    font-size: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: #F3F3F3;
+    align-items: center;
+}
+
+.addLotButton {
+    font-size: 18px;
+    padding: 8px 16px;
+    border: 2px solid #00bcd4;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00bcd4;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.addLotButton:hover {
+    background-color: #00bcd4;
+    color: #ffffff;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.filterField {
+    display: flex;
+    flex-direction: column;
+}
+
+.filterField label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filterInput {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    width: 150px;
+}
+
+.searchButton {
+    margin-top: 22px;
+    height: 40px;
+    padding: 10px 15px;
+    background-color: #58aff6;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.searchButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.clearButton { 
+    margin-top: 22px;
+    height: 40px;
+    padding: 1px 15px;
+    background-color: #e76563;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.errorMessage {
+    color: red;
+    margin-top: 10px;
+}

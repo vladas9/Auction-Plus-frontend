@@ -1,47 +1,39 @@
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 import { Link } from 'react-router-dom';
-import React from "react"
+import React from "react";
 
-const LotItem=(props)=>{
-    
-    return(
-        <>
-        <div className={styles.wrapper}>
+const LotItem = (props) => {
+  return (
+    <div className={styles.card}>
+      <Link to={`/lot/${props.id}`} className={styles.imageLink}>
+        <div
+          className={styles.image}
+          style={{ backgroundImage: `url(${props.img_src})` }}
+        ></div>
+      </Link>
 
-            <Link to={`/lot/${props.id}`} >
-                <div className={styles.img__wrapper} style={{backgroundImage:`url(${props.img_src})`}}>
-                
-                </div>
-            </Link>
-            <div className={styles.lot_info__wrapper}>
-                <div className={styles.lot_title}>
-                    {props.title}
-                </div>
-                
-                <div className={styles.lot_info_first_row}>
-                    <div className={styles.lot_startprice}>
-                        Start price: {props.start_price}
-                    </div>
-                    <div className={styles.lot_rating}>
-                        Rating: {props.rating}
-                    </div>
-                    <div className={styles.lot_status}>
-                        {props.status}
-                    </div>
-                </div>
+      <div className={styles.content}>
+        <h3 className={styles.title}>{props.title}</h3>
 
-                <div className={styles.lot_info_second_row}>
-                    <div className={styles.lot_lastbid}>
-                        Current bid: {props.last_bid}
-                    </div>
-                    <div className={styles.lot_endtime}>
-                        {props.endtime}
-                    </div>
-                </div>
-                
-            </div>        
+        <div className={styles.details}>
+          <div className={styles.detail}>
+            <span className={styles.icon}>📊</span> Number of bids: {props.rating}
+          </div>
+          <div className={styles.detail}>
+            <span className={styles.icon}>📅</span> {props.endtime}
+          </div>
+          <div className={styles.detail}>
+            <span className={styles.icon}>💲</span> Maximum bid: {props.last_bid}$
+          </div>
         </div>
-        </>
-    )
-}
-export default LotItem
+
+        <div className={styles.lotDetails}>
+          <div className={styles.lotId}>Lot number: {props.id}</div>
+          <div className={styles.lotCategory}>Category name</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LotItem;
