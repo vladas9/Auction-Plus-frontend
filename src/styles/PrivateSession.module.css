@@ -24,15 +24,10 @@
   padding: 25px;
 }
 .left__timer {
-  display: flex;
+  margin: 15px 0;
 }
-.left__timer__bar {
-  width: 80%;
-}
-.left__timer__counter {
-  width: 20%;
-  text-align: center;
-}
+
+
 .left__quitbtn {
   border-radius: 6px;
   background: rgba(255, 58, 32, 0.17);
@@ -47,6 +42,7 @@
   color: #FF3A20;
   font-weight: 600;
   margin: 0 auto;
+  text-decoration: none;
 }
 .left__quitbtn__text{
   text-decoration: none;

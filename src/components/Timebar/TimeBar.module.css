@@ -1,0 +1,30 @@
+.timerBarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /*max-width: 600px; /* Adjust to your desired width */
+  }
+  
+  .timerBar {
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 10px;
+    height: 15px;
+    flex-grow: 1;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .progressBar {
+    background-color: #a3d382; /* Light green color for progress */
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .timeLabel {
+    font-size: 12px;
+    color: #333;
+  }
+  

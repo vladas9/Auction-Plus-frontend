@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 95%;
+    font-weight: 600;
 }
 .slider{
     max-width: 50%;

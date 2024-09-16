@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/PrivateSession.module.css';
 import LotDisplayPrivate from '../components/LotDisplayPrivate/LotDisplayPrivate';
 import { Link } from 'react-router-dom';
+import TimeBar from '../components/Timebar/TimeBar';
 export default function PrivateSession(){
   //private session data
   var http_data={
@@ -45,14 +46,11 @@ export default function PrivateSession(){
             />
           </div>
           <div className={styles.left__timer}>
-            <div className={styles.left__timer__bar}>
-              {/*bar component transmit the total_time and time_left*/}
-            </div>
-            <div className={styles.left__timer__counter}></div>
+              <TimeBar duration={20} />
           </div>
-          <div className={styles.left__quitbtn}>
-            <Link className={styles.left__quitbtn__text} to="/">Quit session</Link>
-          </div>
+          <Link className={styles.left__quitbtn} to="/"><div className={styles.left__quitbtn__text}>
+            Quit session
+          </div></Link>
         </div>
       </div>
       <div className={styles.right}>
