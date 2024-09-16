@@ -15,15 +15,15 @@ const LotDisplayPrivate = (props) => {
                 </div>
             </div>
             <div className={styles.down}>
-                <div>
+                <div className={styles.n_bids}>
                     <span className="material-symbols-outlined">bar_chart</span>
-                    Number of bids: {props.n_bids}
+                    <span>Number of bids: {props.n_bids}</span>
                 </div>
-                <div>
+                <div className={styles.start_price}>
                     <span className="material-symbols-outlined">
                         bid_landscape
                     </span>
-                    Starting price: {props.start_price}
+                    <span>Starting price: {props.start_price}</span>
                 </div>
             </div>
         </div>

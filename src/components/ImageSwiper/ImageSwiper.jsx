@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./ImageSwiper.module.css"
+import { Padding } from "@mui/icons-material";
 
 const ImageItem = ({src, index, key}) =>{
   return(
@@ -27,7 +28,6 @@ const ImageSwiper = ({img_src}) =>{
   }, []);
   return (
     <div className="slider-container">
-      <h4>First Slider</h4>
       <Slider 
         asNavFor={nav2} 
         ref={slider => (sliderRef1 = slider)}
@@ -36,7 +36,6 @@ const ImageSwiper = ({img_src}) =>{
           <ImageItem key={i} src={val}/>
         )}
       </Slider>
-      <h4>Second Slider</h4>
       <Slider
         asNavFor={nav1}
         ref={slider => (sliderRef2 = slider)}
@@ -45,7 +44,9 @@ const ImageSwiper = ({img_src}) =>{
         focusOnSelect={true}
       >
         {img_src.map((val, i)=>
-          <img key={i} src={val} alt="" />
+          
+            <img key={i} src={val} alt="" />
+          
         )}
         
       </Slider>

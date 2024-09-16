@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/PrivateSession.module.css';
 import LotDisplayPrivate from '../components/LotDisplayPrivate/LotDisplayPrivate';
-
+import { Link } from 'react-router-dom';
 export default function PrivateSession(){
   //private session data
   var http_data={
