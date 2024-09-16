@@ -1,121 +1,139 @@
 import React from "react";
-import styles from "../styles/Profile.module.css"
-import { useState } from "react";
-import PlacedBidsTable from "../components/PlacedBidsTable/PlacedBidsTable";
-import PlacedLotsTable from "../components/PlacedLotsTable/PlacedLotsTable";
-import { Link } from "react-router-dom";
-export default function Profile(){
-    const [placedItems, setplacedItems]=useState(true)
-    var user={
-        photo_url:"https://avatars.githubusercontent.com/u/103861986?v=4",
-        username:"Starplatinum",
-        email:"example@email.com",
-        phone_number:"079999999"
-    }
-    var placed_bids=[
+import styles from "../styles/Profile.module.css";
+import { Doughnut, Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  DoughnutController,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  DoughnutController,
+  ArcElement,
+  Tooltip,
+  Legend
+);
+
+export default function Profile() {
+  var user = {
+    photo_url: "https://avatars.githubusercontent.com/u/103861986?v=4",
+    username: "I am the auction boss",
+    email: "boss@email.com",
+    phone_number: "079999999",
+    reg_date: "12.10.2020",
+  };
+
+  const regDate = new Date(user.reg_date);
+  const currentDate = new Date();
+  const accountAgeMonths = (currentDate.getFullYear() - regDate.getFullYear()) * 12 + currentDate.getMonth() - regDate.getMonth();
+
+  const boughtData = {
+    labels: ["Furniture", "Real estate", "Electronics", "Arts", "Other"],
+    datasets: [
       {
-        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
-        "lot_name": "Name of lot 2",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": false,
-        "max_bid": 50,
-        "top_bidder_username": "username1"
+        borderRadius: 6,
+        label: "Items bought",
+        data: [200, 50, 100, 40, 78],
+        backgroundColor: ["#FF3A20", "#29ADB2", "#C5E898", "#0766AD", "#F3F3F3"],
+        hoverOffset: 40,
+      },
+    ],
+  };
+
+  const soldData = {
+    labels: ["Furniture", "Real estate", "Electronics", "Arts", "Other"],
+    datasets: [
+      {
+        borderRadius: 6,
+        label: "Items sold",
+        data: [200, 50, 100, 40, 78],
+        backgroundColor: ["#FF3A20", "#29ADB2", "#C5E898", "#0766AD", "#F3F3F3"],
+        hoverOffset: 40,
+      },
+    ],
+  };
+
+  const barData = {
+    labels: ["0-100 $", "101-200 $", "201-300 $", "301-400 $", "401-500 $"],
+    datasets: [
+      {
+        type: "bar",
+        borderRadius: 6,
+        label: "Bought lots",
+        data: [10, 20, 30, 40, 80],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "#0766AD",
       },
       {
-        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
-        "lot_name": "Name of lot 12",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": true,
-        "max_bid": 50,
-        "top_bidder_username": "username2"
+        type: "bar",
+        label: "Sold lots",
+        borderRadius: 6,
+        data: [50, 50, 50, 30, 15],
+        fill: false,
+        borderColor: "rgb(54, 162, 235)",
+        backgroundColor: "#C5E898",
       },
-      {
-        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
-        "lot_name": "Name of lot 42",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": false,
-        "max_bid": 60,
-        "top_bidder_username": "username1"
-      },
-      {
-        "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
-        "lot_name": "Name of lot 32",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": false,
-        "max_bid": 50,
-        "top_bidder_username": "username1"
-      },
-        
-    ]
-    var placed_lots=[
-      {
-        "photo": "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp",
-        "lot_name": "Name of lot 12",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": false,
-        "max_bid": 50,
-        "top_bidder_username": "username1"
-      },
-      {
-        "photo": "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp",
-        "lot_name": "Name of lot 62",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": true,
-        "max_bid": 50,
-        "top_bidder_username": "username2"
-      },
-      {
-        "photo": "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp",
-        "lot_name": "Name of lot 21",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": false,
-        "max_bid": 60,
-        "top_bidder_username": "username1"
-      },
-      {
-        "photo": "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp",
-        "lot_name": "Name of lot 2",
-        "start_price": 44,
-        "end_date": "dd:mm:yy",
-        "closed": false,
-        "max_bid": 530,
-        "top_bidder_username": "username3"
-      },
-    ]
-      
-    return(
-        <>
-            <div className={styles.wrapper}>
-                <div className={styles.profile__info}>
-                    <div className={styles.profile__info__photo} style={{backgroundImage:`url("${user.photo_url}")`}}></div>
-                    <div className={styles.profile__info__text}>
-                        <div>{user.username}</div>
-                        <div>{user.email}</div>
-                        <div>{user.phone_number}</div>
-                        <div>{Date()}</div>
-                    </div>
-                </div>
-                <div className={styles.profile__tables}>
-                    <div className={styles.profile__tables__buttons}>
-                      <div style={placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(true)}>Placed Bids</div>
-                      <div style={!placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(false)}>Placed Lots</div>
-                    </div>
-                    
-                    {placedItems?<PlacedBidsTable bids={placed_bids}/>:<PlacedLotsTable lots={placed_lots}/>}
-                </div>
-                <div className={styles.postLot__button}>
-                  <Link to="/profile/postlot">
-                  Post a new lot
-                  </Link>
-                </div>
+    ],
+  };
+
+  return (
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.main}>
+          <div className={styles.edit_part}>
+            <h1>My profile</h1>
+            <button className={styles.edit}>Edit profile</button>
+          </div>
+          <div className={styles.profile__info}>
+            <div
+              className={styles.profile__info__photo}
+              style={{ backgroundImage: `url("${user.photo_url}")` }}
+            ></div>
+            <div className={styles.profile__info__text}>
+            <ul>
+              <li>
+                <h1>{user.username}</h1>
+              </li>
+              <li>
+                <p>✉️   {user.email}</p>
+              </li>
+              <li>
+                <p>📞   {user.phone_number}</p>
+              </li>
+              <li>
+                <p>📅    Profile age: {accountAgeMonths} months</p>
+              </li>
+            </ul>
             </div>
-        </>
-    )
+          </div>
+
+          <div className={styles.statistics}>
+            <h1>Statistics</h1>
+            <div className={styles.charts}>
+              <div className={styles.chartBox}>
+                <h3>Bought items</h3>
+                <Doughnut data={boughtData} />
+              </div>
+              <div className={styles.chartBox}>
+                <h3>Sold items</h3>
+                <Doughnut data={soldData} />
+              </div>
+            </div>
+            <div className={styles.barChart}>
+              <Bar data={barData} />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </>
+  );
 }
