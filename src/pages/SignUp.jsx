@@ -18,20 +18,21 @@ import { useNavigate } from "react-router-dom";
 
 export default function RegistrationForm({ setIsAuthenticated }) {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-    phoneNumber: "",
-    address: "",
+    name: "user",
+    email: "admin",
+    password: "admin",
+    repeatPassword: "admin",
+    phoneNumber: "12354",
+    address: "adress",
     paymentDetails: "",
-    isHuman: false,
+    isHuman: true,
     pfpUploaded: null,
   });
   const [passwordMismatch, setPasswordMismatch] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
   const [isSliderComplete, setIsSliderComplete] = useState(false);
   const [openCaptchaDialog, setOpenCaptchaDialog] = useState(false);
+  const [baseString, setBaseString]=useState('')
   const navigate = useNavigate();
 
   const handleCheckboxChange = (event) => {
@@ -61,14 +62,14 @@ export default function RegistrationForm({ setIsAuthenticated }) {
       );
     }
   };
-
+  
   const handleFileUpload = (e) => {
     const file =  e.target.files[0];
     const reader = new FileReader();
-    var baseString;
+    
     reader.onloadend = function () {
-      baseString = reader.result;
-      console.log(baseString); 
+      setBaseString(reader.result.split(",")[1]);
+      //console.log(baseString); 
     };
     reader.readAsDataURL(file);
 
@@ -79,25 +80,34 @@ export default function RegistrationForm({ setIsAuthenticated }) {
     e.preventDefault();
 
     if (passwordMismatch) {
-      console.log("Passwords do not match");
+      
       return;
     }
-    await fetch("http://localhost:1169/api/register",{
+    var send_to_server_data={
+      "username": formData.username,
+      "email": formData.email,
+      "password": formData.password,
+      "address": formData.address,
+      "phone_number": formData.phone_number,
+      "user_type":"client",
+      "img_src": baseString
+    }
+    console.log(send_to_server_data)
+    await fetch("http://localhost:1169/api/users/register",{
       method: 'POST',
       headers:{
         Accept:'application/form-data',
         'Content-Type':'application/json'
       },
-      body:JSON.stringify(formData),
+      body:JSON.stringify(send_to_server_data),
 
     }).then((res)=>{
-      console.log(res)
+      //console.log(res)
       return res.json();
     })
     .then((data)=>{
+      console.log(data)
       responseData=data;
-    }).catch((err)=>{
-      console.log(err)
     })
 
     const result = true; // Simulated backend response
