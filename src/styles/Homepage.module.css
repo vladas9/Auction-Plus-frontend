@@ -1,5 +1,67 @@
+.full_container {
+    flex-direction: column;
+    display: flex;
+    background-color:#FAFAFA;
+}
+
+.statistics{
+    display: flex;
+    margin-top: 1%;
+    margin-right: 2%;
+    margin-left: 2%;
+    height: 7%;
+    justify-content: space-between;
+}
+
 .lotList{
     display: flex;
+    background-color:#ffffff;
     flex-wrap: wrap;
-    gap:30px
+    gap:30px;
+    margin-left: 3%;
+    margin-top: 0px;
+    margin-bottom: 40px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.activePage {
+    background-color: #58aff6;
+    color: white;
+}
+
+  
+@media (max-aspect-ratio: 3/4), (max-width: 600) {
+    .statistics{
+        display: none;
+    }
+  }
+  
+  @media (max-aspect-ratio: 3/5), (max-width: 600) {
+    .filter{
+        display: none;
+    }
+  }
+  
