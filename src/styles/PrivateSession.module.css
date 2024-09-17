@@ -1,0 +1,111 @@
+.wrapper {
+  background-color: #FAFAFA;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  font-family: Inter, sans-serif;
+}
+.wrapper__left {
+  width: 70%;
+}
+
+.left {
+  max-width: 850px;
+  padding: 25px;
+  margin: 50px auto;
+}
+.left__lot {
+  max-width: 850px;
+  border-radius: 6px;
+  background: #FFF;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  height: 420px;
+  border-radius: 6px;
+  padding: 25px;
+}
+.left__timer {
+  margin: 15px 0;
+}
+.left__quitbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  background: rgba(255, 58, 32, 0.17);
+  width: 91px;
+  height: 30px;
+  padding: 3px 22px;
+  font-size: 12px;
+  color: #FF3A20;
+  font-weight: 600;
+  margin: 0 auto;
+  text-decoration: none;
+}
+.left__quitbtn__text {
+  width: -moz-fit-content;
+  width: fit-content;
+  text-decoration: none;
+  color: #FF3A20;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  background-color: #fff;
+}
+.right__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.right__list__title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px;
+}
+.right__list__participants {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.right__input {
+  background-color: #F8F8F8;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+.right__input__manual {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.right__input__field {
+  width: 170px;
+}
+.right__input__confirm {
+  max-width: 120px;
+}
+.right__input__automatic {
+  cursor: pointer;
+  color: #29ADB2;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 48px;
+  border: 1px solid #29ADB2;
+  background: rgba(197, 232, 152, 0.3);
+  display: flex;
+  width: 40%;
+  height: 40px;
+  padding: 8px 38px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}/*# sourceMappingURL=PrivateSession.module.css.map */
