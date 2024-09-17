@@ -1,0 +1,13 @@
+
+.profile__tables__buttons {
+    display: flex;
+  }
+  .profile__tables__buttons div {
+    padding: 10px 15px;
+    width: -moz-fit-content;
+    width: fit-content;
+    cursor: pointer;
+    border: 1px solid rgb(59, 59, 59);
+    background-color: #f1f1f1;
+  }
+  

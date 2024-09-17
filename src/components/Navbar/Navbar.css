@@ -16,6 +16,7 @@
 }
 
 .navbar ul li {
+  width: 90%;
   margin-bottom: 15%;
   background-color: #F3F3F3;
 }

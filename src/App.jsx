@@ -14,6 +14,7 @@ import SuccessPage from "./pages/SuccessPage";
 import Page404 from './pages/Page404';
 import PrivateSession from "./pages/PrivateSession";
 import Admin from "./pages/AdminHomePage";
+import Itemstable from "./pages/Itemstable";
 import AdminAuth from "./pages/Adminauth";
 import AdminLotsTable from "./components/AdminComponents/AdminLotsTable";
 import AdminUsersTable from "./components/AdminComponents/AdminUsersTable";
@@ -33,7 +34,7 @@ function App() {
       <div className='full_container'>
         <div className='left_part'><Navbar/></div>
         <div className='right_part'>
-            <Searchbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+            <Searchbar className="searchbar" isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
             <Routes>
               <Route path="/" element={<Homepage />} />
                 <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/profile/postlot" element={<Post />} />
               <Route path="/private-session" element={<Private />} />
                 <Route path="/private-session/:id" element={<PrivateSession />} />
+              <Route path="/items" element={<Itemstable/>}/>
               <Route path="/lot/:id" element={<Lot />} />
                 <Route path="/success" element={<SuccessPage />} />
               <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />}>
