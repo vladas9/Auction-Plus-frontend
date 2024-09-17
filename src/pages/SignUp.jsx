@@ -26,7 +26,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
     address: "",
     paymentDetails: "",
     isHuman: false,
-    idUploaded: null,
+    pfpUploaded: null,
   });
   const [passwordMismatch, setPasswordMismatch] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
@@ -63,7 +63,16 @@ export default function RegistrationForm({ setIsAuthenticated }) {
   };
 
   const handleFileUpload = (e) => {
-    setFormData({ ...formData, idUploaded: e.target.files[0] });
+    const file =  e.target.files[0];
+    const reader = new FileReader();
+    var baseString;
+    reader.onloadend = function () {
+      baseString = reader.result;
+      console.log(baseString); 
+    };
+    reader.readAsDataURL(file);
+
+    setFormData({ ...formData, pfpUploaded: e.target.files[0] });
   };
 
   const handleSubmit = (e) => {
@@ -95,7 +104,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
       address: "",
       paymentDetails: "",
       isHuman: false,
-      idUploaded: null,
+      pfpUploaded: null,
     });
     setPasswordMismatch(false);
   };
@@ -211,7 +220,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
             startIcon={<UploadIcon />}
             fullWidth
           >
-            Upload ID
+            Upload profile image
             <input
               type="file"
               hidden
@@ -220,7 +229,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
           </Button>
           </Grid>
           <Grid item xs={6}>
-            <Typography>(age verification)</Typography>
+            <Typography>(Profile Image)</Typography>
           </Grid>
         </Grid>
 
