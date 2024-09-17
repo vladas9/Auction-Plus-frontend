@@ -75,22 +75,39 @@ export default function RegistrationForm({ setIsAuthenticated }) {
     setFormData({ ...formData, pfpUploaded: e.target.files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (passwordMismatch) {
       console.log("Passwords do not match");
       return;
     }
+    await fetch("http://localhost:1169/api/register",{
+      method: 'POST',
+      headers:{
+        Accept:'application/form-data',
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(formData),
+
+    }).then((res)=>{
+      console.log(res)
+      return res.json();
+    })
+    .then((data)=>{
+      responseData=data;
+    }).catch((err)=>{
+      console.log(err)
+    })
 
     const result = true; // Simulated backend response
 
     if (result) {
       setIsAuthenticated(true);
       navigate('/');
-      console.log("Registration successful:", formData);
+      //console.log("Registration successful:", formData);
     } else {
-      console.log("Registration failed");
+     //console.log("Registration failed");
     }
   };
 
