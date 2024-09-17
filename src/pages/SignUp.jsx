@@ -251,7 +251,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
             color="success"
             type="submit"
             fullWidth
-            disabled={!formData.isHuman || passwordMismatch || !formData.idUploaded}
+            disabled={!formData.isHuman || passwordMismatch || !formData.pfpUploaded}
           >
             Register
           </Button>
