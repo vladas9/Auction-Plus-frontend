@@ -4,8 +4,12 @@ import LotDisplayPrivate from '../components/LotDisplayPrivate/LotDisplayPrivate
 import { Link } from 'react-router-dom';
 import TimeBar from '../components/Timebar/TimeBar';
 import TopBidderItem from '../components/TopBidderItem/TopBidderItem';
+import BidInput from '../components/BidInput/BidInput';
+import BidButton from '../components/ConfirmButton/ConfirmButton';
 
 export default function PrivateSession(){
+  const [bidVal, setBidVal]=useState('');
+  const [isBidHigher, setIsBidHigher]=useState(false)
   //private session data
   var http_data={
     "id": 1,
@@ -49,7 +53,27 @@ export default function PrivateSession(){
     "opened": false // if lot is closed
   }
   var top_bidders = ws_data.participants_top; 
+  
+  const changeInputStates = (e) =>{
+    var input_value = e.target.value
+    setBidVal(input_value);
+    if(input_value>ws_data.participants_top[0].bid_val){
+      setIsBidHigher(true);
+    }else{
+      setIsBidHigher(false);
+    }
+  }
 
+  const handleBidConfirm=()=>{
+    if(bidVal>ws_data.participants_top[0].bid_val){
+      alert('bid confirmed');
+      setBidVal('');
+      setIsBidHigher(false);
+    }
+  }
+  const handleAutoBid=(maxBid)=>{
+    alert(`user wish to put a bid of ${maxBid+50}`)
+  }
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper__left}>
@@ -81,6 +105,7 @@ export default function PrivateSession(){
           <div className={styles.right__list__participants}>
             {top_bidders.map((val, i)=>
               <TopBidderItem
+                  key={i}
                   place={i+1}
                   pfp={val.img_url}
                   username={val.username}
@@ -92,13 +117,16 @@ export default function PrivateSession(){
         <div className={styles.right__input}>
           <div className={styles.right__input__manual}>
             <div className={styles.right__input__field}>
-              {/*write a component and use it in lot items page*/}
+              <BidInput bidVal={bidVal} callback={changeInputStates}/>
             </div>
             <div className={styles.right__input__confirm}>
-              {/*Component for confirm button*/}
+              <BidButton
+                callback={handleBidConfirm}
+                higher={isBidHigher}
+                />
             </div>
           </div>
-          <div className={styles.right__input__automatic}>
+          <div className={styles.right__input__automatic} onClick={()=>handleAutoBid(ws_data.participants_top[0].bid_val)}>
             Bid 50 more than Top 1
           </div>
         </div>
