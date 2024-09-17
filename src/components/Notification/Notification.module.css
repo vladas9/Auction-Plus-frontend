@@ -1,0 +1,79 @@
+  .notification {
+    display: flex;
+    align-items: center;
+    padding: 1%;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  p{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .newNotification {
+    background-color: #e3f2fd;
+  }
+
+  .oldNotification {
+    background-color: #ffffff;
+  }
+  
+  .notificationContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 3%;
+    margin-right: 20px;
+  }
+  
+  .text {
+    flex: 1;
+  }
+  
+  .button {
+    display: flex;
+    width: 15%;
+    justify-content: flex-end;
+  }
+  
+  .checkoutButton {
+    font-size: 16px;
+    width: 100%;
+    background-color: rgb(197, 232, 152, 0.3);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 15px;
+    color: #29ADB2;
+    cursor: pointer;
+    border: 2px solid #29ADB2;
+  }
+  
+  .viewLotButton {
+    font-size: 16px;
+    width: 100%;
+    background-color: rgb(7, 102, 173, 0.3);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 15px;
+    color: #0766AD;
+    border: 2px solid #0766AD;
+    cursor: pointer;
+  }
+  
+  .checkoutButton:hover{
+    background-color: rgb(197, 232, 152, 0.2);
+    border: 2px solid #29adb29f;
+  }
+
+  .viewLotButton:hover {
+    background-color: rgb(7, 102, 173, 0.2);
+    border: 2px solid #0765ad8d;
+  }
+  

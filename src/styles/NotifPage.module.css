@@ -1,0 +1,18 @@
+.wallpaper {
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    height: auto;
+}
+
+.main_container {
+    margin: 2%;
+    width: 96%;
+    flex-grow: 1;
+}
+
+.intro {
+    background-color: #F3F3F3;
+    padding: 2%;
+}

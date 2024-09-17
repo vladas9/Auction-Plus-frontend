@@ -88,11 +88,11 @@ export default function Itemstable() {
   return (
     <><div className={styles.profile__tables}>
     <div className={styles.profile__tables__buttons}>
-      <div style={placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(true)}>Placed Bids</div>
-      <div style={!placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(false)}>Placed Lots</div>
+      <div style={placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(true)}>Placed Lots</div>
+      <div style={!placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(false)}>Placed Bids</div>
     </div>
     
-    {placedItems?<PlacedBidsTable bids={placed_bids}/>:<PlacedLotsTable lots={placed_lots}/>}
+    {placedItems?<PlacedLotsTable lots={placed_lots}/>:<PlacedBidsTable bids={placed_bids}/>}
 </div></>
       );
 }
