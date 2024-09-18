@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Navbar() {
   return (
@@ -10,22 +9,22 @@ function Navbar() {
           <ul>
               <li>
                 <Link to="/" className="nav-icon">
-                  <i className="fas fa-home"></i> <span>Homepage</span>
+                <span className="material-symbols-outlined">grid_view</span><span className="dis">Homepage</span>
                 </Link>
               </li>
               <li>
                 <Link to="/private-session">
-                  <i className="fas fa-key"></i> <span>Private auction</span>
+                <span className="material-symbols-outlined">lock</span> <span className="dis">Private auction</span>
                 </Link>
               </li>
               <li>
                 <Link to="/items">
-                  <i className="fas fa-table"></i> <span>Items table</span>
+                <span className="material-symbols-outlined">assignment</span> <span className="dis">Items table</span>
                 </Link>
               </li>
               <li>
                 <Link to="/settings">
-                  <i className="fas fa-cog"></i> <span>Settings</span>
+                <span className="material-symbols-outlined">settings</span> <span className="dis">Settings</span>
                 </Link>
               </li>
           </ul>

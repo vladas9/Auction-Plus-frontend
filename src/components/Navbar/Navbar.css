@@ -7,10 +7,11 @@
 .navbar {
   display: flex;
   background-color: #F3F3F3;
-  padding: 50% 15%;
+  padding: 50% 5%;
 }
 
 .navbar ul {
+  width: 15%;
   list-style: none;
   padding: 0;
   position: fixed;
@@ -23,11 +24,13 @@
 }
 
 .navbar ul li a {
+  width: 90%;
   background-color: #F3F3F3;
   font-size: 16px;
   text-decoration: none;
   color: #0766AD;
   display: flex;
+  gap: 15%;
   align-items: center;
   padding: 10px 15px;
   border-radius: 5px; 
@@ -35,9 +38,6 @@
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.navbar ul li a .fas {
-  margin-right: 10px;
-}
 
 .navbar ul li a:hover {
   background-color: #acd1ed; 
@@ -52,23 +52,14 @@
     padding: 10px;
     font-size: 200%;
   }
-  .navbar ul li a span {
+  .navbar ul li a .dis {
     display: none;
   }
 }
 
 
 @media (max-aspect-ratio: 1/5), (max-width: 300) {
-  .navbar ul li a {
-    display: none;
-  }
-  .navbar ul li a span {
-    display: none;
-  }
-}
-
-@media (max-aspect-ratio: 1/10), (max-width: 250px) {
   .navbar{
-      display: none;
-  }
+    display: none;
+}
 }

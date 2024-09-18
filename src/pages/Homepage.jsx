@@ -135,28 +135,30 @@ export default function Homepage(){
 
     return (
         <div className={styles.full_container}>
-            <div className={styles.statistics}>
-                <Statistics title={statistics_1.title} value={statistics_1.value} valueColor="#29ADB2" iconSrc="https://pics.st/9a6/dee/dee52882.png" />
-                <Statistics title={statistics_2.title} value={statistics_2.value} valueColor="#0766AD" iconSrc="https://pics.st/657/2c8/365798f4.png" />
-                <Statistics title={statistics_3.title} value={statistics_3.value} valueColor="#FF3A20" iconSrc="https://pics.st/faa/501/24eea7d8.png" />
-            </div>
+            <div className={styles.wrapper}>
+                <div className={styles.statistics}>
+                    <Statistics title={statistics_1.title} value={statistics_1.value} valueColor="#29ADB2" iconName="person" />
+                    <Statistics title={statistics_2.title} value={statistics_2.value} valueColor="#0766AD" iconName="bid_landscape" />
+                    <Statistics title={statistics_3.title} value={statistics_3.value} valueColor="#FF3A20" iconName="bid_landscape_disabled" />
+                </div>
 
-            <div className={styles.filter}><FilterBar /></div>
+                <div className={styles.filter}><FilterBar /></div>
 
-            <div className={styles.lotList}>
-                {lots.map((item) => (
-                    <LotItem
-                        key={item.id}
-                        id={item.id}
-                        title={item.title}
-                        img_src={item.img_src}
-                        start_price={item.start_price}
-                        rating={item.rating}
-                        status={item.status}
-                        last_bid={item.last_bid}
-                        endtime={item.endtime}
-                    />
-                ))}
+                <div className={styles.lotList}>
+                    {lots.map((item) => (
+                        <LotItem
+                            key={item.id}
+                            id={item.id}
+                            title={item.title}
+                            img_src={item.img_src}
+                            start_price={item.start_price}
+                            rating={item.rating}
+                            status={item.status}
+                            last_bid={item.last_bid}
+                            endtime={item.endtime}
+                        />
+                    ))}
+                </div>
             </div>
 
             <div className={styles.pagination}>
@@ -171,6 +173,7 @@ export default function Homepage(){
                     </button>
                 ))}
                 <button onClick={handleNext} disabled={currentPage === totalPages}>Next</button>
+                
             </div>
         </div>
     );

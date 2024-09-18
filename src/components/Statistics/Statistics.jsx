@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-const Statistics = ({ title, value, valueColor, iconSrc }) => {
+const Statistics = ({ title, value, valueColor, iconName }) => {
     const formatNumber = (num) => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     };
@@ -14,8 +14,8 @@ const Statistics = ({ title, value, valueColor, iconSrc }) => {
                     {formatNumber(value)}
                 </div>
             </div>
-            <div className={styles.iconContainer}>
-                <img src={iconSrc} alt="icon" className={styles.icon} />
+            <div className={styles.iconContainer} style={{ color: valueColor }}>
+                <span className="material-symbols-outlined">{iconName}</span>
             </div>
         </div>
     );
