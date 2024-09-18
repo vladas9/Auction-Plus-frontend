@@ -93,14 +93,14 @@ export default function FilterBar() {
                     </div>
 
                     <div className={styles.filterField}>
-                        <label>Lot state</label>
+                        <label>Lot condition</label>
                         <select
-                            name="lotState"
+                            name="lotCondition"
                             className={styles.filterInput}
                             value={filters.lotState}
                             onChange={handleInputChange}
                         >
-                            <option value="">Lot state</option>
+                            <option value="">Lot condition</option>
                             <option value="new">New</option>
                             <option value="used">Used</option>
                         </select>

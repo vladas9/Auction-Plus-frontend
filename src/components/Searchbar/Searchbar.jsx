@@ -52,7 +52,7 @@ function Searchbar({ isAuthenticated, setIsAuthenticated }) {
             <div className="navbar-icons">
             {isAuthenticated ? (
               <Link to="/notif" className="notif-button" onClick={toggleNotif}>
-                <i className="fas fa-bell"></i>
+                <span className="material-symbols-outlined">notifications</span>
                 {serverNotification && ( 
                   <span className="notif-indicator"></span>
                 )}
