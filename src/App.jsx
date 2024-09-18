@@ -19,6 +19,7 @@ import AdminAuth from "./pages/Adminauth";
 import NotificationsPage from "./pages/NotifPage";
 import AdminLotsTable from "./components/AdminComponents/AdminLotsTable";
 import AdminUsersTable from "./components/AdminComponents/AdminUsersTable";
+import { Link } from 'react-router-dom';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,13 +32,13 @@ function App() {
     localStorage.setItem('isAdminAuthenticated', isAdminAuthenticated);
   }, [isAdminAuthenticated]);
 
-  const denied = ['/login', '/signup'];
+  const denied = ['/login', '/signup', '/private-session', '/admin/users', '/admin/lots', '/admin'];
 
 
   return (
       <div className='full_container'>
       {denied.includes(location.pathname) ? 
-        (<></>) :
+        (<Link to='/' className='back_button'><span className="material-symbols-outlined">grid_view</span><span className="dis">Homepage</span></Link>) :
         (<div className='left_part'><Navbar /></div>)}
         <div className='right_part'>
           {denied.includes(location.pathname) ? 

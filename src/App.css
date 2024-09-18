@@ -18,3 +18,27 @@
     height: 100%;
     float: right;
 }
+
+.back_button {
+    width: 10%;
+    background-color: #F3F3F3;
+    font-size: 16px;
+    text-decoration: none;
+    color: #0766AD;
+    display: flex;
+    position: fixed;
+    margin-top: 2%;
+    margin-left: 2%;
+    gap: 15%;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px; 
+    border: 2px solid #0766AD; 
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.back_button:hover {
+    color: #0765adb5;
+    background-color: #0765ad6b;
+    border: 2px solid #014b84; 
+}
