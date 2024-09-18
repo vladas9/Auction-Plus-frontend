@@ -4,7 +4,7 @@ import styles from "../styles/SignUp.module.css"
 
 export default function RegistrationForm({ setIsAuthenticated }) {
   const [formData, setFormData] = useState({
-    name: "user",
+    username: "user",
     email: "admin@mail.ru",
     password: "admin",
     repeatPassword: "admin",
@@ -90,7 +90,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
 
   const handleClear = () => {
     setFormData({
-      name: "",
+      username: "",
       email: "",
       password: "",
       repeatPassword: "",
@@ -112,7 +112,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
             <h2>Only one step left to discover something new!</h2> 
           </div>
           <p>User Name</p>
-          <input type="text"  name="name" value={formData.name} onChange={handleChange} placeholder="Name"  required  className={styles.input}/>
+          <input type="text"  name="name" value={formData.username} onChange={handleChange} placeholder="Name"  required  className={styles.input}/>
           <p>Email</p>
           <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required className={styles.input}/>
           <p>Password</p>
