@@ -22,7 +22,7 @@
     background-color: #F3F3F3;
     text-align: center;
 }
-
+/*
   .input {
     margin-bottom: 2%;
     width: 80%;
@@ -35,7 +35,18 @@
     border: 1px solid #7c7676;
 
   }
-  
+ */
+form input{
+  margin-bottom: 2%;
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+} 
+
+form input:focus-within{
+  border: 1px solid #7c7676;
+} 
   .error {
     border-color: red;
   }
