@@ -1,20 +1,6 @@
 import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Container,
-  Grid,
-  Typography,
-  Slider,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle
-} from "@mui/material";
-import UploadIcon from "@mui/icons-material/Upload";
 import { useNavigate } from "react-router-dom";
+import styles from "../styles/SignUp.module.css"
 
 export default function RegistrationForm({ setIsAuthenticated }) {
   const [formData, setFormData] = useState({
@@ -29,27 +15,8 @@ export default function RegistrationForm({ setIsAuthenticated }) {
     pfpUploaded: null,
   });
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-  const [sliderValue, setSliderValue] = useState(0);
-  const [isSliderComplete, setIsSliderComplete] = useState(false);
-  const [openCaptchaDialog, setOpenCaptchaDialog] = useState(false);
   const [baseString, setBaseString]=useState('')
   const navigate = useNavigate();
-
-  const handleCheckboxChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.checked,
-    });
-  
-    if (event.target.checked) {
-      setOpenCaptchaDialog(true); 
-    } else {
-      setFormData({
-        ...formData,
-        isHuman: false, 
-      });
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -88,7 +55,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
       "email": formData.email,
       "password": formData.password,
       "address": formData.address,
-      "phone_number": formData.phone_number,
+      "phone_number": formData.phoneNumber,
       "user_type":"client",
       "img_src": baseString
     }
@@ -136,197 +103,45 @@ export default function RegistrationForm({ setIsAuthenticated }) {
     setPasswordMismatch(false);
   };
 
-  const handleSliderChange = (event, newValue) => {
-    setSliderValue(newValue);
-    if (newValue === 100) {
-      setIsSliderComplete(true);
-    } else {
-      setIsSliderComplete(false); 
-    }
-  };
-
-  const handleSubmitCaptcha = () => {
-    if (isSliderComplete) {
-      setOpenCaptchaDialog(false); 
-      setFormData({
-        ...formData,
-        isHuman: true, 
-      });
-    } else {
-      setFormData({
-        ...formData,
-        isHuman: false,
-      });
-    }
-  };
-
-  const handleCloseCaptchaDialog = () => {
-    setOpenCaptchaDialog(false);
-    setFormData({
-        ...formData,
-        isHuman: false,
-      });
-  };
 
   return (
-    <Container maxWidth="sm">
-      <form onSubmit={handleSubmit}>
-        <Typography 
-        variant="h5" 
-        align="center" 
-        gutterBottom 
-        style={{ marginTop: '20px' }}
-        >
-        Only one step left to discover something new!
-        </Typography>
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
-        <TextField
-          fullWidth
-          label="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
-        <TextField
-          fullWidth
-          label="Password"
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
-        <TextField
-          fullWidth
-          label="Repeat Password"
-          type="password"
-          name="repeatPassword"
-          value={formData.repeatPassword}
-          onChange={handleChange}
-          margin="normal"
-          required
-          error={passwordMismatch}
-          helperText={passwordMismatch ? "Passwords do not match" : ""}
-        />
-        <TextField
-          fullWidth
-          label="Phone Number"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-          margin="normal"
-          required
-          inputProps={{ pattern: "[0-9]*" }}
-        />
-        <TextField
-          fullWidth
-          label="Address"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
+    <div className={styles.wallpaper}>
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.intro}> 
+            <h2>Only one step left to discover something new!</h2> 
+          </div>
+          <p>User Name</p>
+          <input type="text"  name="name" value={formData.name} onChange={handleChange} placeholder="Name"  required  className={styles.input}/>
+          <p>Email</p>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required className={styles.input}/>
+          <p>Password</p>
+          <input type="password" name="password" value={formData.password}  onChange={handleChange}  placeholder="Password"  required  className={styles.input}/>
+          <p>Repeat Password</p>
+          <input  type="password"  name="repeatPassword"  value={formData.repeatPassword}  onChange={handleChange}  placeholder="Repeat Password" required className={`${styles.input} ${passwordMismatch ? styles.error : ''}`}/>
+          <p>Phone Number</p>
+          <input  type="text"  name="phoneNumber"  value={formData.phoneNumber}  onChange={handleChange}  placeholder="Phone Number"  pattern="[0-9]*"  required  className={styles.input}/>
+          <p>Adress</p>
+          <input  type="text"  name="address"  value={formData.address}  onChange={handleChange}  placeholder="Address"  required  className={styles.input}/>
+          <div className={styles.fileUpload}>
+            <label className={styles.uploadButton}>
+              Upload profile image
+              <input type="file" onChange={handleFileUpload} />
+            </label>
+            {formData.pfpUploaded && <p className={styles.fileStatusMessage}>Profile Image Uploaded</p>}
+          </div>
+          {passwordMismatch && <span className={styles.helperText}>Passwords do not match</span>}
 
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={6}>
-          <Button
-            variant="contained"
-            component="label"
-            startIcon={<UploadIcon />}
-            fullWidth
-          >
-            Upload profile image
-            <input
-              type="file"
-              hidden
-              onChange={handleFileUpload}
-            />
-          </Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography>(Profile Image)</Typography>
-          </Grid>
-        </Grid>
-
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={formData.isHuman}
-              onChange={handleCheckboxChange}
-              name="isHuman"
-            />
-          }
-          label="Are you a human?"
-        />
-
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-          <Button
-            variant="contained"
-            color="success"
-            type="submit"
-            fullWidth
-            disabled={!formData.isHuman || passwordMismatch || !formData.pfpUploaded}
-          >
-            Register
-          </Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleClear}
-              fullWidth
-            >
+          <div className={styles.actions}>
+            <button  type="submit"  className={styles.submitButton}  disabled={!formData.isHuman || passwordMismatch || !formData.pfpUploaded}>
+              Register
+            </button>
+            <button  type="button"  className={styles.clearButton}  onClick={handleClear}>
               Clear
-            </Button>
-          </Grid>
-        </Grid>
-
-        <Dialog
-          open={openCaptchaDialog}
-          onClose={handleCloseCaptchaDialog}
-          aria-labelledby="captcha-dialog-title"
-          aria-describedby="captcha-dialog-description"
-        >
-          <DialogTitle id="captcha-dialog-title">Complete the CAPTCHA</DialogTitle>
-          <DialogContent>
-            <Slider
-              value={sliderValue}
-              onChange={handleSliderChange}
-              aria-labelledby="continuous-slider"
-              min={0}
-              max={100}
-              valueLabelDisplay="auto"
-              style={{ margin: '20px 0' }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSubmitCaptcha}
-            >
-              Submit CAPTCHA
-            </Button>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseCaptchaDialog} color="primary">
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </form>
-    </Container>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
