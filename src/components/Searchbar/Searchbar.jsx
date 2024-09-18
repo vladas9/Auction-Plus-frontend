@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
+import { BidContext } from "../../context/BidContext";
 import './Searchbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -7,7 +8,7 @@ function Searchbar({ isAuthenticated, setIsAuthenticated }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [isNotifOpen, setIsNotifOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-
+    const {profilePicUrl}=useContext(BidContext);
     const serverNotification = true;
 
     const toggleNotif = () => {
@@ -50,7 +51,7 @@ function Searchbar({ isAuthenticated, setIsAuthenticated }) {
               />
             </div>
             <div className="navbar-icons">
-            {isAuthenticated ? (
+            {localStorage.getItem('auth-token') ? (
               <Link to="/notif" className="notif-button" onClick={toggleNotif}>
                 <i className="fas fa-bell"></i>
                 {serverNotification && ( 
@@ -58,9 +59,9 @@ function Searchbar({ isAuthenticated, setIsAuthenticated }) {
                 )}
               </Link>
             ) : <></>}
-              {isAuthenticated ? (
+              {localStorage.getItem('auth-token') ? (
               <div className="user-menu" onClick={toggleUserMenu}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpF3N6P457yFk4TVmhKfQbAX9zLsZiXyt1oQ&s" alt="User" />
+                <img src={profilePicUrl} alt="User" />
                 <i className="fas fa-chevron-down"></i>
               </div>
               ) : (
