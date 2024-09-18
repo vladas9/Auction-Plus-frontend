@@ -97,26 +97,29 @@ export default function Profile() {
               className={styles.profile__info__photo}
               style={{ backgroundImage: `url("${user.photo_url}")` }}
             ></div>
+            
             <div className={styles.profile__info__text}>
-            <ul>
-              <li>
-                <h1>{user.username}</h1>
-              </li>
-              <li>
-                <p>✉️   {user.email}</p>
-              </li>
-              <li>
-                <p>📞   {user.phone_number}</p>
-              </li>
-              <li>
-                <p>📅    Profile age: {accountAgeMonths} months</p>
-              </li>
-            </ul>
+              <div className={styles.profile__info__header}>
+
+                <span>{user.username}</span>
+              </div>
+              <div className={styles.profile__info__item}>
+                <span class="material-symbols-outlined">mail</span>
+                <span>{user.email}</span>
+              </div>
+              <div className={styles.profile__info__item}>
+                <span class="material-symbols-outlined">call</span>
+                <span>{user.phone_number}</span>
+              </div>
+              <div className={styles.profile__info__item}>
+                <span>Profile age: {accountAgeMonths} months</span>
+              </div>
+            
             </div>
           </div>
 
           <div className={styles.statistics}>
-            <h1>Statistics</h1>
+            <h1 className={styles.statistics__header}>Statistics</h1>
             <div className={styles.charts}>
               <div className={styles.chartBox}>
                 <h3>Bought items</h3>
