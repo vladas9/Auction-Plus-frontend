@@ -1,0 +1,21 @@
+.wallpaper {
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    height: auto;
+}
+
+.main_container {
+    margin: 2%;
+    width: 96%;
+    flex-grow: 1;
+    background-color: #FFF;
+    border-radius: 6px;
+}
+
+.intro {
+    background-color: #F3F3F3;
+    padding: 2%;
+    border-radius: 6px 6px 0 0;
+}
