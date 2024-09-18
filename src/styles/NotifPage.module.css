@@ -10,9 +10,12 @@
     margin: 2%;
     width: 96%;
     flex-grow: 1;
+    background-color: #FFF;
+    border-radius: 6px;
 }
 
 .intro {
     background-color: #F3F3F3;
     padding: 2%;
+    border-radius: 6px 6px 0 0;
 }
