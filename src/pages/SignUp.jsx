@@ -5,7 +5,7 @@ import styles from "../styles/SignUp.module.css"
 export default function RegistrationForm({ setIsAuthenticated }) {
   const [formData, setFormData] = useState({
     name: "user",
-    email: "admin",
+    email: "admin@mail.ru",
     password: "admin",
     repeatPassword: "admin",
     phoneNumber: "12354",
@@ -133,7 +133,7 @@ export default function RegistrationForm({ setIsAuthenticated }) {
           {passwordMismatch && <span className={styles.helperText}>Passwords do not match</span>}
 
           <div className={styles.actions}>
-            <button  type="submit"  className={styles.submitButton}  disabled={!formData.isHuman || passwordMismatch || !formData.pfpUploaded}>
+            <button  type="submit"  className={styles.submitButton}  disabled={!formData.isHuman || passwordMismatch || !formData.pfpUploaded} onClick={handleSubmit}>
               Register
             </button>
             <button  type="button"  className={styles.clearButton}  onClick={handleClear}>

@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Container,
-  Grid,
-  Typography,
-  Box
-} from "@mui/material";
+import styles from "../styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Login({ setIsAuthenticated }) {
@@ -21,8 +14,6 @@ export default function Login({ setIsAuthenticated }) {
     if (result) {
       setIsAuthenticated(true); 
       navigate('/');
-      console.log(username);
-      console.log(password);
     } else {
       console.log("Login failed");
     }
@@ -34,61 +25,35 @@ export default function Login({ setIsAuthenticated }) {
   };
 
   return (
-    <Box
-      sx={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Container maxWidth="xs">
+    <div className={styles.wallpaper}>
+      <div className={styles.container}>
         <form onSubmit={handleLogin}>
-          <Typography variant="h5" gutterBottom align="center">
-            We are happy you come back!
-          </Typography>
-          <TextField
-            fullWidth
-            label="Username"
+          <div className={styles.intro}>
+            <h2>We are happy you come back!</h2>
+          </div>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            margin="normal"
             required
           />
-          <TextField
-            fullWidth
-            label="Password"
+          <input
+            className={styles.input}
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            margin="normal"
             required
           />
 
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                fullWidth
-              >
-                Login
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={handleClear}
-                fullWidth
-              >
-                Clear
-              </Button>
-            </Grid>
-          </Grid>
+          <div className={styles.actions}>
+            <button type="submit" className={styles.submitButton}>Login</button>
+            <button type="button" className={styles.clearButton} onClick={handleClear}>Clear</button>
+          </div>
         </form>
-      </Container>
-    </Box>
+      </div>
+    </div>
   );
 }
