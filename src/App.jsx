@@ -16,6 +16,7 @@ import PrivateSession from "./pages/PrivateSession";
 import Admin from "./pages/AdminHomePage";
 import Itemstable from "./pages/Itemstable";
 import AdminAuth from "./pages/Adminauth";
+import NotificationsPage from "./pages/NotifPage";
 import AdminLotsTable from "./components/AdminComponents/AdminLotsTable";
 import AdminUsersTable from "./components/AdminComponents/AdminUsersTable";
 
@@ -46,6 +47,7 @@ function App() {
               <Route path="/items" element={<Itemstable/>}/>
               <Route path="/lot/:id" element={<Lot />} />
                 <Route path="/success" element={<SuccessPage />} />
+              <Route path="/notif" element={<NotificationsPage />} />
               <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />}>
                 <Route path="lots" element={<AdminLotsTable />} />
                 <Route path="users" element={<AdminUsersTable />} />

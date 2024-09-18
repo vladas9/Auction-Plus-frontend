@@ -1,0 +1,87 @@
+  .notification {
+    display: flex;
+    align-items: center;
+    padding: 1%;
+    border-bottom: 1px solid #CFCFCF;
+    height: 80px;
+    font-family: Inter, sans-serif;
+  }
+  .notificationContent{
+    display: flex;
+    justify-content: space-around;
+  }
+  .image {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 3%;
+    margin-right: 20px;
+  }
+  .text{
+    font-size: 24px;
+    font-weight: 600;
+    max-width: 650px;
+    width: 65%;
+    
+  }
+
+  .newNotification {
+    background: rgba(7, 102, 173, 0.10);
+    
+  }
+
+  .oldNotification {
+    background-color: #ffffff;
+  }
+  
+  .notificationContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .button {
+    display: flex;
+    width: 20%;
+    justify-content: flex-end;
+  }
+  
+  .checkoutButton {
+    font-size: 16px;
+    width: 100%;
+    max-width: 160px;
+    background-color: rgb(197, 232, 152, 0.3);
+    border: none;
+    padding: 8px 38px;
+    border-radius: 48px;
+    color: #29ADB2;
+    cursor: pointer;
+    border: 2px solid #29ADB2;
+    transition: 0.1s;
+  }
+  
+  .viewLotButton {
+    font-size: 16px;
+    width: 100%;
+    max-width: 160px;
+    background-color: rgb(7, 102, 173, 0.3);
+    border: none;
+    padding: 8px 38px;
+    border-radius: 48px;
+    color: #0766AD;
+    border: 2px solid #0766AD;
+    cursor: pointer;
+    transition: 0.1s;
+  }
+  
+  .checkoutButton:hover{
+    background-color: rgb(197, 232, 152, 0.5);
+    border: 2px solid #29adb29f;
+  }
+
+  .viewLotButton:hover {
+    background-color: rgb(7, 102, 173, 0.5);
+    border: 2px solid #0765ad8d;
+  }
+  
