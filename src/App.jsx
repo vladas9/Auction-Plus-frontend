@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation  } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar/Navbar';
 import Searchbar from './components/Searchbar/Searchbar';
@@ -25,17 +25,24 @@ function App() {
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(
     localStorage.getItem('isAdminAuthenticated') === 'true' 
   );
+  const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem('isAdminAuthenticated', isAdminAuthenticated);
   }, [isAdminAuthenticated]);
 
+  const denied = ['/login', '/signup'];
+
+
   return (
-    <Router>
       <div className='full_container'>
-        <div className='left_part'><Navbar/></div>
+      {denied.includes(location.pathname) ? 
+        (<></>) :
+        (<div className='left_part'><Navbar /></div>)}
         <div className='right_part'>
-            <Searchbar className="searchbar" isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+          {denied.includes(location.pathname) ? 
+          (<></>) :
+            (<Searchbar className="searchbar" isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />)}
             <Routes>
               <Route path="/" element={<Homepage />} />
                 <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
@@ -57,7 +64,6 @@ function App() {
             </Routes>
         </div>
       </div>
-    </Router>
   );
 }
 
