@@ -48,7 +48,7 @@ function App() {
       <div className='right_part'>
         {isDeniedPath ? 
           (<></>) :
-          (<Searchbar className="searchbar" isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />)}
+          (<Searchbar className="searchbar"/>)}
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />

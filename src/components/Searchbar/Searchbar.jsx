@@ -1,23 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link } from 'react-router-dom';
 import { BidContext } from "../../context/BidContext";
 import './Searchbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import NotifIcon from "../NotifIcon/NotifIcon";
 
-function Searchbar({ isAuthenticated, setIsAuthenticated }) {
+function Searchbar() {
     const [searchQuery, setSearchQuery] = useState('');
-    const [isNotifOpen, setIsNotifOpen] = useState(false);
-    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const {profilePicUrl}=useContext(BidContext);
-    const serverNotification = true;
-
-    const toggleNotif = () => {
-        setIsNotifOpen(!isNotifOpen);
-    };
-
-    const toggleUserMenu = () => {
-      setIsUserMenuOpen(!isUserMenuOpen);
-    };
+    const has_notification = true;//comes from context
+    
 
     const handleInputChange = (e) => {
         setSearchQuery(e.target.value);
@@ -29,12 +21,6 @@ function Searchbar({ isAuthenticated, setIsAuthenticated }) {
             console.log('Search Query:', searchQuery);
             setSearchQuery('');
         }
-    };
-
-    const handleSignOut = () => {
-        setIsAuthenticated(false);
-        toggleUserMenu();
-        console.log("User signed out");
     };
 
     return (
@@ -51,32 +37,8 @@ function Searchbar({ isAuthenticated, setIsAuthenticated }) {
               />
             </div>
             <div className="navbar-icons">
-            {localStorage.getItem('auth-token') ? (
-              <Link to="/notif" className="notif-button" onClick={toggleNotif}>
-                <span className="material-symbols-outlined">notifications</span>
-                {serverNotification && ( 
-                  <span className="notif-indicator"></span>
-                )}
-              </Link>
-            ) : <></>}
-              {localStorage.getItem('auth-token') ? (
-              <div className="user-menu" onClick={toggleUserMenu}>
-                <img src={profilePicUrl} alt="User" />
-                <i className="fas fa-chevron-down"></i>
-              </div>
-              ) : (
-                <div className="navbar-auth-links">
-                  <Link to="/login">Sign In</Link>
-                  <Link to="/signup">Sign Up</Link>
-                </div>
-              )}
-
-              {isUserMenuOpen && (
-                <ul className="user-dropdown show">
-                  <li><Link to="/profile" className="toProfile">Profile</Link></li>
-                  <li><button onClick={handleSignOut}>Sign Out</button></li>
-                </ul>
-              )}
+              {localStorage.getItem('auth-token')?<NotifIcon has_notification={has_notification}/>:<></>}
+              <DropdownMenu pfp_url={profilePicUrl}/>
             </div>
         </nav>
     );
