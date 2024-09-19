@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import ImageSwiper from '../ImageSwiper/ImageSwiper';
 import BidInput from '../BidInput/BidInput';
 import ConfirmButton from '../ConfirmButton/ConfirmButton';
+import StatisticsChart from '../StatisticsChart/StatisticsChart'; 
 
 const LotDisplay = (props) => {
     const [bid, setBid] = useState(''); 
@@ -59,8 +60,14 @@ const LotDisplay = (props) => {
                     <div className={styles.description}>
                         <p>{props.description.split('\n').map((line, index) => (<React.Fragment key={index}>{line}<br /></React.Fragment>))}</p>
                     </div>
-                    <div className={styles.intro}><p>Statistics</p></div> 
-                    
+                    <div className={styles.intro}><p>Statistics</p></div>  
+                    <div className={styles.statistic}>
+                        <StatisticsChart 
+                            labels={props.labels} 
+                            bidsPerDay={props.bids_perday} 
+                            maxBidPerDay={props.max_bid_perday} 
+                        />
+                    </div>
                 </div>
             </div>
         </div>
