@@ -1,21 +1,17 @@
 .filterContainer {
     padding: 20px;
     background-color: #ffffff;
-    margin-right: 20px;
-    margin-left: 20px;
 }
 
 .filterTitle {
     font-size: 20px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 7%;
+    padding-right: 7%;
     padding-top: 20px;
     padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-    margin-right: 20px;
-    margin-left: 20px;
     background-color: #F3F3F3;
     align-items: center;
 }
@@ -23,6 +19,7 @@
 .addLotButton {
     font-size: 18px;
     padding: 8px 16px;
+    font-weight: bold;
     border: 2px solid #00bcd4;
     border-radius: 5px;
     background-color: transparent;
@@ -38,8 +35,10 @@
 
 .filters {
     display: flex;
-    gap: 15px;
+    gap: 25px;
     margin-top: 15px;
+    justify-content: center;
+    align-items: center; 
 }
 
 .filterField {
@@ -56,19 +55,20 @@
     padding: 10px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
-    width: 150px;
+    width: 170px;
 }
 
 .searchButton {
+    color: #0766AD;
+    font-size: 15px;
     margin-top: 22px;
     height: 40px;
     padding: 10px 15px;
-    background-color: #58aff6;
+    background-color: rgba(7, 102, 173, 0.17);
     border: none;
-    border-radius: 5px;
-    color: white;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
-    opacity: 1;
 }
 
 .searchButton:disabled {
@@ -80,10 +80,12 @@
     margin-top: 22px;
     height: 40px;
     padding: 1px 15px;
-    background-color: #e76563;
+    background-color: rgb(255, 58, 32, 0.17);
     border: none;
-    border-radius: 5px;
-    color: white;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FF3A20;
     cursor: pointer;
 }
 
