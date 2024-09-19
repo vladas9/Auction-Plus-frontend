@@ -41,7 +41,9 @@ function App() {
   return (
     <div className='full_container'>
       {isDeniedPath ? 
-        (<Link to='/' className='back_button'><span className="material-symbols-outlined">arrow_left_alt</span></Link>) :
+        (<div className='left_part'>
+          <Link to='/' className='back_button'><span className="material-symbols-outlined">arrow_left_alt</span></Link>
+        </div>) :
         (<div className='left_part'><Navbar /></div>)}
       <div className='right_part'>
         {isDeniedPath ? 
