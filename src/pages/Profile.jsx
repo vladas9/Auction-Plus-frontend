@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/Profile.module.css";
 import { Doughnut, Bar } from "react-chartjs-2";
+import { BidContext } from "../context/BidContext";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,6 +24,7 @@ ChartJS.register(
 );
 
 export default function Profile() {
+  const {profilePicUrl}=useContext(BidContext);
   var user = {
     photo_url: "https://avatars.githubusercontent.com/u/103861986?v=4",
     username: "I am the auction boss",
@@ -95,7 +97,7 @@ export default function Profile() {
           <div className={styles.profile__info}>
             <div
               className={styles.profile__info__photo}
-              style={{ backgroundImage: `url("${user.photo_url}")` }}
+              style={{ backgroundImage: `url("${profilePicUrl}")` }}
             ></div>
             
             <div className={styles.profile__info__text}>

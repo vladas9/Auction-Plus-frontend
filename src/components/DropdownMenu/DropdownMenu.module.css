@@ -1,0 +1,111 @@
+ 
+  .navbar_auth_links {
+    display: flex;
+    height: 60%;
+    gap: 15px;
+    margin-right: 60px;
+  }
+  
+  .navbar_auth_links a,
+  .user_dropdown button,
+  .toProfile {
+    background-color: #F3F3F3;
+    color: #0766AD;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .navbar_auth_links a:hover,
+  .user_dropdown button:hover,
+  .toProfile:hover {
+    background-color: #acd1ed; 
+    border: 2px solid #0766AD;
+    color: #0766AD;
+  }
+  
+  .user_dropdown {
+    margin-right: 50px;
+  }
+  
+  
+  .user_dropdown link {
+    width: 100%;
+    text-align: left;
+  }
+  
+  .user_menu {
+    margin-right: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .user_menu img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .user_menu i {
+    font-size: 16px;
+    color: #707070;
+  }
+  
+  
+  .user_dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px;
+    display: none;
+  }
+  
+  .user_dropdown.show {
+    display: block;
+  }
+  
+  .user_dropdown li {
+    padding: 10px;
+  }
+  
+  .user_dropdown li:hover {
+    background-color: #f1f1f1;
+  }
+
+  .toProfile {
+    background-color: #F3F3F3;
+    color: #0766AD;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .toProfile:hover {
+    background-color: #acd1ed; 
+    border: 2px solid #0766AD;
+    color: #0766AD;
+  }
+  
