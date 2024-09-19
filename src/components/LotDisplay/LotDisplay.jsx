@@ -49,8 +49,12 @@ const LotDisplay = (props) => {
                                 {props.opened ? <p style={{color:"#29ADB2"}}>Opened</p> : <p style={{color:"#FF3A20"}}>Sold out</p>}
                             </div>
                             <div className={styles.to_bid}>
-                            <BidInput bidVal={bid} callback={handleBidChange} />
-                            <ConfirmButton higher={isHigher} callback={handleConfirmClick} />
+                                <div>
+                                <BidInput bidVal={bid} callback={handleBidChange} />
+                                </div>
+                                <div>
+                                <ConfirmButton higher={isHigher} callback={handleConfirmClick} />
+                                </div>
                             </div>
                         </div>
                     </div>
