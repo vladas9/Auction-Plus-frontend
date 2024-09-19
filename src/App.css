@@ -17,6 +17,8 @@
     width: 83%;
     height: 100%;
     float: right;
+    background-color: #FAFAFA;
+    min-height: 100vh;
 }
 
 .back_button {
