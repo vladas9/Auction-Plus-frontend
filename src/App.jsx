@@ -38,7 +38,7 @@ function App() {
   return (
       <div className='full_container'>
       {denied.includes(location.pathname) ? 
-        (<Link to='/' className='back_button'><span className="material-symbols-outlined">grid_view</span><span className="dis">Homepage</span></Link>) :
+        (<Link to='/' className='back_button'><span class="material-symbols-outlined">arrow_left_alt</span></Link>) :
         (<div className='left_part'><Navbar /></div>)}
         <div className='right_part'>
           {denied.includes(location.pathname) ? 
