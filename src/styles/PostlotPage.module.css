@@ -59,17 +59,20 @@
   }
   
   .submitBtn {
-    padding: 10px 15px;
-    background-color: #1976d2;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    margin: 0 auto;
+    width: 50%;
+    background-color: rgb(197, 232, 152, 0.3);
+    border: 2px solid #29ADB2;
+    color: #29ADB2;
+    padding: 8px 38px;
+    border-radius: 5px;
     cursor: pointer;
   }
   
+  
   .submitBtn:hover {
-    background-color: #155a9b;
+    background-color: rgb(197, 232, 152, 0.5);
+    border-color: #29ADB2;
   }
   
   .error {

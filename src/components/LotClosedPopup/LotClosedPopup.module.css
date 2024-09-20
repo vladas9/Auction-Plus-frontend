@@ -47,19 +47,23 @@
 }
 
 .closeBtn {
-  background-color: #1976d2;
+  background-color: #29ADB2;
+  border: 2px solid transparent;
   color: #fff;
 }
 
 .closeBtn:hover {
-  background-color: #155a9b;
+  background-color: #29adb2bb;
+  border: 2px solid #29ADB2;
 }
 
 .homeBtn {
-  background-color: #4caf50; 
+  background-color: #0766AD; 
+  border: 2px solid transparent;
   color: #fff;
 }
 
 .homeBtn:hover {
-  background-color: #388e3c;
+  background-color: #0765adcb;
+  border: 2px solid #0766AD;
 }
