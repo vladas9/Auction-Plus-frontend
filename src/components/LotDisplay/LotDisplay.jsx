@@ -46,7 +46,7 @@ const LotDisplay = (props) => {
                                 <p>Maximum bid: {props.max_bid}$</p>
                             </div>
                             <div className={styles.lot_status}>
-                                {props.opened ? <p style={{color:"#29ADB2"}}>Opened</p> : <p style={{color:"#FF3A20"}}>Sold out</p>}
+                                {props.opened ? <p style={{color:"#29ADB2"}}> <br /></p> : <p style={{color:"#FF3A20"}}>Sold out</p>}
                             </div>
                             <div className={styles.to_bid}>
                                 <div>

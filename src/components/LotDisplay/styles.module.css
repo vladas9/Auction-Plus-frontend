@@ -71,7 +71,7 @@
 .lot_status{
   font-size: 30px;
   margin-bottom: 4%;
-  width: 100%;
+  min-width: 100%;
   display: flex;
   align-items: center;
   color: #000000;
