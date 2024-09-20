@@ -1,13 +1,12 @@
 import React from "react";
 import { AgGridReact } from 'ag-grid-react'
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-//import { themeQuartz, iconSetMaterial } from '@ag-grid-community/theming';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
 import "./PlacedLotsTable.css"
 import { useState } from 'react';
-import LotTitleRenderer from './Renderers/LotTitleRenderer';
-import LotStatusRenderer from './Renderers/LotStatusRenderer';
-
+import LotTitleRenderer from '../TableCellsRenderers/LotTitleRenderer';
+import LotStatusRenderer from '../TableCellsRenderers/LotStatusRenderer';
+import LotEndDateRenderer from "../TableCellsRenderers/LotEndDateRenderer";
 
 export default function PlacedLotsTable({lots}){
     const [colDefs, setColDefs] = useState([
@@ -23,7 +22,8 @@ export default function PlacedLotsTable({lots}){
         },
         { 
             field: "Ending date",
-            maxWidth: 180,
+            maxWidth: 200,
+            cellRenderer: LotEndDateRenderer
         },
         {
             field: "Category",

@@ -31,14 +31,18 @@
   height: 22px;
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #29ADB2;
-  transition: 0.1s;
+  border: 2px solid #29ADB2;
+  color: #29ADB2;
+  transition: 0.3s;
 }
 .button__wrapper:hover{
-  background-color: #29adb233;
+  background-color: #00bcd4;
+  color: #fff;
+
 }
+
 .addlot_button{
-  color: #29ADB2;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
 }
+

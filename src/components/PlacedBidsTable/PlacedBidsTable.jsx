@@ -4,10 +4,11 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 
 import { useState } from 'react';
-import LotTitleRenderer from './Renderers/LotTitleRenderer';
-import LotStatusRenderer from './Renderers/LotStatusRenderer';
-import LotBidStatsRenderer from './Renderers/LotBidStatsRenderer'
+import LotTitleRenderer from '../TableCellsRenderers/LotTitleRenderer';
+import LotStatusRenderer from '../TableCellsRenderers/LotStatusRenderer';
+import LotBidStatsRenderer from '../TableCellsRenderers/LotBidStatsRenderer'
 import './PlacedBidsTable.css'
+import LotEndDateRenderer from '../TableCellsRenderers/LotEndDateRenderer';
 
 export default function PlacedBidsTable({bids}){
   const [colDefs, setColDefs] = useState([
@@ -23,7 +24,9 @@ export default function PlacedBidsTable({bids}){
     },
     { 
         field: "Ending date",
-        maxWidth: 180,
+        minWidth: 200,
+        maxWidth: 200,
+        cellRenderer: LotEndDateRenderer
     },
     {
         field: "Category",
