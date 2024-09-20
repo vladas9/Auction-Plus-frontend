@@ -96,7 +96,6 @@ export default function Itemstable() {
           "top_bidder_username": "username3"
         },
       ]
-      console.log(styles)
   return (
     <>
       <div className={styles.profile__tables}>
