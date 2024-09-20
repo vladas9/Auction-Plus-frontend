@@ -1,13 +1,48 @@
+.profile__tables{
+    margin: 20px;
+    border-radius: 6px;
 
+}
 .profile__tables__buttons {
-    display: flex;
-  }
-  .profile__tables__buttons div {
-    padding: 10px 15px;
-    width: -moz-fit-content;
+  background-color: #F3F3F3;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+}
+.switch {
+    font-size: 24px;
+    font-weight: 600;
+    padding: 20px 30px;
     width: fit-content;
     cursor: pointer;
-    border: 1px solid rgb(59, 59, 59);
-    background-color: #f1f1f1;
-  }
-  
+}
+.profile__tables__buttons div:nth-child(1) {
+  border-radius: 6px 0 0 0;
+}
+.button__wrapper{
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+  width: 94px;
+  height: 22px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 2px solid #29ADB2;
+  color: #29ADB2;
+  transition: 0.3s;
+}
+.button__wrapper:hover{
+  background-color: #00bcd4;
+  color: #fff;
+
+}
+
+.addlot_button{
+  font-size: 18px;
+  font-weight: 600;
+}
+

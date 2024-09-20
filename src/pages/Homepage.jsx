@@ -25,7 +25,6 @@ export default function Homepage(){
         // Simulate fetching data from the server
         fetchLots(page);
     }, [location]);
-
     const fetchLots = (page) => {
         // Simulate fetching lots from a server
         // Replace this mock data with actual API call in a real app
@@ -87,7 +86,7 @@ export default function Homepage(){
                 start_price: 200,
                 last_bid:300,
                 rating: 30,
-                endtime:"12 february" ,
+                endtime:"2024-09-09T13:34:15+03:00" ,
                 status:"closed"   
             },
             {
@@ -97,7 +96,7 @@ export default function Homepage(){
                 start_price: 200,
                 last_bid:300,
                 rating: 30,
-                endtime:"31 january" ,
+                endtime:"2024-09-09T13:34:15+03:00" ,
                 status:"closed"   
             },
             {
@@ -107,7 +106,7 @@ export default function Homepage(){
                 start_price: 200,
                 last_bid:300,
                 rating: 30,
-                endtime:"12 february" ,
+                endtime:"2024-09-09T13:34:15+03:00" ,
                 status:"closed"   
             }
         ];
@@ -118,18 +117,18 @@ export default function Homepage(){
     };
 
     const handlePageClick = (pageNumber) => {
-        navigate(`/?page=${pageNumber}`);
+        navigate(`/?offset=${pageNumber}`);
     };
 
     const handlePrevious = () => {
         if (currentPage > 1) {
-            navigate(`/?page=${currentPage - 1}`);
+            navigate(`/?offset=${currentPage - 1}`);
         }
     };
 
     const handleNext = () => {
         if (currentPage < totalPages) {
-            navigate(`/?page=${currentPage + 1}`);
+            navigate(`/?offset=${currentPage + 1}`);
         }
     };
 

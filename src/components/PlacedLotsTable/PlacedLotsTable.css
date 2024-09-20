@@ -1,0 +1,14 @@
+.ag-theme-quartz {
+    --ag-primary-color: #087AD1;
+    --ag-background-color: #FFFFFF;
+    --ag-border-color: #FAFAFA;
+    --ag-font-family: "Inter", sans-serif;
+    --ag-font-size: 18px;
+    --ag-foreground-color: #555A60;
+    --ag-header-background-color: #FFFFFF;
+    --ag-header-foreground-color: #000000;
+    --ag-row-border: 1px solid #FAFAFA;
+    --ag-icon-size: 16px;
+    --ag-row-height: 65px;
+    font-weight: 500;
+}
