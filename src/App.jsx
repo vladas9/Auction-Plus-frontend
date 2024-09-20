@@ -14,6 +14,7 @@ import SuccessPage from "./pages/SuccessPage";
 import Page404 from './pages/Page404';
 import PrivateSession from "./pages/PrivateSession";
 import Admin from "./pages/AdminHomePage";
+import Settings from "./pages/Settings";
 import Itemstable from "./pages/Itemstable";
 import AdminAuth from "./pages/Adminauth";
 import NotificationsPage from "./pages/NotifPage";
@@ -66,6 +67,7 @@ function App() {
               <Route path="users" element={<AdminUsersTable />} />
             </Route>
             <Route path="/admin/auth" element={<AdminAuth setIsAdminAuthenticated={setIsAdminAuthenticated} />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
       </div>
