@@ -6,19 +6,19 @@ export default (params)=>{
     if(params.value.closed){
         return(
             <div style={{color:"grey"}}>
-                Sold for {params.value.max_bid}
+                Sold
             </div>
         )
-    }else if(params.value.top_bidder_username===params.value.myusername){
+    }else if(params.value.top_bidder_username===myusername){
         return(
-            <div style={{color:"green"}}>
-                {params.value.max_bid-params.value.start_price}$ in advance for you
+            <div style={{color:"#29ADB2"}}>
+                +{params.value.users_bid-params.value.max_bid}$
             </div>
         )
     }else{
         return(
-            <div style={{color:"red"}}>
-                {params.value.max_bid-params.value.start_price}$ more offered by {params.value.top_bidder_username}
+            <div style={{color:"#FF3A20"}}>
+                {params.value.users_bid-params.value.max_bid}$
             </div>
         )
     }

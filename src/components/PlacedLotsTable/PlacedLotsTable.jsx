@@ -5,72 +5,51 @@ import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied
 //import { themeQuartz, iconSetMaterial } from '@ag-grid-community/theming';
 import "./PlacedLotsTable.css"
 import { useState } from 'react';
-import LotImageRenderer from './Renderers/LotImageRenderer';
+import LotTitleRenderer from './Renderers/LotTitleRenderer';
 import LotStatusRenderer from './Renderers/LotStatusRenderer';
 
 
 export default function PlacedLotsTable({lots}){
     const [colDefs, setColDefs] = useState([
         { 
-          field: "Photo",
-          cellRenderer: LotImageRenderer,
+            field: "Lot title",
+            cellRenderer: LotTitleRenderer,   
+            minWidth: 300, 
+            maxWidth: 340,
         },
-        { field: "Lot name" },
-        { field: "Price" },
-        { field: "Ending date" },
         { 
-          field: "Lot status",
-          cellRenderer: LotStatusRenderer,
+            field: "Price",
+            maxWidth: 110,
         },
-        { field: "Max bid"},
         { 
-          field: "Top bidder",
+            field: "Ending date",
+            maxWidth: 180,
+        },
+        {
+            field: "Category",
+            maxWidth: 160,
+        },
+        { 
+            field: "Lot status",
+            cellRenderer: LotStatusRenderer,
+            maxWidth: 160,
+
+        },
+        { 
+            field: "Top bidder",
+            maxWidth:200,
         }
     ]);
     const [rowData, setRowData]=useState(
         lots.map(item=>({
-            Photo: item.photo,
-            "Lot name": item.lot_name,
-            Price: item.start_price,
+            "Lot title": [item.photo, item.lot_name],
+            Price: item.max_bid,
             "Ending date":item.end_date,
+            Category: item.category,
             "Lot status":item.closed,
-            "Max bid":item.max_bid,
             "Top bidder":item.top_bidder_username
         }))
     )
-    // to use myTheme in an application, pass it to the theme grid option
-    /*const myTheme = themeQuartz
-	  .withPart(iconSetMaterial)
-	  .withParams({
-        accentColor: "#087AD1",
-        backgroundColor: "#FFFFFF",
-        borderColor: "#FAFAFA",
-        borderRadius: "6px",
-        browserColorScheme: "light",
-        cellHorizontalPaddingScale: 1.1114285714,
-        chromeBackgroundColor: {
-            ref: "backgroundColor"
-        },
-        columnBorder: false,
-        fontFamily: {
-            googleFont: "Inter"
-        },
-        fontSize: 16,
-        foregroundColor: "#555A60",
-        headerBackgroundColor: "#FFFFFF",
-        headerFontSize: 13,
-        headerFontWeight: 400,
-        headerTextColor: "#84868B",
-        iconSize: "16px",
-        rowBorder: true,
-        rowVerticalPaddingScale: 2,
-        sidePanelBorder: true,
-        spacing: 6,
-        wrapperBorder: false,
-        wrapperBorderRadius: 2
-    });*/
-
-
 
     return(
         <div className="ag-theme-quartz" style={{ height: 500 }}>

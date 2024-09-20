@@ -1,0 +1,16 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+.imgLot{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
+.title{
+    width: 200px;
+}

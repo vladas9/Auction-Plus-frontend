@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PlacedBidsTable from "../components/PlacedBidsTable/PlacedBidsTable";
 import PlacedLotsTable from "../components/PlacedLotsTable/PlacedLotsTable";
 import styles from "../styles/Itemstable.module.css"
-
+import { Link } from "react-router-dom";
 
 export default function Itemstable() {
     const [placedItems, setplacedItems]=useState(true)
@@ -15,7 +15,9 @@ export default function Itemstable() {
           "end_date": "dd:mm:yy",
           "closed": false,
           "max_bid": 50,
-          "top_bidder_username": "username1"
+          "category": "Arts",
+          "top_bidder_username": "username1",
+          "users_bid": 234
         },
         {
           "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
@@ -24,7 +26,9 @@ export default function Itemstable() {
           "end_date": "dd:mm:yy",
           "closed": true,
           "max_bid": 50,
-          "top_bidder_username": "username2"
+          "category": "Real estate",
+          "top_bidder_username": "username2",
+          "users_bid": 234
         },
         {
           "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
@@ -33,7 +37,9 @@ export default function Itemstable() {
           "end_date": "dd:mm:yy",
           "closed": false,
           "max_bid": 60,
-          "top_bidder_username": "username1"
+          "category": "Arts",
+          "top_bidder_username": "username1",
+          "users_bid": 234
         },
         {
           "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
@@ -41,8 +47,10 @@ export default function Itemstable() {
           "start_price": 44,
           "end_date": "dd:mm:yy",
           "closed": false,
-          "max_bid": 50,
-          "top_bidder_username": "username1"
+          "max_bid": 500,
+          "category": "Arts",
+          "top_bidder_username": "username2",
+          "users_bid": 234
         },
           
       ]
@@ -54,6 +62,7 @@ export default function Itemstable() {
           "end_date": "dd:mm:yy",
           "closed": false,
           "max_bid": 50,
+          "category": "Arts",
           "top_bidder_username": "username1"
         },
         {
@@ -63,6 +72,7 @@ export default function Itemstable() {
           "end_date": "dd:mm:yy",
           "closed": true,
           "max_bid": 50,
+          "category": "Arts",
           "top_bidder_username": "username2"
         },
         {
@@ -72,6 +82,7 @@ export default function Itemstable() {
           "end_date": "dd:mm:yy",
           "closed": false,
           "max_bid": 60,
+          "category": "Real estate",
           "top_bidder_username": "username1"
         },
         {
@@ -81,18 +92,27 @@ export default function Itemstable() {
           "end_date": "dd:mm:yy",
           "closed": false,
           "max_bid": 530,
+          "category": "Arts",
           "top_bidder_username": "username3"
         },
       ]
-      
+      console.log(styles)
   return (
-    <><div className={styles.profile__tables}>
-    <div className={styles.profile__tables__buttons}>
-      <div style={placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(true)}>Placed Lots</div>
-      <div style={!placedItems?{backgroundColor:"red"}:{backgroundColor:"white"}} onClick={()=>setplacedItems(false)}>Placed Bids</div>
-    </div>
+    <>
+      <div className={styles.profile__tables}>
+        <div className={styles.profile__tables__buttons}>
+          <div className={styles.switch} style={placedItems?{backgroundColor:"#fff"}:{backgroundColor:"#F3F3F3"}} onClick={()=>setplacedItems(true)}>Placed Lots</div>
+          <div className={styles.switch} style={!placedItems?{backgroundColor:"#fff"}:{backgroundColor:"#F3F3F3"}} onClick={()=>setplacedItems(false)}>Placed Bids</div>
+          
+            {placedItems?(
+              <Link className={styles.button__wrapper} to="/profile/postlot">
+                  <div className={styles.addlot_button}>+ Add Lot</div>
+              </Link>):<></>}
+          
+        </div>
     
-    {placedItems?<PlacedLotsTable lots={placed_lots}/>:<PlacedBidsTable bids={placed_bids}/>}
-</div></>
+        {placedItems?<PlacedLotsTable lots={placed_lots}/>:<PlacedBidsTable bids={placed_bids}/>}
+      </div>
+    </>
       );
 }

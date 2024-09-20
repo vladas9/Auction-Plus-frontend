@@ -4,54 +4,62 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 
 import { useState } from 'react';
-import LotImageRenderer from './Renderers/LotImageRenderer';
+import LotTitleRenderer from './Renderers/LotTitleRenderer';
 import LotStatusRenderer from './Renderers/LotStatusRenderer';
 import LotBidStatsRenderer from './Renderers/LotBidStatsRenderer'
 import './PlacedBidsTable.css'
 
-/*{
-          "photo": "https://unblast.com/wp-content/uploads/2020/06/Data-Map-Visualization-UI-Template.jpg",
-          "lot_name": "Name of lot 2",
-          "start_price": 44,
-          "end_date": "dd:mm:yy",
-          "closed": false,
-          "max_bid": 50,
-          "top_bidder_username": "username1"
-        },*/
 export default function PlacedBidsTable({bids}){
   const [colDefs, setColDefs] = useState([
     { 
-      field: "Photo",
-      cellRenderer: LotImageRenderer,
+      field: "Lot title",
+      cellRenderer: LotTitleRenderer,   
+      minWidth: 300, 
+      maxWidth: 340,
     },
-    { field: "Lot name" },
-    { field: "Price" },
-    { field: "Ending date" },
+    { 
+        field: "Price",
+        maxWidth: 110,
+    },
+    { 
+        field: "Ending date",
+        maxWidth: 180,
+    },
+    {
+        field: "Category",
+        maxWidth: 160,
+    },
     { 
       field: "Lot status",
       cellRenderer: LotStatusRenderer,
+      maxWidth: 160,
+
     },
-    { field: "Max bid"},
     { 
       field: "Bid status",
       cellRenderer: LotBidStatsRenderer,
-      valueFormatter:(params) => params.value.max_bid || 'No bids'
+      valueFormatter:(params) => params.value.max_bid-params.value.users_bid || 'No bids',
+      maxWidth:160
+    },
+    { 
+      field: "Top bidder",
+      maxWidth:200,
     }
   ]);
   const [rowData, setRowData]=useState(
     bids.map(item=>({
-      Photo: item.photo,
-      "Lot name": item.lot_name,
+      "Lot title": [item.photo, item.lot_name],
       Price: item.start_price,
       "Ending date":item.end_date,
+      Category: item.category,
       "Lot status":item.closed,
-      "Max bid":item.max_bid,
       "Bid status":{
         closed: item.closed ,
         max_bid: item.max_bid,
-        start_price:item.start_price,
         top_bidder_username: item.top_bidder_username,
-      }
+        users_bid: item.users_bid
+      },
+      "Top bidder":item.top_bidder_username
     }))
   )
   return (
