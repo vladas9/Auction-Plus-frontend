@@ -17,21 +17,20 @@ export default function BidContextProvider(props){
             return res.json();
         }).then((data)=>{
             setProfilePicUrl(data.img_src);
-            console.log(data)
             data.user_type==="admin"?setIsAdmin(true):setIsAdmin(false);
         }).catch(err=>{
             console.log(err);
-            //localStorage.clear("auth-token");
+            localStorage.clear("auth-token");
         })
     }
     
     const saveProfilePic=(img_src)=>{
         setProfilePicUrl(img_src);
-        console.log(`provided link to context: ${img_src}`);
+        //console.log(`provided link to context: ${img_src}`);
     }
     const setUserType = (type)=>{
         type==="admin"? setIsAdmin(true): setIsAdmin(false)
-        console.log(`user's role set: ${type}`)
+        //console.log(`user's role set: ${type}`)
     }
     const contextValue={profilePicUrl, isAuthenticated, isAdmin, saveProfilePic, setUserType};//profile image url, is authenticated, is admin
     return (

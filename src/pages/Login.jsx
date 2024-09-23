@@ -1,38 +1,40 @@
-import React, { useState , useContext} from "react";
+import React, { useState, useContext } from "react";
 import styles from "../styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { BidContext } from "../context/BidContext";
 
-export default function Login({ setIsAuthenticated }) {
-  const {saveProfilePic, setUserType}=useContext(BidContext)
+export default function Login() {
+  const { saveProfilePic, setUserType } = useContext(BidContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const login = async (e) => {
     e.preventDefault();
-    var login_data={
-      "email":email,
-      "password":password
+    var login_data = {
+      "email": email,
+      "password": password
     }
     await fetch("http://localhost:1169/api/login-user", {
       method: "POST",
-      body:JSON.stringify(login_data)
-    }).then(res=>{
-      return res.json();
-    }).then(data=>{
+      body: JSON.stringify(login_data)
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      //console.log(res)
+      throw new Error("Something went wrong")
+    }).then(data => {
+      //console.log(data)
       localStorage.setItem("auth-token", data.auth_token);
       saveProfilePic(data.img_url);
       setUserType(data.uset_type);
-    })
-    const result = true;
-
-    if (result) {
-      setIsAuthenticated(true); 
+      setIsAuthenticated(true);
       navigate('/');
-    } else {
-      console.log("Login failed");
-    }
+    }).catch(err => {
+      alert(err.error);
+    })
+
   };
 
   const handleClear = () => {
