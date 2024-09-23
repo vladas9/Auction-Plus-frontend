@@ -8,10 +8,10 @@ import LotStatusRenderer from '../TableCellsRenderers/LotStatusRenderer';
 import LotEndDateRenderer from "../TableCellsRenderers/LotEndDateRenderer";
 
 export default function PlacedLotsTable() {
-    var [loading, setLoading] = useState(true);
-    var [lots, setLots] = useState([]);
-    var [error, setError] = useState(null);
-    var [rowData, setRowData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [lots, setLots] = useState([]);
+    const [error, setError] = useState(null);
+    const [rowData, setRowData] = useState([]);
     var limit = 10;
     var offset = 1;
     useEffect(() => {
