@@ -26,7 +26,9 @@ export default function Homepage() {
 
     // Fetch statistics from server
     useEffect(() => {
-        fetch('/api/home-cardsinfo')
+        fetch('/api/home-cardsinfo',{
+            method:"GET",
+          })
             .then(response => response.json())
             .then(data => setStatistics(data))
             .catch(error => console.error('Error fetching statistics:', error));
