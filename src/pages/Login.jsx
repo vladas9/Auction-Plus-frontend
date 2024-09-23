@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState , useContext} from "react";
 import styles from "../styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { BidContext } from "../context/BidContext";
 
 export default function Login({ setIsAuthenticated }) {
-  const [username, setUsername] = useState('');
+  const {saveProfilePic, setUserType}=useContext(BidContext)
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const login = async (e) => {
     e.preventDefault();
+    var login_data={
+      "email":email,
+      "password":password
+    }
+    await fetch("http://localhost:1169/api/login-user", {
+      method: "POST",
+      body:JSON.stringify(login_data)
+    }).then(res=>{
+      return res.json();
+    }).then(data=>{
+      localStorage.setItem("auth-token", data.auth_token);
+      saveProfilePic(data.img_url);
+      setUserType(data.uset_type);
+    })
     const result = true;
 
     if (result) {
@@ -27,16 +43,16 @@ export default function Login({ setIsAuthenticated }) {
   return (
     <div className={styles.wallpaper}>
       <div className={styles.container}>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={login}>
           <div className={styles.intro}>
             <h2>We are happy you come back!</h2>
           </div>
           <input
             className={styles.input}
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <input
