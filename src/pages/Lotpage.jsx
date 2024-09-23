@@ -1,30 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from "../styles/Lotpage.module.css";
 import LotDisplay from '../components/LotDisplay/LotDisplay';
 import LotClosedPopup from "../components/LotClosedPopup/LotClosedPopup";
 
 const Lot = () => {
-
-  
-  const [lotEnded, setLotEnded] = useState(false);
-  const winner = { name: "John Doe" };
-  
-  //fetch the data about the lot
-
-
-  // Simply to simulate server response by setting lotEnded to true after 5 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLotEnded(true);
-    }, 12000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const [lotEnded, setLotEnded] = useState(true);
 
   const handleClosePopup = () => {
     setLotEnded(false);
   };
-
+  
+  const winner = { name: "John Doe" };
 
   //Example of info about user
   var lot={
@@ -70,7 +56,7 @@ const Lot = () => {
               max_bid_perday={lot.max_bid_perday}/>
               
 
-      {lotEnded && (
+      {lotEnded && !(lot.opened) && (
         <LotClosedPopup winner={winner} lot={lot.max_bid} onClose={handleClosePopup}/>
       )}
     </div>
