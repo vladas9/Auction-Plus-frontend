@@ -68,3 +68,9 @@
     }
   }
   
+  .noLotsMessage{
+    margin-top: 5%;
+    color: #ddd;
+    font-size: 48px;
+    margin-bottom: 5%;
+  }
