@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./FilterBar.module.css";
 
-export default function FilterBar() {
-    const navigate = useNavigate();
-    const [filters, setFilters] = useState({
-        category: "",
-        minPrice: "",
-        maxPrice: "",
-        lotState: ""
-    });
+export default function FilterBar({fetchLots, filters, setFilters}) {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -24,30 +17,27 @@ export default function FilterBar() {
     const clearFilters = () => {
         setFilters({
             category: "",
-            minPrice: "",
-            maxPrice: "",
-            lotState: ""
-        });
+            minprice: "",
+            maxprice: "",
+            lotstate: ""
+        })
     };
 
     const isSearchDisabled = !Object.values(filters).some((value) => value !== "");
 
-    const isPriceValid = !filters.minPrice || !filters.maxPrice || parseInt(filters.minPrice) <= parseInt(filters.maxPrice);
+    const isPriceValid = !filters.minprice || !filters.maxprice || parseInt(filters.minprice) <= parseInt(filters.maxprice);
 
-    const handleAddLotClick = () => {
-        navigate('/profile/postlot');
-    };
-
+  
     return (
         <>
             <div className={styles.filterTitle}>
                 <h2>List of opened lots</h2>
-                <button 
+                <Link 
                     className={styles.addLotButton}
-                    onClick={handleAddLotClick}
+                    to="/profile/postlot"
                 >
                     + Add lot
-                </button>
+                </Link>
             </div>
             <div className={styles.filterContainer}>
                 <div className={styles.filters}>
@@ -72,9 +62,9 @@ export default function FilterBar() {
                         <label>Min price</label>
                         <input
                             type="text"
-                            name="minPrice"
+                            name="minprice"
                             className={styles.filterInput}
-                            value={filters.minPrice}
+                            value={filters.minprice}
                             onChange={handleInputChange}
                             placeholder="Min price"
                         />
@@ -84,9 +74,9 @@ export default function FilterBar() {
                         <label>Max price</label>
                         <input
                             type="text"
-                            name="maxPrice"
+                            name="maxprice"
                             className={styles.filterInput}
-                            value={filters.maxPrice}
+                            value={filters.maxprice}
                             onChange={handleInputChange}
                             placeholder="Max price"
                         />
@@ -95,9 +85,9 @@ export default function FilterBar() {
                     <div className={styles.filterField}>
                         <label>Lot condition</label>
                         <select
-                            name="lotCondition"
+                            name="lotcondition"
                             className={styles.filterInput}
-                            value={filters.lotState}
+                            value={filters.lotstate}
                             onChange={handleInputChange}
                         >
                             <option value="">Lot condition</option>
@@ -108,7 +98,7 @@ export default function FilterBar() {
 
                     <button
                         className={styles.searchButton}
-                        onClick={() => console.log(filters)}
+                        onClick={() => fetchLots(1, filters)}
                         disabled={isSearchDisabled || !isPriceValid}
                     >
                         <i className="fas fa-search"></i> Search

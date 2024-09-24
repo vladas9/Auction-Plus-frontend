@@ -9,7 +9,7 @@ export default function Homepage() {
     const [lots, setLots] = useState([]);
     const [totalPages, setTotalPages] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
-    const [statistics, setStatistics] = useState({
+    const [cardStats, setCardStats] = useState({
         active_bidders: 0,
         opened_lots: 0,
         total_lots: 0
@@ -20,46 +20,35 @@ export default function Homepage() {
         maxprice: "",
         lotcondition: ""
     });
-    
+
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Fetch statistics from server
     useEffect(() => {
-        fetch('/api/home-cardsinfo',{
-            method:"GET",
-          })
-            .then(response => response.json())
-            .then(data => setStatistics(data))
-            .catch(error => console.error('Error fetching statistics:', error));
-    }, []);
-
-    // Establish WebSocket connection
-    useEffect(() => {
-        const ws = new WebSocket('ws://your-websocket-url');
-        
+        const ws = new WebSocket("ws://localhost:1169/api/home-cardsinfo");
         ws.onmessage = (event) => {
-            const updatedLot = JSON.parse(event.data);
-            setLots((prevLots) => 
-                prevLots.map(lot => lot.id === updatedLot.id ? updatedLot : lot)
-            );
-        };
-
-        return () => {
+            var updatedCards = JSON.parse(event.data);
+            setCardStats(updatedCards);
+        }
+        ws.onerror = (err) => {
+            console.error("failed to get data for statistic card:", err.message);
+        }
+        ws.onclose = () => {
             ws.close();
-        };
+        }
     }, []);
 
-    // Fetch lots whenever the page or filters change
     useEffect(() => {
+        console.log("useEffect called")
         const params = new URLSearchParams(location.search);
         const page = parseInt(params.get("page")) || 1;
         setCurrentPage(page);
         fetchLots(page, filters);
-    }, [location, filters]);
+    }, [location]);
 
     const fetchLots = (page, filters) => {
-        const offset = (page - 1) * 9;
+        console.log(filters)
+        const offset = page;
         const query = new URLSearchParams({
             limit: 9,
             offset,
@@ -68,12 +57,12 @@ export default function Homepage() {
             maxprice: filters.maxprice,
             lotcondition: filters.lotcondition,
         }).toString();
-
-        fetch(`/api/lot-list?${query}`)
+        console.log(query)
+        fetch(`http://localhost:1169/api/auctions?${query}`)
             .then(response => response.json())
             .then(data => {
                 setLots(data);
-                const totalItems = data.total_items || 90; // Replace with actual total count
+                const totalItems = data.total_items || 90; 
                 setTotalPages(Math.ceil(totalItems / 9));
             })
             .catch(error => console.error('Error fetching lots:', error));
@@ -95,21 +84,18 @@ export default function Homepage() {
         }
     };
 
-    const handleFilterChange = (newFilters) => {
-        setFilters(newFilters);
-    };
 
     return (
         <div className={styles.full_container}>
             <div className={styles.wrapper}>
                 <div className={styles.statistics}>
-                    <Statistics title="Active bidders" value={statistics.active_bidders} valueColor="#29ADB2" iconName="person" />
-                    <Statistics title="Opened lots" value={statistics.opened_lots} valueColor="#0766AD" iconName="bid_landscape" />
-                    <Statistics title="Total lots sold" value={statistics.total_lots} valueColor="#FF3A20" iconName="bid_landscape_disabled" />
+                    <Statistics title="Active bidders" value={cardStats.active_bidders} valueColor="#29ADB2" iconName="person" />
+                    <Statistics title="Opened lots" value={cardStats.opened_lots} valueColor="#0766AD" iconName="bid_landscape" />
+                    <Statistics title="Total lots sold" value={cardStats.total_lots} valueColor="#FF3A20" iconName="bid_landscape_disabled" />
                 </div>
 
                 <div className={styles.filter}>
-                    <FilterBar onChange={handleFilterChange} />
+                    <FilterBar fetchLots={fetchLots} filters={filters} setFilters={setFilters}/>
                 </div>
 
                 <div className={styles.lotList}>
@@ -129,7 +115,7 @@ export default function Homepage() {
                         ))
                     ) : (
                         <div className={styles.noLotsMessage}>
-                            No lots available. 
+                            No lots available.
                         </div>
                     )}
                 </div>
