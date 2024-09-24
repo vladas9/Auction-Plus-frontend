@@ -39,7 +39,6 @@ export default function Homepage() {
     }, []);
 
     useEffect(() => {
-        console.log("useEffect called")
         const params = new URLSearchParams(location.search);
         const page = parseInt(params.get("page")) || 1;
         setCurrentPage(page);
@@ -47,7 +46,6 @@ export default function Homepage() {
     }, [location]);
 
     const fetchLots = (page, filters) => {
-        console.log(filters)
         const offset = page;
         const query = new URLSearchParams({
             limit: 9,
@@ -57,11 +55,11 @@ export default function Homepage() {
             maxprice: filters.maxprice,
             lotcondition: filters.lotcondition,
         }).toString();
-        console.log(query)
         fetch(`http://localhost:1169/api/auctions?${query}`)
             .then(response => response.json())
             .then(data => {
-                setLots(data);
+                console.log(data)
+                setLots(data.lots);
                 const totalItems = data.total_items || 90; 
                 setTotalPages(Math.ceil(totalItems / 9));
             })
@@ -99,7 +97,7 @@ export default function Homepage() {
                 </div>
 
                 <div className={styles.lotList}>
-                    {lots.length > 0 ? (
+                    {lots!=null ? (
                         lots.map((item) => (
                             <LotItem
                                 key={item.id}

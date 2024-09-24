@@ -7,7 +7,7 @@ export default function FilterBar({fetchLots, filters, setFilters}) {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
-        if ((name === "minPrice" || name === "maxPrice") && !/^\d*$/.test(value)) {
+        if ((name === "minprice" || name === "maxprice") && !/^\d*$/.test(value)) {
             return;
         }
 
@@ -50,11 +50,11 @@ export default function FilterBar({fetchLots, filters, setFilters}) {
                             onChange={handleInputChange}
                         >
                             <option value="">Select a category</option>
-                            <option value="Furniture">Furniture</option>
-                            <option value="Real Estate">Real Estate</option>
-                            <option value="Electronics">Electronics</option>
-                            <option value="Arts">Arts</option>
-                            <option value="Others">Others</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="real estate">Real Estate</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="arts">Arts</option>
+                            <option value="others">Others</option>
                         </select>
                     </div>
 

@@ -19,19 +19,19 @@ export default function Login() {
       method: "POST",
       body: JSON.stringify(login_data)
     }).then(res => {
-      if (res.ok) {
+      //if (res.ok) {
         return res.json();
-      }
+      //}
       //console.log(res)
-      throw new Error("Something went wrong")
+      //throw new Error("Something went wrong")
     }).then(data => {
       //console.log(data)
       localStorage.setItem("auth-token", data.auth_token);
       saveProfilePic(data.img_url);
       setUserType(data.uset_type);
-      setIsAuthenticated(true);
-      navigate('/');
+            navigate('/');
     }).catch(err => {
+      console.error(err.message)
       alert(err.error);
     })
 
