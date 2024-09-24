@@ -28,6 +28,11 @@ export default function Post() {
       return;
     }
 
+    if (!photos) {
+      setError("You must upload a photo!");
+      return;
+    }
+
     setError("");
     console.log({ title, description, price, date, time, photos, terms });
 
@@ -93,6 +98,7 @@ export default function Post() {
           <input
             type="file"
             id="photos"
+            checked={photos}
             multiple
             onChange={(e) => setPhotos(e.target.files)}
             className={styles.input}

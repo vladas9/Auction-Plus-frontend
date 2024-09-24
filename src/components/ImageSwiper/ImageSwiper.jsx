@@ -34,7 +34,8 @@ const NextArrow = ({ onClick }) => (
 const ImageSwiper = ({ img_src }) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
-  
+  img_src.length > 1 ? img_src : img_src[1] = img_src[0]; // Just to handle case when there is only one photo
+
   // Use refs to reference the two sliders
   const sliderRef1 = useRef(null);
   const sliderRef2 = useRef(null);

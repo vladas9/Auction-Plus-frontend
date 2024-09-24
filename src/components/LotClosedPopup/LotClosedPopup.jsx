@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from "./LotClosedPopup.module.css";
 
-const LotClosedPopup = ({ winner, lot: max_bid, onClose }) => {
+const LotClosedPopup = ({lot: max_bid, onClose }) => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
@@ -14,7 +14,7 @@ const LotClosedPopup = ({ winner, lot: max_bid, onClose }) => {
       <div className={styles.popupContent}>
         <h2 className={styles.title}>Lot Closed</h2>
         <p className={styles.message}>
-          The winner is <strong>{winner.name}</strong> with a bid of <strong>${max_bid}</strong>
+          The auction is ended with a bid of <strong>${max_bid}</strong>
         </p>
         <div className={styles.buttonGroup}>
           <button onClick={onClose} className={styles.closeBtn}>Close</button>
