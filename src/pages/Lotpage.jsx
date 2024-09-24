@@ -99,7 +99,6 @@ const Lot = () => {
     if ((Number(bid) > props.max_bid) && (props.opened)) {
         // Replace this with your authentication logic to get the token
         const authToken = localStorage.getItem('auth_token'); 
-
         fetch('/api/post_bid', {
             method: 'POST',
             headers: {

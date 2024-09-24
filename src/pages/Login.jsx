@@ -1,22 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { BidContext } from "../context/BidContext";
 
-export default function Login({ setIsAuthenticated }) {
-  const [username, setUsername] = useState('');
+export default function Login() {
+  const { saveProfilePic, setUserType } = useContext(BidContext)
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const login = async (e) => {
     e.preventDefault();
-    const result = true;
-
-    if (result) {
-      setIsAuthenticated(true); 
-      navigate('/');
-    } else {
-      console.log("Login failed");
+    var login_data = {
+      "email": email,
+      "password": password
     }
+    await fetch("http://localhost:1169/api/login-user", {
+      method: "POST",
+      body: JSON.stringify(login_data)
+    }).then(res => {
+      //if (res.ok) {
+        return res.json();
+      //}
+      //console.log(res)
+      //throw new Error("Something went wrong")
+    }).then(data => {
+      //console.log(data)
+      localStorage.setItem("auth-token", data.auth_token);
+      saveProfilePic(data.img_url);
+      setUserType(data.uset_type);
+            navigate('/');
+    }).catch(err => {
+      console.error(err.message)
+      alert(err.error);
+    })
+
   };
 
   const handleClear = () => {
@@ -27,16 +45,16 @@ export default function Login({ setIsAuthenticated }) {
   return (
     <div className={styles.wallpaper}>
       <div className={styles.container}>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={login}>
           <div className={styles.intro}>
             <h2>We are happy you come back!</h2>
           </div>
           <input
             className={styles.input}
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <input

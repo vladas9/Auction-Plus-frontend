@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import styles from "../styles/Profile.module.css";
 import { Doughnut, Bar } from "react-chartjs-2";
 import { BidContext } from "../context/BidContext";
@@ -24,26 +24,78 @@ ChartJS.register(
 );
 
 export default function Profile() {
+  if(!localStorage.getItem("auth-token")){
+    window.location.replace("/register");
+  }
   const {profilePicUrl}=useContext(BidContext);
-  var user = {
-    photo_url: "https://avatars.githubusercontent.com/u/103861986?v=4",
-    username: "I am the auction boss",
-    email: "boss@email.com",
-    phone_number: "079999999",
-    reg_date: "12.10.2020",
-  };
+  const [error, setError]=useState(null);
+  const [loading, setLoading]=useState(true);
+  const [user_data, setUserData]=useState(null);
+  useEffect(()=>{
+    const fetchData= async ()=>{
+      await fetch("http://localhost:1169/api/profile-data", {
+        method:"GET",
+        headers:{
+          Authorization:`Bearer ${localStorage.getItem("auth-token")}`,
+        },
+      }).then(res=>{
+        return res.json();
+      }).then(data=>{
+        setUserData(data);
+      }).catch(err=>{
+        console.log(err);
+        setError(err.message);
+      }).finally(()=>{
+        setLoading(false);
+      })
+    }
+    fetchData();
+  },[]);
+  if(loading){
+    return (
+      <>
+        Loading...
+      </>
+    )
+  }
+  if (error) {
+    return (
+      <>
+        Error: {error}
+      </>)
+  }
+  // var user_data = {
+  //   "img_url": "link.jpg",
+  //   "username": "username",
+  //   "email": "user@gmail.com",
+  //   "phone_number": "+373 78 888 888",
+  //   "creation_date": "2023-06-09T13:34:15+03:00",
+  //   "bought_stats": {
+  //     "labels": ["cat1", "cat2", "cat3", "cat4", "cat5"],
+  //     "data": [21, 23, 34, 56, 67]
+  //   },
+  //   "sold_stats": {
+  //     "labels": ["cat1", "cat2", "cat3", "cat4", "cat5"],
+  //     "data": [21, 23, 34, 56, 67]
+  //   },
+  //   "price_range_stats": {
+  //     "labels": ["0-100$", "100-200$", "200-300$", "300-400$", "400-500$"],
+  //     "sold_data": [21, 23, 34, 56, 67],
+  //     "bought_data": [21, 23, 34, 56, 67]
+  //   }
+  // }
 
-  const regDate = new Date(user.reg_date);
+  const regDate = new Date(user_data.creation_date);
   const currentDate = new Date();
   const accountAgeMonths = (currentDate.getFullYear() - regDate.getFullYear()) * 12 + currentDate.getMonth() - regDate.getMonth();
 
   const boughtData = {
-    labels: ["Furniture", "Real estate", "Electronics", "Arts", "Other"],
+    labels: user_data.bought_stats.labels,
     datasets: [
       {
         borderRadius: 6,
         label: "Items bought",
-        data: [200, 50, 100, 40, 78],
+        data: user_data.bought_stats.data,
         backgroundColor: ["#FF3A20", "#29ADB2", "#C5E898", "#0766AD", "#F3F3F3"],
         hoverOffset: 40,
       },
@@ -51,12 +103,12 @@ export default function Profile() {
   };
 
   const soldData = {
-    labels: ["Furniture", "Real estate", "Electronics", "Arts", "Other"],
+    labels: user_data.sold_stats.labels,
     datasets: [
       {
         borderRadius: 6,
         label: "Items sold",
-        data: [200, 50, 100, 40, 78],
+        data: user_data.sold_stats.data,
         backgroundColor: ["#FF3A20", "#29ADB2", "#C5E898", "#0766AD", "#F3F3F3"],
         hoverOffset: 40,
       },
@@ -64,13 +116,13 @@ export default function Profile() {
   };
 
   const barData = {
-    labels: ["0-100 $", "101-200 $", "201-300 $", "301-400 $", "401-500 $"],
+    labels: user_data.price_range_stats.labels,
     datasets: [
       {
         type: "bar",
         borderRadius: 6,
         label: "Bought lots",
-        data: [10, 20, 30, 40, 80],
+        data: user_data.price_range_stats.bought_data,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "#0766AD",
       },
@@ -78,8 +130,9 @@ export default function Profile() {
         type: "bar",
         label: "Sold lots",
         borderRadius: 6,
-        data: [50, 50, 50, 30, 15],
         fill: false,
+        data: user_data.price_range_stats.sold_data,
+        borderColor: "rgb(255, 99, 132)",
         borderColor: "rgb(54, 162, 235)",
         backgroundColor: "#C5E898",
       },
@@ -103,15 +156,15 @@ export default function Profile() {
             <div className={styles.profile__info__text}>
               <div className={styles.profile__info__header}>
 
-                <span>{user.username}</span>
+                <span>{user_data.username}</span>
               </div>
               <div className={styles.profile__info__item}>
                 <span class="material-symbols-outlined">mail</span>
-                <span>{user.email}</span>
+                <span>{user_data.email}</span>
               </div>
               <div className={styles.profile__info__item}>
-                <span class="material-symbols-outlined">call</span>
-                <span>{user.phone_number}</span>
+                <span className="material-symbols-outlined">call</span>
+                <span>{user_data.phone_number}</span>
               </div>
               <div className={styles.profile__info__item}>
                 <span>Profile age: {accountAgeMonths} months</span>
