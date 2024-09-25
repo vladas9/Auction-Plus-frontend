@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 import styles from "../styles/PostlotPage.module.css";
 
 export default function Post() {
+  if (!localStorage.getItem("auth-token")){
+    window.location.replace("/login");
+    return(
+      <>
+        Redirecting...
+      </>
+    )
+  }
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
