@@ -24,19 +24,7 @@ export default function Homepage() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    useEffect(() => {
-        const ws = new WebSocket("ws://localhost:1169/api/home-cardsinfo");
-        ws.onmessage = (event) => {
-            var updatedCards = JSON.parse(event.data);
-            setCardStats(updatedCards);
-        }
-        ws.onerror = (err) => {
-            console.error("failed to get data for statistic card:", err.message);
-        }
-        ws.onclose = () => {
-            ws.close();
-        }
-    }, []);
+    
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);

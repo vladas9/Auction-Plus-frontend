@@ -78,8 +78,9 @@
 }
 
 .to_bid{
-  width: 100%;
-  gap: 10%;
+  width: 110%;
+  justify-content: space-around;
+  gap: 8%;
   display: flex;
 }
 
@@ -106,4 +107,11 @@
 
 .statistic{
   margin: 2%;
+}
+
+
+@media (max-aspect-ratio: 3/7), (max-width: 600) {
+  .info_part{
+    display: none;
+  }
 }

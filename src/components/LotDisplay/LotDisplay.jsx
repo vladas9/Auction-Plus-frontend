@@ -18,9 +18,9 @@ const LotDisplay = (props) => {
     const handleConfirmClick = () => {
         if ((Number(bid) > props.max_bid) && (props.opened)) {
             setIsSubmitting(true);
-            const authToken = localStorage.getItem('auth_token');
+            const authToken = localStorage.getItem('auth-token');
 
-            fetch('/api/post_bid', {
+            fetch('http://localhost:1169/api/post-bid', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,12 +30,6 @@ const LotDisplay = (props) => {
                     amount: Number(bid),
                     auction_id: props.id,
                 }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to place the bid');
-                }
-                return response.json();
             })
             .then(data => {
                 console.log('Bid successfully placed:', data);
