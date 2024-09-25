@@ -24,7 +24,19 @@ export default function Homepage() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    
+    /*useEffect(() => {
+        const ws = new WebSocket("ws://localhost:1169/api/home-cardsinfo");
+        ws.onmessage = (event) => {
+            var updatedCards = JSON.parse(event.data);
+            setCardStats(updatedCards);
+        }
+        ws.onerror = (err) => {
+            console.error("failed to get data for statistic card:", err.message);
+        }
+        ws.onclose = () => {
+            ws.close();
+        }
+    }, []);*/
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -46,7 +58,6 @@ export default function Homepage() {
         fetch(`http://localhost:1169/api/auctions?${query}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 setLots(data.lots);
                 const totalItems = data.total_items || 90; 
                 setTotalPages(Math.ceil(totalItems / 9));
@@ -70,6 +81,8 @@ export default function Homepage() {
         }
     };
 
+    
+
 
     return (
         <div className={styles.full_container}>
@@ -92,11 +105,11 @@ export default function Homepage() {
                                 id={item.id}
                                 title={item.title}
                                 img_src={item.img_src}
-                                start_price={item.start_price}
-                                rating={item.rating}
-                                status={item.status}
-                                last_bid={item.last_bid}
-                                endtime={item.endtime}
+                                category_name={item.category_name}
+                                num_of_bids={item.num_of_bids}
+                                condition={item.condition}
+                                last_bid={item.max_bid}
+                                endtime={item.end_date}
                             />
                         ))
                     ) : (
