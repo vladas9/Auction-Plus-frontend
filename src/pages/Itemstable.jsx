@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PlacedBidsTable from "../components/PlacedBidsTable/PlacedBidsTable";
 import PlacedLotsTable from "../components/PlacedLotsTable/PlacedLotsTable";
 import styles from "../styles/Itemstable.module.css"
 import { Link } from "react-router-dom";
 
 export default function Itemstable() {
+  if(!localStorage.getItem("auth-token")){
+    window.location.replace("/login");
+    return (
+      <>
+        Redirecting
+      </>
+    )
+  }
+
   const [placedItems, setplacedItems] = useState(true)
 
   return (

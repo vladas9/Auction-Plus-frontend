@@ -24,8 +24,13 @@ ChartJS.register(
 );
 
 export default function Profile() {
-  if(!localStorage.getItem("auth-token")){
-    window.location.replace("/register");
+  if (!localStorage.getItem("auth-token")){
+    window.location.replace("/login");
+    return(
+      <>
+        Redirecting...
+      </>
+    )
   }
   const {profilePicUrl}=useContext(BidContext);
   const [error, setError]=useState(null);

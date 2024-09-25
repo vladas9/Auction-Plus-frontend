@@ -6,7 +6,6 @@ export default function BidContextProvider(props){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     
-    //get users data by auth token if exists
     if(localStorage.getItem("auth-token")){
         fetch("http://localhost:1169/api/user-data", {
             method: "GET",
