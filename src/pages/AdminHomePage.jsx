@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation} from "react-router-dom";
 import styles from "../styles/AdminHomePage.module.css";
 
 const initialUsers = [
@@ -10,6 +10,7 @@ const initialUsers = [
 ];
 
 export default function Admin() {
+  
   const [users, setUsers] = useState(initialUsers);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const location = useLocation();

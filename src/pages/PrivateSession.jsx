@@ -8,6 +8,14 @@ import BidInput from '../components/BidInput/BidInput';
 import BidButton from '../components/ConfirmButton/ConfirmButton';
 
 export default function PrivateSession(){
+  if (!localStorage.getItem("auth-token")){
+    window.location.replace("/login");
+  return(
+      <>
+        Redirecting...
+      </>
+    )
+  }
   const [bidVal, setBidVal]=useState('');
   const [isBidHigher, setIsBidHigher]=useState(false)
   //private session data

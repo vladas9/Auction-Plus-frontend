@@ -2,6 +2,14 @@ import React from "react";
 import styles from "../styles/Settings.module.css";
 
 export default function Settings() {
+  if (!localStorage.getItem("auth-token")){
+    window.location.replace("/login");
+  return(
+      <>
+        Redirecting...
+      </>
+    )
+  }
     const handleDeliting=()=>{
         console.log("User deleted his account");
     }
