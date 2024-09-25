@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation  } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar/Navbar';
@@ -16,24 +16,17 @@ import PrivateSession from "./pages/PrivateSession";
 import Admin from "./pages/AdminHomePage";
 import Settings from "./pages/Settings";
 import Itemstable from "./pages/Itemstable";
-import AdminAuth from "./pages/Adminauth";
 import NotificationsPage from "./pages/NotifPage";
 import AdminLotsTable from "./components/AdminComponents/AdminLotsTable";
 import AdminUsersTable from "./components/AdminComponents/AdminUsersTable";
-import { Link } from 'react-router-dom';
-import { matchPath } from 'react-router-dom';
+import { Link, matchPath } from 'react-router-dom';
+import { BidContext } from './context/BidContext';
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(
-    localStorage.getItem('isAdminAuthenticated') === 'true' 
-  );
+  const {isAdmin}=useContext(BidContext);
+  
   const location = useLocation();
-
-  useEffect(() => {
-    localStorage.setItem('isAdminAuthenticated', isAdminAuthenticated);
-  }, [isAdminAuthenticated]);
 
   const denied = ['/login', '/signup', '/private-session', '/admin/users', '/admin/lots', '/admin', `/private-session/:id`];
 
@@ -52,8 +45,8 @@ function App() {
           (<Searchbar className="searchbar"/>)}
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-            <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/postlot" element={<Post />} />
             <Route path="/private-session" element={<Private />} />
@@ -62,11 +55,10 @@ function App() {
             <Route path="/lot/:id" element={<Lot />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/notif" element={<NotificationsPage />} />
-            <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate to="/admin/auth" />}>
+            <Route path="/admin" element={isAdmin?<Admin />:<Navigate to="/" replace/>}>
               <Route path="lots" element={<AdminLotsTable />} />
               <Route path="users" element={<AdminUsersTable />} />
             </Route>
-            <Route path="/admin/auth" element={<AdminAuth setIsAdminAuthenticated={setIsAdminAuthenticated} />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Page404 />} />
           </Routes>

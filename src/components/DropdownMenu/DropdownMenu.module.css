@@ -33,6 +33,7 @@
   
   .user_dropdown {
     margin-right: 50px;
+    z-index: 10;
   }
   
   

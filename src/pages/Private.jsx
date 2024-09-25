@@ -5,6 +5,14 @@ import styles from '../styles/Private.module.css';
 const MOCK_RESULT = true;
 
 const PrivateSession = () => {
+  if (!localStorage.getItem("auth-token")){
+    window.location.replace("/login");
+  return(
+      <>
+        Redirecting...
+      </>
+    )
+  }
   const [entryCode, setEntryCode] = useState('');
   const [error, setError] = useState(false);
   const navigate = useNavigate();
