@@ -5,28 +5,7 @@ import { Chart as ChartJS } from 'react-chartjs-2';
 Chart.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, LineController, BarController, Title, Tooltip, Legend);
 
 const StatisticsChart = ({ labels, bidsPerDay, maxBidPerDay }) => {
-    const data = {
-        labels: labels,
-        datasets: [
-            {
-                type: 'bar',
-                label: 'Bids per day',
-                backgroundColor: 'rgba(14, 103, 175)',
-                data: bidsPerDay,
-                borderColor: 'rgba(14, 103, 175)',
-                borderWidth: 0,
-            },
-            {
-                type: 'line',
-                label: 'Max bid per day',
-                borderColor: 'rgba(200, 224, 152)',
-                backgroundColor: 'rgba(200, 224, 152, 0.5)',
-                data: maxBidPerDay,
-                fill: false,
-            },
-        ],
-    };
-
+    const maxim = Math.max(null, ...bidsPerDay);
     const options = {
         responsive: true,
         plugins: {
@@ -41,10 +20,58 @@ const StatisticsChart = ({ labels, bidsPerDay, maxBidPerDay }) => {
         },
         scales: {
             y: {
+                type: 'linear',
+                position: 'left',
                 beginAtZero: true,
+                suggestedMax: maxim + 0.3 * maxim, 
+                title: {
+                    display: true,
+                    text: 'Bids per day',
+                },
+            },
+            y1: {
+                type: 'linear',
+                position: 'right',
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Max bid per day',
+                },
+                grid: {
+                    drawOnChartArea: false, 
+                },
             },
         },
     };
+    
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                type: 'line',
+                label: 'Max bid per day',
+                borderColor: 'rgba(200, 224, 152)',
+                backgroundColor: 'rgba(200, 224, 152, 0.5)',
+                data: maxBidPerDay,
+                fill: false,
+                yAxisID: 'y1',
+                order: 1, 
+            },
+            {
+                type: 'bar',
+                label: 'Bids per day',
+                backgroundColor: 'rgba(14, 103, 175)',
+                borderRadius: 6,
+                data: bidsPerDay,
+                borderColor: 'rgba(14, 103, 175)',
+                borderWidth: 0,
+                yAxisID: 'y',
+                order: 2,
+            },
+        ],
+    };
+    
+    
 
     return <ChartJS type='bar' data={data} options={options} />;
 };

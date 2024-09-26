@@ -4,23 +4,24 @@ import ImageSwiper from '../ImageSwiper/ImageSwiper';
 import BidInput from '../BidInput/BidInput';
 import ConfirmButton from '../ConfirmButtonForLot/ConfirmButton';
 import StatisticsChart from '../StatisticsChart/StatisticsChart';
+import { useNavigate } from 'react-router-dom';
 
 const LotDisplay = (props) => {
     const [bid, setBid] = useState('');
     const [statusMessage, setStatusMessage] = useState(''); 
     const [isSubmitting, setIsSubmitting] = useState(false); 
-
+    const navigate = useNavigate();
     const handleBidChange = (event) => {
         setBid(event.target.value);
         setStatusMessage(''); 
     };
+    const authToken = localStorage.getItem('auth-token');
 
     const handleConfirmClick = () => {
-        if ((Number(bid) > props.max_bid) && (props.opened)) {
+        if ((Number(bid) > props.max_bid) && (props.opened) && (authToken)) {
             setIsSubmitting(true);
-            const authToken = localStorage.getItem('auth_token');
 
-            fetch('/api/post_bid', {
+            fetch('http://localhost:1169/api/post-bid', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,12 +31,6 @@ const LotDisplay = (props) => {
                     amount: Number(bid),
                     auction_id: props.id,
                 }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to place the bid');
-                }
-                return response.json();
             })
             .then(data => {
                 console.log('Bid successfully placed:', data);
@@ -50,8 +45,10 @@ const LotDisplay = (props) => {
             .finally(() => {
                 setIsSubmitting(false);
             });
-        } else {
-            setStatusMessage('Your bid is too low or the auction is closed.');
+        } else if (authToken==null) {
+            navigate("/login");
+        } else{
+            setStatusMessage('Your bid is too low or the auction is closed, maybe you are unregistered.');
         }
     };
 
