@@ -5,6 +5,7 @@ import { Chart as ChartJS } from 'react-chartjs-2';
 Chart.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, LineController, BarController, Title, Tooltip, Legend);
 
 const StatisticsChart = ({ labels, bidsPerDay, maxBidPerDay }) => {
+    const maxim = Math.max(null, ...bidsPerDay);
     const options = {
         responsive: true,
         plugins: {
@@ -22,7 +23,7 @@ const StatisticsChart = ({ labels, bidsPerDay, maxBidPerDay }) => {
                 type: 'linear',
                 position: 'left',
                 beginAtZero: true,
-                max: (+bidsPerDay + 0.3*bidsPerDay), 
+                max: (+maxim + 0.3*maxim), 
                 title: {
                     display: true,
                     text: 'Bids per day',
@@ -60,6 +61,7 @@ const StatisticsChart = ({ labels, bidsPerDay, maxBidPerDay }) => {
                 type: 'bar',
                 label: 'Bids per day',
                 backgroundColor: 'rgba(14, 103, 175)',
+                borderRadius: 6,
                 data: bidsPerDay,
                 borderColor: 'rgba(14, 103, 175)',
                 borderWidth: 0,

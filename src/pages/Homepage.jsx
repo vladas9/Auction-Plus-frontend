@@ -47,6 +47,7 @@ export default function Homepage() {
 
     const fetchLots = (page, filters) => {
         const offset = page;
+        console.log(filters);
         const query = new URLSearchParams({
             limit: 9,
             offset,
