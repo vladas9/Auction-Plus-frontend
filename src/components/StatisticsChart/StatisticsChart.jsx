@@ -23,7 +23,7 @@ const StatisticsChart = ({ labels, bidsPerDay, maxBidPerDay }) => {
                 type: 'linear',
                 position: 'left',
                 beginAtZero: true,
-                max: (+maxim + 0.3*maxim), 
+                suggestedMax: maxim + 0.3 * maxim, 
                 title: {
                     display: true,
                     text: 'Bids per day',
