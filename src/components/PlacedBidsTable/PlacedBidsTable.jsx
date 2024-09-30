@@ -17,7 +17,7 @@ export default function PlacedBidsTable() {
   var offset = 1
   useEffect(() => {
     var fetchPlacedBids = async () => {
-      await fetch(`http://localhost:1169/api/get-bids-table?limit=${limit}&offset=${offset}`, {
+      await fetch(`http://localhost:1169/api/bids/table?limit=${limit}&offset=${offset}`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
@@ -26,6 +26,7 @@ export default function PlacedBidsTable() {
         return res.json();
       }).then(data => {
         console.log(data);
+        if(data.lots_table!=null) setLots(data.lots_table);
         setBids(data.bids_table);
       }).catch(err => {
         setError(err.message);

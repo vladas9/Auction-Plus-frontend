@@ -16,7 +16,7 @@ export default function PlacedLotsTable() {
     var offset = 1;
     useEffect(() => {
         var fetchPlacedLots = async () => {
-            await fetch(`http://localhost:1169/api/get-lots-table?limit=${limit}&offset=${offset}`, {
+            await fetch(`http://localhost:1169/api/lots/table?limit=${limit}&offset=${offset}`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
@@ -25,7 +25,7 @@ export default function PlacedLotsTable() {
                 return res.json();
             }).then(data => {
                 console.log(data);
-                setLots(data.lots_table);
+                if(data.lots_table!=null) setLots(data.lots_table);
             }).catch(err => {
                 setError(err.message);
             }).finally(() => {
@@ -47,6 +47,7 @@ export default function PlacedLotsTable() {
             }));
             setRowData(rows);
         }
+        
     }, [lots]);
 
     const [colDefs, setColDefs] = useState([

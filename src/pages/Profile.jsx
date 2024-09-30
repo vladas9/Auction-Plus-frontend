@@ -38,7 +38,7 @@ export default function Profile() {
   const [user_data, setUserData]=useState(null);
   useEffect(()=>{
     const fetchData= async ()=>{
-      await fetch("http://localhost:1169/api/profile-data", {
+      await fetch("http://localhost:1169/api/user/profile-data", {
         method:"GET",
         headers:{
           Authorization:`Bearer ${localStorage.getItem("auth-token")}`,
