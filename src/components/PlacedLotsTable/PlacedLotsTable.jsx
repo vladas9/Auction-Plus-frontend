@@ -12,11 +12,11 @@ export default function PlacedLotsTable() {
     const [lots, setLots] = useState([]);
     const [error, setError] = useState(null);
     const [rowData, setRowData] = useState([]);
-    var limit = 10;
+    var limit = 40;
     var offset = 1;
     useEffect(() => {
         var fetchPlacedLots = async () => {
-            await fetch(`http://localhost:1169/api/lots/table?limit=${limit}&offset=${offset}`, {
+            await fetch(`http://localhost:1169/api/auctions/table?limit=${limit}&offset=${offset}`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("auth-token")}`

@@ -56,7 +56,7 @@ export default function Homepage() {
             maxprice: filters.maxprice,
             lotcondition: filters.lotcondition,
         }).toString();
-        fetch(`http://localhost:1169/api/auctions?${query}`)
+        fetch(`http://localhost:1169/api/auctions/cards?${query}`)
             .then(response => response.json())
             .then(data => {
                 setLots(data.lots);

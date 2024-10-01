@@ -18,10 +18,10 @@ export default function Post() {
   const [formData, setFormData]=useState({
     title:"Title from the form",
     description:"abracadabra description",
-    starting_price:122,
-    category:"furniture",
+    start_price:122,
+    category_name:"furniture",
     lot_condition:"new",
-    end_date:"2024-09-09T13:34",
+    end_date:"2024-10-30T13:34",
     img_src:[]
   })
   var convertImages = (e) =>{
@@ -63,22 +63,24 @@ export default function Post() {
     postLot();
   };
   const postLot = async () =>{
-    await fetch("http://localhost:1169/api/post-lot",{
+    var updatedDate = formData.end_date.concat(":00Z");
+    var toSend = {...formData, end_date:updatedDate};
+    console.log(toSend)
+    await fetch("http://localhost:1169/api/auction/post",{
       method:"POST",
       headers:{
-        Accept:'application/form-data',
-        "Content-Type":"application-json",
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${localStorage.getItem("auth-token")}`
       },
-      body:{
-        "auth_token":localStorage.getItem("auth-token"),
-        ...formData
-      }
+      body: JSON.stringify(toSend)
+
 
     }).then(res =>{
+      console.log(res)
       return res.json();
     }).then(data=>{
-      if(data.posted){
-        alert("your lot is posted now", data.id)
+      if(data.auctionId){
+        console.log("your lot is posted now", data.auctionId)
       }else{
         throw new Error(data.error_message);
       }
@@ -114,10 +116,10 @@ export default function Post() {
 
         <div className={styles.inputGroup}>
           <input
-            name="starting_price"
+            name="start_price"
             type="number"
             placeholder="Price"
-            value={formData.starting_price}
+            value={formData.start_price}
             onChange={handleChange}
             required
             className={styles.input}
@@ -168,8 +170,8 @@ export default function Post() {
           <div className={styles.filterField}>
           <label>Category</label>
             <select
-                name="category"
-                value={formData.category}
+                name="category_name"
+                value={formData.category_name}
                 onChange={handleChange}
                 className={styles.filterInput}
             >
