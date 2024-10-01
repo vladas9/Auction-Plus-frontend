@@ -17,7 +17,7 @@ export default function PlacedBidsTable() {
   var offset = 1
   useEffect(() => {
     var fetchPlacedBids = async () => {
-      await fetch(`http://localhost:1169/api/get-bids-table?limit=${limit}&offset=${offset}`, {
+      await fetch(`http://localhost:1169/api/bids/table?limit=${limit}&offset=${offset}`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
@@ -26,6 +26,7 @@ export default function PlacedBidsTable() {
         return res.json();
       }).then(data => {
         console.log(data);
+        if(data.lots_table!=null) setLots(data.lots_table);
         setBids(data.bids_table);
       }).catch(err => {
         setError(err.message);
@@ -38,12 +39,16 @@ export default function PlacedBidsTable() {
   }, [])
   useEffect(() => {
     if (bids.length > 0) {
-      const rows = lots.map((item) => ({
+      const rows = bids.map((item) => ({
         "Lot title": [item.img_src, item.lot_title],
         Price: Number(item.max_bid),//need to check other methods of converting and see which is more convenient
         "Ending date": item.end_date,
         Category: item.category,
         "Lot status": item.closed,
+        "Bid status":{
+          max_bid: item.max_bid, 
+          users_bid: item.users_bid,
+        },
         "Top bidder": item.top_bidder,
       }));
       setRowData(rows);

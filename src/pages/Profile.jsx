@@ -38,12 +38,13 @@ export default function Profile() {
   const [user_data, setUserData]=useState(null);
   useEffect(()=>{
     const fetchData= async ()=>{
-      await fetch("http://localhost:1169/api/profile-data", {
+      await fetch("http://localhost:1169/api/user/profile-data", {
         method:"GET",
         headers:{
           Authorization:`Bearer ${localStorage.getItem("auth-token")}`,
         },
       }).then(res=>{
+        console.log(res);
         return res.json();
       }).then(data=>{
         setUserData(data);
@@ -137,7 +138,6 @@ export default function Profile() {
         borderRadius: 6,
         fill: false,
         data: user_data.price_range_stats.sold_data,
-        borderColor: "rgb(255, 99, 132)",
         borderColor: "rgb(54, 162, 235)",
         backgroundColor: "#C5E898",
       },

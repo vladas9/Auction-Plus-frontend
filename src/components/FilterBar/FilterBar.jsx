@@ -15,6 +15,11 @@ export default function FilterBar({fetchLots, filters, setFilters}) {
     };
 
     const clearFilters = () => {
+        filters.category= "";
+        filters.minprice= "";
+        filters.maxprice= "";
+        filters.lotcondition= "";
+        fetchLots(1, filters);
         setFilters({
             category: "",
             minprice: "",
@@ -22,6 +27,7 @@ export default function FilterBar({fetchLots, filters, setFilters}) {
             lotstate: ""
         })
     };
+    
 
     const isSearchDisabled = !Object.values(filters).some((value) => value !== "");
 
@@ -87,7 +93,7 @@ export default function FilterBar({fetchLots, filters, setFilters}) {
                         <select
                             name="lotcondition"
                             className={styles.filterInput}
-                            value={filters.lotstate}
+                            value={filters.lotcondition}
                             onChange={handleInputChange}
                         >
                             <option value="">Lot condition</option>

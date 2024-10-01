@@ -45,7 +45,7 @@ export default function RegistrationForm() {
     
     var responseData;
     
-    await fetch("http://localhost:5173/api/register-user",{
+    await fetch("http://localhost:1169/api/user/register",{
       method: 'POST',
       headers:{
         Accept:'application/form-data',

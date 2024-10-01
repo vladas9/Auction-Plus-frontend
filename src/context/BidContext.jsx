@@ -6,7 +6,7 @@ export default function BidContextProvider(props){
     const [isAdmin, setIsAdmin] = useState(false);
     
     if(localStorage.getItem("auth-token")){
-        fetch("http://localhost:1169/api/user-data", {
+        fetch("http://localhost:1169/api/user/data", {
             method: "GET",
             headers:{
                 "Authorization": `Bearer ${localStorage.getItem("auth-token")}`

@@ -15,24 +15,23 @@ export default function Login() {
       "email": email,
       "password": password
     }
-    await fetch("http://localhost:1169/api/login-user", {
+    await fetch("http://localhost:1169/api/user/login", {
       method: "POST",
       body: JSON.stringify(login_data)
     }).then(res => {
-      //if (res.ok) {
+      if (res.ok) {
         return res.json();
-      //}
-      //console.log(res)
-      //throw new Error("Something went wrong")
+      }
+      console.log(res)
+      throw new Error("Something went wrong")
     }).then(data => {
-      //console.log(data)
+      console.log(data)
       localStorage.setItem("auth-token", data.auth_token);
       saveProfilePic(data.img_url);
       setUserType(data.uset_type);
             navigate('/');
     }).catch(err => {
       console.error(err.message)
-      alert(err.error);
     })
 
   };
