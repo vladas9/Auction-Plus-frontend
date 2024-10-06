@@ -15,7 +15,7 @@ const Lot = () => {
     opened: false,
     max_bid: 0,
     n_bids: 0,
-    img_srcs: [],
+    img_src: [],
     title: '',
     description: '',
     end_date: '',
@@ -81,7 +81,7 @@ const Lot = () => {
   // }, [id]);
 
 
-  const imgSources = lot?.img_srcs?.length > 0 ? lot.img_srcs : ["https://fundatia.moldcell.md/wp-content/themes/consultix/images/no-image-found-360x250.png"];
+  const imgSources = lot?.img_src?.length > 0 ? lot.img_src : ["https://fundatia.moldcell.md/wp-content/themes/consultix/images/no-image-found-360x250.png"];
   const title = lot?.title?.trim() !== "" ? lot.title : "Untitled Lot";
   const description = lot?.description?.trim() !== "" ? lot.description : "No description available";
   const maxBid = lot?.max_bid > 0 ? lot.max_bid : "No bids yet";

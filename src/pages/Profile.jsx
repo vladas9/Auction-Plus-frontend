@@ -44,9 +44,9 @@ export default function Profile() {
           Authorization:`Bearer ${localStorage.getItem("auth-token")}`,
         },
       }).then(res=>{
-        console.log(res);
         return res.json();
       }).then(data=>{
+            console.log(data);
         setUserData(data);
       }).catch(err=>{
         console.log(err);
@@ -96,12 +96,12 @@ export default function Profile() {
   const accountAgeMonths = (currentDate.getFullYear() - regDate.getFullYear()) * 12 + currentDate.getMonth() - regDate.getMonth();
 
   const boughtData = {
-    labels: user_data.bought_stats.labels,
+    labels: user_data.stats.bought_stats.labels,
     datasets: [
       {
         borderRadius: 6,
         label: "Items bought",
-        data: user_data.bought_stats.data,
+        data: user_data.stats.bought_stats.data,
         backgroundColor: ["#FF3A20", "#29ADB2", "#C5E898", "#0766AD", "#F3F3F3"],
         hoverOffset: 40,
       },
@@ -109,12 +109,12 @@ export default function Profile() {
   };
 
   const soldData = {
-    labels: user_data.sold_stats.labels,
+    labels: user_data.stats.sold_stats.labels,
     datasets: [
       {
         borderRadius: 6,
         label: "Items sold",
-        data: user_data.sold_stats.data,
+        data: user_data.stats.sold_stats.data,
         backgroundColor: ["#FF3A20", "#29ADB2", "#C5E898", "#0766AD", "#F3F3F3"],
         hoverOffset: 40,
       },
@@ -122,13 +122,13 @@ export default function Profile() {
   };
 
   const barData = {
-    labels: user_data.price_range_stats.labels,
+    labels: user_data.stats.price_range_stats.labels,
     datasets: [
       {
         type: "bar",
         borderRadius: 6,
         label: "Bought lots",
-        data: user_data.price_range_stats.bought_data,
+        data: user_data.stats.price_range_stats.bought_data,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "#0766AD",
       },
@@ -137,7 +137,7 @@ export default function Profile() {
         label: "Sold lots",
         borderRadius: 6,
         fill: false,
-        data: user_data.price_range_stats.sold_data,
+        data: user_data.stats.price_range_stats.sold_data,
         borderColor: "rgb(54, 162, 235)",
         backgroundColor: "#C5E898",
       },
@@ -183,11 +183,11 @@ export default function Profile() {
             <div className={styles.charts}>
               <div className={styles.chartBox}>
                 <h3>Bought items</h3>
-                <Doughnut data={boughtData} />
+                {boughtData.datasets[0].data.length > 0 ? <Doughnut data={boughtData} /> : <p className={styles.no_data_message}>Consider buying some items</p>}
               </div>
               <div className={styles.chartBox}>
                 <h3>Sold items</h3>
-                <Doughnut data={soldData} />
+                {soldData.datasets[0].data.length > 0 ? <Doughnut data={soldData} />: <p className={styles.no_data_message}>Consider selling some items</p>}
               </div>
             </div>
             <div className={styles.barChart}>
