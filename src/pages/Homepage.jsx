@@ -52,8 +52,8 @@ export default function Homepage() {
             limit: 9,
             offset,
             category: filters.category,
-            minprice: filters.minprice,
-            maxprice: filters.maxprice,
+            min_price: filters.minprice,
+            max_price: filters.maxprice,
             lotcondition: filters.lotcondition,
         }).toString();
         fetch(`http://localhost:1169/api/auctions/cards?${query}`)
