@@ -14,6 +14,8 @@ import {
 import { useProfileFetch } from "./hooks/useProfileFetch";
 import { useProfileAge } from "./hooks/useProfileAge";
 import { useChartsData } from "./hooks/useChartsData";
+import ProfilePhoto from "./components/profilePhoto/ProfilePhoto";
+import ProfileInfoBanner from "./components/profileInfoBanner/ProfileInfoBanner";
 
 ChartJS.register(
     CategoryScale,
@@ -33,6 +35,7 @@ export default function Profile() {
     const { profilePicUrl, error, loading, user_data } = useProfileFetch(
         "http://localhost:1169/api/user/profile-data",
     );
+
     if (loading) {
         return <>Loading...</>;
     }
@@ -52,27 +55,13 @@ export default function Profile() {
                         <button className={styles.edit}>Edit profile</button>
                     </div>
                     <div className={styles.profile__info}>
-                        <div
-                            className={styles.profile__info__photo}
-                            style={{ backgroundImage: `url("${profilePicUrl}")` }}
-                        ></div>
-
-                        <div className={styles.profile__info__text}>
-                            <div className={styles.profile__info__header}>
-                                <span>{user_data.username}</span>
-                            </div>
-                            <div className={styles.profile__info__item}>
-                                <span className="material-symbols-outlined">mail</span>
-                                <span>{user_data.email}</span>
-                            </div>
-                            <div className={styles.profile__info__item}>
-                                <span className="material-symbols-outlined">call</span>
-                                <span>{user_data.phone_number}</span>
-                            </div>
-                            <div className={styles.profile__info__item}>
-                                <span>Profile age: {accountAgeMonths} months</span>
-                            </div>
-                        </div>
+                        <ProfilePhoto profilePic={profilePicUrl} />
+                        <ProfileInfoBanner
+                            username={user_data.username}
+                            email={user_data.email}
+                            phone_number={user_data.phone_number}
+                            accountAge={accountAgeMonths}
+                        />
                     </div>
 
                     <div className={styles.statistics}>

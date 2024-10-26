@@ -6,26 +6,6 @@
   border-radius: 6px;
 }
 
-.profile__info__text{
-  list-style: none;
-  color: #838383;
-  font-family: Inter, sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-.profile__info__header{
-  font-size: 40px;
-  color: #000;
-}
-
-.profile__info__item{
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
 .main {
   margin: 2%;
   background-color: #ffffff;
@@ -70,13 +50,7 @@
   margin-left: 12%;
 }
 
-.profile__info__photo {
-  width: 250px;
-  height: 250px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-}
+
 
 .statistics {
   margin: 0 auto;
