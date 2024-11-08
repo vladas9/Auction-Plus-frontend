@@ -1,57 +1,67 @@
-import styles from "./styles.module.css"
-import React from "react"
-//import { Link } from "react-router-dom"
-const LotItem=()=>{
-    //test object
-    
-    var lot={
-        id: 0,
-        img_src: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
-        title:"Test lot",
-        start_price: 200,
-        last_bid:300,
-        rating: 30,
-        endtime:"12 february" ,
-        status:"closed"   
+import styles from "./styles.module.css";
+import { Link } from 'react-router-dom';
+import React from "react";
+import { color } from "chart.js/helpers";
+
+const LotItem = (props) => {
+
+  let formattedEndDate = "No end date available";
+  if (props?.endtime) {
+    try {
+      const date = new Date(props.endtime);
+      const dateOptions = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      };
+      const timeOptions = { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        hour12: false 
+      };
+      const formattedDate = date.toLocaleDateString('en-GB', dateOptions);
+      const formattedTime = date.toLocaleTimeString('en-GB', timeOptions);
+      formattedEndDate = `${formattedDate} - [${formattedTime}]`;
+    } catch (error) {
+      formattedEndDate = "Invalid date";
     }
-    return(
-        <>
-        <div className={styles.wrapper}>
+  }
 
-            {/*<Link to={`/lot/${lot.id}`} >*/}
-                <div className={styles.img__wrapper} style={{backgroundImage:`url(${lot.img_src})`}}>
-                
-                </div>
-            {/*</Link>*/}
-            <div className={styles.lot_info__wrapper}>
-                <div className={styles.lot_title}>
-                    {lot.title}
-                </div>
-                
-                <div className={styles.lot_info_first_row}>
-                    <div className={styles.lot_startprice}>
-                        Start price: {lot.start_price}
-                    </div>
-                    <div className={styles.lot_rating}>
-                        Rating: {lot.rating}
-                    </div>
-                    <div className={styles.lot_status}>
-                        {lot.status}
-                    </div>
-                </div>
+  return (
+    <div className={styles.card}>
+      <Link to={`/lot/${props.id}`} className={styles.imageLink}>
+      <div
+        className={styles.image}
+        style={{
+          backgroundImage: `url(${props.img_src ? props.img_src : 'https://fundatia.moldcell.md/wp-content/themes/consultix/images/no-image-found-360x250.png'})`
+        }}
+      ></div>
+    </Link>
 
-                <div className={styles.lot_info_second_row}>
-                    <div className={styles.lot_lastbid}>
-                        Current bid: {lot.last_bid}
-                    </div>
-                    <div className={styles.lot_endtime}>
-                        {lot.endtime}
-                    </div>
-                </div>
-                
-            </div>        
+
+      <div className={styles.content}>
+        <h3 className={styles.title}>{props.title}</h3>
+
+        <div className={styles.details}>
+          <div className={styles.detail} style={{color:"#29ADB2"}}>
+          <span className="material-symbols-outlined">bar_chart</span> Number of bids: {props.num_of_bids}
+          </div>
+          <div className={styles.detail} style={{color: "#0766AD"}}>
+          <span className="material-symbols-outlined">calendar_month</span> {formattedEndDate}
+          </div>
+          <div className={styles.detail} style={{color: "#000000"}}>
+          <span className="material-symbols-outlined">bid_landscape</span> Maximum bid: {props.last_bid}$
+          </div>
         </div>
-        </>
-    )
-}
-export default LotItem
+
+        <div className={styles.lotDetails}>
+          <div className={styles.lotId}>Lot number: {props.id}</div>
+          <div className={styles.lotCategory}>Category name: {props.category_name}, {props.condition}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LotItem;

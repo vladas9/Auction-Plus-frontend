@@ -1,33 +1,39 @@
-import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Container,
-  Grid,
-  Typography,
-  Link,
-  Box
-} from "@mui/material";
+import React, { useState, useContext } from "react";
+import styles from "../styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { BidContext } from "../context/BidContext";
 
-export default function Login({ setIsAuthenticated }) {
-  const [username, setUsername] = useState('');
+export default function Login() {
+  const { saveProfilePic, setUserType } = useContext(BidContext)
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const login = async (e) => {
     e.preventDefault();
-    const result = true;
-
-    if (result) {
-      setIsAuthenticated(true); 
-      navigate('/');
-      console.log(username);
-      console.log(password);
-
-    } else {
-      console.log("Login failed");
+    var login_data = {
+      "email": email,
+      "password": password
     }
+    await fetch("http://localhost:1169/api/user/login", {
+      method: "POST",
+      body: JSON.stringify(login_data)
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      console.log(res)
+      throw new Error("Something went wrong")
+    }).then(data => {
+      console.log(data)
+      localStorage.setItem("auth-token", data.auth_token);
+      saveProfilePic(data.img_url);
+      setUserType(data.uset_type);
+            navigate('/');
+    }).catch(err => {
+      console.error(err.message)
+    })
+
   };
 
   const handleClear = () => {
@@ -36,70 +42,35 @@ export default function Login({ setIsAuthenticated }) {
   };
 
   return (
-    <Box
-      sx={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Container maxWidth="xs">
-        <form onSubmit={handleLogin}>
-          <Typography variant="h5" gutterBottom align="center">
-            We are happy you come back!
-          </Typography>
-          <TextField
-            fullWidth
-            label="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            margin="normal"
+    <div className={styles.wallpaper}>
+      <div className={styles.container}>
+        <form onSubmit={login}>
+          <div className={styles.intro}>
+            <h2>We are happy you come back!</h2>
+          </div>
+          <input
+            className={styles.input}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
-          <TextField
-            fullWidth
-            label="Password"
+          <input
+            className={styles.input}
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            margin="normal"
+            required
           />
 
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                fullWidth
-              >
-                Login
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={handleClear}
-                fullWidth
-              >
-                Clear
-              </Button>
-            </Grid>
-          </Grid>
-
-          <Typography
-            variant="body2"
-            align="center"
-            sx={{ marginTop: 2 }}
-          >
-            Already have an account?{" "}
-            <Link href="/sign-in" underline="hover">
-              Sign in
-            </Link>
-          </Typography>
+          <div className={styles.actions}>
+            <button type="submit" className={styles.submitButton}>Login</button>
+            <button type="button" className={styles.clearButton} onClick={handleClear}>Clear</button>
+          </div>
         </form>
-      </Container>
-    </Box>
+      </div>
+    </div>
   );
 }

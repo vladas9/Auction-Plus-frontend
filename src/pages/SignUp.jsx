@@ -1,296 +1,130 @@
-import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Container,
-  Grid,
-  Typography,
-  Slider,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle
-} from "@mui/material";
-import UploadIcon from "@mui/icons-material/Upload";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "../styles/SignUp.module.css"
+import {BidContext} from "./../context/BidContext";
 
-export default function RegistrationForm({ setIsAuthenticated }) {
+export default function RegistrationForm() {
+  const {saveProfilePic, setUserType} = useContext(BidContext);
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-    phoneNumber: "",
-    address: "",
+    username: "user",
+    email: "admin@mail.ru",
+    password: "admin",
+    repeatPassword: "admin",
+    phone_number: "12354",
+    address: "adress",
     paymentDetails: "",
-    isHuman: false,
-    idUploaded: null,
+    isHuman: true,
+    img_src: '',
+    user_type:"client" //or "admin"
   });
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-  const [sliderValue, setSliderValue] = useState(0);
-  const [isSliderComplete, setIsSliderComplete] = useState(false);
-  const [openCaptchaDialog, setOpenCaptchaDialog] = useState(false);
   const navigate = useNavigate();
-
-  const handleCheckboxChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.checked,
-    });
-  
-    if (event.target.checked) {
-      setOpenCaptchaDialog(true); 
-    } else {
-      setFormData({
-        ...formData,
-        isHuman: false, 
-      });
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
     setFormData({ ...formData, [name]: value });
-
     if (name === "password" || name === "repeatPassword") {
-      setPasswordMismatch(
-        formData.password !== value && formData.repeatPassword !== value
-      );
+      setPasswordMismatch(formData.password !== value && formData.repeatPassword !== value);
     }
   };
+  
+  const convertImage = (e) => {
+    const file =  e.target.files[0];
+    const reader = new FileReader();
 
-  const handleFileUpload = (e) => {
-    setFormData({ ...formData, idUploaded: e.target.files[0] });
+    reader.onloadend = function () {
+      var base64String = reader.result.split(",")[1];
+      setFormData({ ...formData, img_src: base64String });
+    };
+    reader.readAsDataURL(file);
   };
 
-  const handleSubmit = (e) => {
+  const register = async (e) => {
     e.preventDefault();
+    
+    var responseData;
+    
+    await fetch("http://localhost:1169/api/user/register",{
+      method: 'POST',
+      headers:{
+        Accept:'application/form-data',
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(formData),
 
-    if (passwordMismatch) {
-      console.log("Passwords do not match");
-      return;
-    }
+    }).then((res)=>{
+      return res.json();
+    })
+    .then((data)=>{
+      responseData=data;
+      console.log(responseData)
+    })
 
-    const result = true; // Simulated backend response
-
-    if (result) {
-      setIsAuthenticated(true);
-      navigate('/');
-      console.log("Registration successful:", formData);
+    if (responseData.error) {
+      console.log(responseData.error)
     } else {
-      console.log("Registration failed");
+      localStorage.setItem('auth-token', responseData.auth_token);
+      saveProfilePic(responseData.img_src);
+      setUserType(responseData.user_type)
+      navigate("/");
     }
   };
 
-  const handleClear = () => {
+  const clear = () => {
     setFormData({
-      name: "",
+      username: "",
       email: "",
       password: "",
       repeatPassword: "",
-      phoneNumber: "",
+      phone_number: "",
       address: "",
       paymentDetails: "",
-      isHuman: false,
-      idUploaded: null,
+      isHuman: true,
+      img_src: null,
     });
     setPasswordMismatch(false);
   };
 
-  const handleSliderChange = (event, newValue) => {
-    setSliderValue(newValue);
-    if (newValue === 100) {
-      setIsSliderComplete(true);
-    } else {
-      setIsSliderComplete(false); 
-    }
-  };
-
-  const handleSubmitCaptcha = () => {
-    if (isSliderComplete) {
-      setOpenCaptchaDialog(false); 
-      setFormData({
-        ...formData,
-        isHuman: true, 
-      });
-    } else {
-      setFormData({
-        ...formData,
-        isHuman: false,
-      });
-    }
-  };
-
-  const handleCloseCaptchaDialog = () => {
-    setOpenCaptchaDialog(false);
-    setFormData({
-        ...formData,
-        isHuman: false,
-      });
-  };
 
   return (
-    <Container maxWidth="sm">
-      <form onSubmit={handleSubmit}>
-        <Typography 
-        variant="h5" 
-        align="center" 
-        gutterBottom 
-        style={{ marginTop: '20px' }}
-        >
-        Only one step left to discover something new!
-        </Typography>
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
-        <TextField
-          fullWidth
-          label="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
-        <TextField
-          fullWidth
-          label="Password"
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
-        <TextField
-          fullWidth
-          label="Repeat Password"
-          type="password"
-          name="repeatPassword"
-          value={formData.repeatPassword}
-          onChange={handleChange}
-          margin="normal"
-          required
-          error={passwordMismatch}
-          helperText={passwordMismatch ? "Passwords do not match" : ""}
-        />
-        <TextField
-          fullWidth
-          label="Phone Number"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-          margin="normal"
-          required
-          inputProps={{ pattern: "[0-9]*" }}
-        />
-        <TextField
-          fullWidth
-          label="Address"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          margin="normal"
-          required
-        />
+    <div className={styles.wallpaper}>
+      <div className={styles.container}>
+        <form>
+          <div className={styles.intro}> 
+            <h2>Only one step left to discover something new!</h2> 
+          </div>
+          <p>User Name</p>
+          <input type="text"  name="name" value={formData.username} onChange={handleChange} placeholder="Name"  required/>
+          <p>Email</p>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required/>
+          <p>Password</p>
+          <input type="password" name="password" value={formData.password}  onChange={handleChange}  placeholder="Password"  required/>
+          <p>Repeat Password</p>
+          <input  type="password"  name="repeatPassword"  value={formData.repeatPassword}  onChange={handleChange}  placeholder="Repeat Password" required className={`${passwordMismatch ? styles.error : ''}`}/>
+          <p>Phone Number</p>
+          <input  type="number"  name="phone_number"  value={formData.phone_number}  onChange={handleChange}  placeholder="Phone Number" pattern="[0-9]*"  required/>
+          <p>Adress</p>
+          <input  type="text"  name="address"  value={formData.address}  onChange={handleChange}  placeholder="Address"  required/>
+          <div className={styles.fileUpload}>
+            <label className={styles.uploadButton}>
+              Upload profile image
+              <input type="file" onChange={convertImage} />
+            </label>
+            {formData.img_src && <p className={styles.fileStatusMessage}>Profile Image Uploaded</p>}
+          </div>
+          {passwordMismatch && <span className={styles.helperText}>Passwords do not match</span>}
 
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={6}>
-          <Button
-            variant="contained"
-            component="label"
-            startIcon={<UploadIcon />}
-            fullWidth
-          >
-            Upload ID
-            <input
-              type="file"
-              hidden
-              onChange={handleFileUpload}
-            />
-          </Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography>(age verification)</Typography>
-          </Grid>
-        </Grid>
-
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={formData.isHuman}
-              onChange={handleCheckboxChange}
-              name="isHuman"
-            />
-          }
-          label="Are you a human?"
-        />
-
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-          <Button
-            variant="contained"
-            color="success"
-            type="submit"
-            fullWidth
-            disabled={!formData.isHuman || passwordMismatch || !formData.idUploaded}
-          >
-            Register
-          </Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleClear}
-              fullWidth
-            >
+          <div className={styles.actions}>
+            <button  className={styles.submitButton}  disabled={!formData.isHuman || passwordMismatch || !formData.img_src} onClick={register}>
+              Register
+            </button>
+            <button  className={styles.clearButton}  onClick={clear}>
               Clear
-            </Button>
-          </Grid>
-        </Grid>
-
-        <Dialog
-          open={openCaptchaDialog}
-          onClose={handleCloseCaptchaDialog}
-          aria-labelledby="captcha-dialog-title"
-          aria-describedby="captcha-dialog-description"
-        >
-          <DialogTitle id="captcha-dialog-title">Complete the CAPTCHA</DialogTitle>
-          <DialogContent>
-            <Slider
-              value={sliderValue}
-              onChange={handleSliderChange}
-              aria-labelledby="continuous-slider"
-              min={0}
-              max={100}
-              valueLabelDisplay="auto"
-              style={{ margin: '20px 0' }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSubmitCaptcha}
-            >
-              Submit CAPTCHA
-            </Button>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseCaptchaDialog} color="primary">
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </form>
-    </Container>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }

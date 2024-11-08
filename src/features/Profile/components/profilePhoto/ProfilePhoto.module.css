@@ -1,0 +1,7 @@
+.profile__info__photo {
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
