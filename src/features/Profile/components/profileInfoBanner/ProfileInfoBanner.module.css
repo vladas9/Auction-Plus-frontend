@@ -1,0 +1,20 @@
+.profile__info__text{
+  list-style: none;
+  color: #838383;
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.profile__info__header{
+  font-size: 40px;
+  color: #000;
+}
+
+.profile__info__item{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

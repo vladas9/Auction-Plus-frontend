@@ -5,7 +5,7 @@ import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar/Navbar';
 import Searchbar from './components/Searchbar/Searchbar';
 import Login from './pages/Login';
-import Profile from './pages/Profile';
+import Profile from './features/Profile';
 import SignUp from './pages/SignUp';
 import Private from './pages/Private';
 import Lot from './pages/Lotpage';
