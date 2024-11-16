@@ -9,7 +9,8 @@ import Profile from './features/Profile';
 import SignUp from './pages/SignUp';
 import Private from './pages/Private';
 import Lot from './pages/Lotpage';
-import Post from './pages/PostlotPage';
+//import Post from './pages/PostlotPage';
+import Post from "./features/PostLot"
 import SuccessPage from "./pages/SuccessPage";
 import Page404 from './pages/Page404';
 import PrivateSession from "./pages/PrivateSession";
