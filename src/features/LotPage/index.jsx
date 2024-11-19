@@ -1,42 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import styles from "./index.module.css";
 import LotDisplay from './components/LotDisplay/LotDisplay';
 import LotClosedPopup from "../../components/LotClosedPopup/LotClosedPopup";
 import { formatEndDate } from "./components/formatEndDate/formatEndDate";
 import { formatLotData } from "./utils/lotFormatter";
+import useLot from './hooks/useLot';
 
 const Lot = () => {
-  const [lotEnded, setLotEnded] = useState(false);
+  const { id } = useParams();
+  const { lot, setLot, lotEnded, setLotEnded } = useLot(id);
   const handleClosePopup = () => setLotEnded(false);
-  const [lot, setLot] = useState({  opened: false,  max_bid: 0,  n_bids: 0,  img_src: [],  title: '',  description: '',  end_date: '',
-    labels: [],  bids_perday: [],  max_bid_perday: [],}); // Fetch initial lot data
-  const { id } = useParams(); 
-
-  useEffect(() => {
-    fetch(`http://localhost:1169/api/auction/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        setLot(data.auction);
-        if (!data.opened) {
-          setLotEnded(true);
-        }
-      })
-      .catch(error => console.error('Error fetching lot data:', error));
-    }, []);
-
+  
   if (!lot) {
     return <div className={styles.load}>Loading...</div>;
   }
-  
-  const formattedLot = formatLotData(lot)
+
+  const formattedLot = formatLotData(lot);
   const formattedEndDate = formatEndDate(lot?.end_date);
 
   return (
     <div className={styles.lot}>
       <LotDisplay
         img_src={formattedLot.imgSources || ["https://fundatia.moldcell.md/wp-content/themes/consultix/images/no-image-found-360x250.png"]}
-        description={formattedLot.description || "No desription"}
+        description={formattedLot.description || "No description"}
         n_bids={formattedLot.nBids || "No bids yet"}
         title={formattedLot.title || "Untitled Lot"}
         end_date={formattedEndDate || "Invalid date"}
@@ -44,17 +31,20 @@ const Lot = () => {
         opened={formattedLot.opened || false}
         labels={lot?.labels || []}
         bids_perday={lot?.bids_perday || []}
-        max_bid_perday={lot?.max_bid_perday || []} 
+        max_bid_perday={lot?.max_bid_perday || []}
         id={id}
         onBidSuccess={(newMaxBid) => setLot(prevLot => ({ ...prevLot, max_bid: newMaxBid }))}
       />
 
-      {lotEnded && !formattedLot.opened && (  <LotClosedPopup lot={formattedLot.maxBid} onClose={handleClosePopup} />)}
+      {lotEnded && !formattedLot.opened && (
+        <LotClosedPopup lot={formattedLot.maxBid} onClose={handleClosePopup} />
+      )}
     </div>
   );
 };
 
 export default Lot;
+
 
 
   // // Setup WebSocket connection
