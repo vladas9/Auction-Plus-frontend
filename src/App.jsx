@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Profile from './features/Profile';
 import SignUp from './pages/SignUp';
 import Private from './pages/Private';
-import Lot from './pages/Lotpage';
+import Lot from './features/LotPage';
 //import Post from './pages/PostlotPage';
 import Post from "./features/PostLot"
 import SuccessPage from "./pages/SuccessPage";

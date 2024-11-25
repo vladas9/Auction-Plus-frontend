@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import ImageSwiper from '../ImageSwiper/ImageSwiper';
-import BidInput from '../BidInput/BidInput';
-import ConfirmButton from '../ConfirmButtonForLot/ConfirmButton';
-import StatisticsChart from '../StatisticsChart/StatisticsChart';
+import ImageSwiper from '../../../../components/ImageSwiper/ImageSwiper';
+import BidInput from '../../../../components/BidInput/BidInput';
+import ConfirmButton from '../../../../components/ConfirmButtonForLot/ConfirmButton';
+import StatisticsChart from '../../../../components/StatisticsChart/StatisticsChart';
 import { useNavigate } from 'react-router-dom';
 
 const LotDisplay = (props) => {
