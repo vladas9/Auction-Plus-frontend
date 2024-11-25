@@ -1,0 +1,19 @@
+
+.filterField {
+    display: flex;
+    flex-direction: column;
+}
+
+.filterField label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filterInput {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    width: 170px;
+}
+
+

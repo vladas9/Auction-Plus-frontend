@@ -21,7 +21,7 @@ const LotDisplay = (props) => {
         if ((Number(bid) > props.max_bid) && (props.opened) && (authToken)) {
             setIsSubmitting(true);
 
-            fetch('http://localhost:1169/api/post-bid', {
+            fetch('http://localhost:1169/api/bid/post', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

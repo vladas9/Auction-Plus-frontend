@@ -1,0 +1,17 @@
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+input,
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input:focus,
+.textarea:focus {
+    border-color: #1976d2;
+    outline: none;
+}
